@@ -1,21 +1,12 @@
-# Welcome to MkDocs
+# Welcome to the Portal developer documentation
 
-This is a test site hosted on [GitLab Pages](https://pages.gitlab.io). You can
-[browse its source code](https://gitlab.com/pages/mkdocs), fork it and start
-using it on your projects.
+Portal is a B2C cloud computer. User can run apps on their Portal just as they do on their smartphones.
+However, they are able to use these apps from any of their physical devices once they are paired to their Portal.
+It is similar to self-hosting but as-a-service and super convenient and user-centric.
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+You can write your own Portal app and have users install and run it.
+Since Portal is based on well-established concepts and technology, this is very easy and straightforward.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+A Portal app is published as a Docker image containing a webserver that listens for http and serves the static and dynamic content that makes up your app.
+The http endpoint is routed and authenticated by Portal, so there is no need to concern yourself with that.
+In its simplest form, your app will be available as a subdomain at `<app-name>.<portal-URI>` and only be accessible from the user's paired devices.
