@@ -1,3 +1,8 @@
-site_name: My Docs by GitLab Pages
+site_name: Portal Developer Documentation
 site_url: https://pages.gitlab.io/mkdocs
 site_dir: public
+
+nav:
+  - Welcome: 'index.md'
+  - Guide:
+    - 'routing_and_ac.md'
