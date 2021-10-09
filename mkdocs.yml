@@ -5,4 +5,7 @@ site_dir: public
 nav:
   - Welcome: 'index.md'
   - Guide:
+    - 'app_json.md'
+    - 'installation.md'
+    - 'persisting.md'
     - 'routing_and_ac.md'
