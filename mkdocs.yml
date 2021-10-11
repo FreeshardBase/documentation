@@ -5,7 +5,15 @@ site_dir: public
 nav:
   - Welcome: 'index.md'
   - Guide:
+    - 'overview.md'
     - 'app_json.md'
     - 'installation.md'
     - 'persisting.md'
     - 'routing_and_ac.md'
+    - 'events.md'
+
+extra_css:
+    - css/extra.css
+
+markdown_extensions:
+  - admonition

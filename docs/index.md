@@ -20,3 +20,9 @@ You do not have to take care of
 * authentication
 * access control
 * security/certificates
+
+
+
+
+Your app will have aspects of a web-app: omni-device presence, single source of truth on the server, browser-based UI.
+And it will have aspects of a local app: single user, local file-system, no infrastructure to manage 
