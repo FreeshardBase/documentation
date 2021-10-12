@@ -12,11 +12,11 @@ It must contain a web-service which means it must serve http on some port.
 How exactly you accomplish this is up to you.
 You many e.g. use rendered templates for each view of your app.
 Or you may build a web application that runs in the browser and queries data using a RESTful interface.
-That means you also may use any language or framework you like best.
+You also may use any language or framework you like best.
 
 However, we ask you to make your UI responsive.
 Portal provides an omni-device user experience, so every app should be equally comfortable to use
-weather a notebook, tablet or smartphone is used to access it.
+whether a notebook, tablet or smartphone is used to access it.
 
 ## The `app.json` File
 
