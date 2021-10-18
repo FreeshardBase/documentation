@@ -9,6 +9,7 @@ nav:
     - 'app_json.md'
     - 'persisting.md'
     - 'routing_and_ac.md'
+    - 'peering.md'
     - 'portal_services.md'
     - 'events.md'
     - 'payment.md'

@@ -1,7 +1,8 @@
 # Portal
 
 Portal is a private cloud computer that is marketed directly to consumers.
-You can write Portal apps that run on users' Portals, they are as versatile as web-applications and as private as locally installed apps.
+You can write Portal apps that run on users' Portals.
+They are as versatile as web-applications and as private as locally installed apps.
 
 ---
 
@@ -53,8 +54,8 @@ but also to make Portal more reliable and secure
 and to make your life as a Portal-app developer easier: 
 you have to learn only very few new concepts to get started.
 
-A Portal app is published as a Docker image containing a webserver that listens for http and serves the static and dynamic content that makes up your app.
-The http endpoint is routed and authenticated by Portal, so there is no need to concern yourself with that.
+A Portal app is published as a Docker image containing a webserver that listens for `http` and serves the static and dynamic content that makes up your app.
+The `http` endpoint is routed and authenticated by Portal, so there is no need to concern yourself with that.
 When a user installs your app, it will be available at a subdomain of the user's Portal: `<app-name>.<portal-URI>`.
 It will only be accessible from the user's paired devices.
 

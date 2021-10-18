@@ -6,5 +6,5 @@ Your app may subscribe on any topic and publish on any topic under an app-specif
 ---
 
 !!! warning "Upcoming Feature"
-    This feature is not yet implemented.
-    You cannot use it yet and its implementation - when completed - might differ from this description. 
+    Events are not yet implemented.
+    You cannot use them yet and their implementation - when completed - might differ from this description. 

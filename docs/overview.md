@@ -39,3 +39,7 @@ In addition, this file contains metadata like the app's name, its version and a 
 that will be shown in the app store and other places.
 
 Read more about configuration options at the [page about `app.json`](app_json.md).
+
+## How to reach a Portal
+
+todo: url with identifier, apps are subdomains

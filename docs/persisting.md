@@ -24,8 +24,8 @@ Use these directories to persist data that is used only by your app.
 ## Shared directories
 
 !!! warning "Upcoming Feature"
-    This feature is not yet implemented.
-    You cannot use it yet and its implementation - when completed - might differ from this description. 
+    Shared directories are not yet implemented.
+    You cannot use them yet and their implementation - when completed - might differ from this description. 
 
 Portal defines a set of shared directories like *own media* or *own documents*.
 Your app can request read or read-write access to these similar to app-specific directories.
