@@ -10,7 +10,7 @@ nav:
     - 'persisting.md'
     - 'routing_and_ac.md'
     - 'peering.md'
-    - 'portal_services.md'
+    - 'internal_services.md'
     - 'events.md'
     - 'payment.md'
 

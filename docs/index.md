@@ -16,7 +16,7 @@ Since Portal is based on well-established concepts and technology, this is very 
 
 ## How to think about your App
 
-When developing a Portal-app you are faced with a few differences compared to web-apps, desktop applications or mobile apps.
+When developing a Portal-app you need to think a little different about it compared to web-apps, desktop applications or mobile apps.
 A Portal-app has a unique combination of features and paradigms.
 
 As it runs on a Portal which is a virtual machine on cloud infrastructure,
@@ -51,10 +51,10 @@ For example:
 A Portal is not rocket science.
 We use lots of established technology, not only to make our own lives easier and development quicker
 but also to make Portal more reliable and secure
-and to make your life as a Portal-app developer easier: 
+and to make your life as a Portal-app developer simpler: 
 you have to learn only very few new concepts to get started.
 
-A Portal app is published as a Docker image containing a webserver that listens for `http` and serves the static and dynamic content that makes up your app.
+A Portal app is published as a Docker image containing a webserver that listens for `http` and serves the static and dynamic content that makes up your app's GUI.
 The `http` endpoint is routed and authenticated by Portal, so there is no need to concern yourself with that.
 When a user installs your app, it will be available at a subdomain of the user's Portal: `<app-name>.<portal-URI>`.
 It will only be accessible from the user's paired devices.

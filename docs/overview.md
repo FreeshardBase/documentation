@@ -16,12 +16,15 @@ You also may use any language or framework you like best.
 
 However, we ask you to make your UI responsive.
 Portal provides an omni-device user experience, so every app should be equally comfortable to use
-whether a notebook, tablet or smartphone is used to access it.
+whether on a notebook, tablet or smartphone.
 
 By default, only the Portal's owner can access your app's UI, 
 which means the terminals they have paired with their Portal.
 If you want to make part of your app public or usable by the owner's peers, you can do so.
 See [Routing and Access Control](routing_and_ac.md) to learn how.
+
+At the moment we do not provide hosting for any images.
+You can use [Docker Hub](https://hub.docker.com/) or any other docker repository for that.
 
 ## The `app.json` File
 
@@ -35,11 +38,7 @@ Things you have to configure here are:
 * directories inside the docker image where paths from the host should be mounted,
 * URL-paths that should be public or private or only reachable for peers.
 
-In addition, this file contains metadata like the app's name, its version and a short and a long description
+In addition, this file contains metadata like the app's name, its version and a description
 that will be shown in the app store and other places.
 
 Read more about configuration options at the [page about `app.json`](app_json.md).
-
-## How to reach a Portal
-
-todo: url with identifier, apps are subdomains
