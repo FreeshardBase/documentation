@@ -12,9 +12,9 @@ This allows end-to-end encrypted and authenticated communication.
 ## Portal IDs
 
 Each Portal has a unique and random ID.
-You can think of it like the Portals phone number (although it is alphanumeric).
+You can think of it like the Portal's phone number (although it is alphanumeric).
 You can see the first six digits of your Portal's ID on the home screen and as part of its URL.
-The real ID is much longer, but you usually don't need it.
+The real ID is much longer, but you rarely need it.
 
 ![Screenshot of a Portal's ID](img/screenshot_portal_id.png)
 
@@ -38,12 +38,12 @@ Depending on the user's setting, it might get all known peers, only a subset, or
 
 Once your app knows of some peers, it can contact them through the peer management service
 which will forward the request to the same app running on the target Portal.
-It will also add authentication information to the request, so that the target can be sure
+It will also add authentication information to the request so that the target can be sure
 it originated from the right Portal, 
 but as an app developer, you do not have to worry about that.
 
 Of course, for every peer-to-peer request you make, there has to be an endpoint to accept it,
 one that you also have to provide within your app.
-When writing your app, you have to keep this symmetry in mind.
-And to make authentication work, you have to make sure that these endpoints are configured
+When writing your app, keep this symmetry in mind.
+And to make authentication work, make sure that these endpoints are configured
 with the access type `peer` in the `app.json` file.

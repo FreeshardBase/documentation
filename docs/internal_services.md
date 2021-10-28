@@ -9,7 +9,7 @@ Use them by making REST requests against their APIs.
     Right now, the APIs described here are accessible without any checks.
     Your app can view, modify, and delete critical information about the Portal
     and even completely break it.
-    This will of course be locked down in the future but for now: be careful what you do!
+    This will of course be locked down in the future, but for now: be careful what you do!
 
 ## Identities
 

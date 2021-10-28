@@ -1,7 +1,7 @@
 # Events
 
 Each Portal comes with a built-in RabbitMQ PubSub Broker.
-Your app may subscribe on any topic and publish on any topic under an app-specific namespace.
+Your app may subscribe to any topic and publish on any topic under an app-specific namespace.
 
 ---
 

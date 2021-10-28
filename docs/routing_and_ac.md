@@ -14,7 +14,7 @@ Requests to this subdomain are forwarded to the running docker container of that
 ## SSH
 
 As an app developer, you do not need to concern yourself with SSH and certificates.
-Your app's interface only needs to be reachable via `http` at some arbitrary port.
+Your app's interface only needs to be reachable via HTTP at some arbitrary port.
 Portal manages its own certificate that is valid for all of its subdomains
 which means it covers all of its installed apps as well.
 

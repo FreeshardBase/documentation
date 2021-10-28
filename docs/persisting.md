@@ -1,7 +1,7 @@
 # Persisting Data
 
 If your app needs to persist data between restarts or upgrades, 
-it can do so by requesting access to a part of the Portal's filesystem.
+it can do so by requesting access to a part of the Portal's file system.
 Use this feature for a database or user-data in the shape of files.
 Shared directories allow data exchange between apps.
 
@@ -9,7 +9,7 @@ Shared directories allow data exchange between apps.
 
 ## App-specific directories
 
-For each installed app, Portal creates a separate app-directory inside its filesystem 
+For each installed app, Portal creates a separate app-directory inside its file system 
 and allows the app to mount subdirectories of that directory into itself
 by specifying them in the `app.json`.
 This feature is based on Docker [bind mounts](https://docs.docker.com/storage/bind-mounts/).
@@ -29,6 +29,6 @@ Use these directories to persist data that is used only by your app.
 
 Portal defines a set of shared directories like *own media* or *own documents*.
 Your app can request read or read-write access to these similar to app-specific directories.
-They are mounted inside your app's filesystem at a path that is specified in the `app.json`.
+They are mounted inside your app's file system at a path that is specified in the `app.json`.
 
 Use these directories to access preexisting user data and share data with other apps that have access.

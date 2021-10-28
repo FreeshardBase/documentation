@@ -1,6 +1,6 @@
 # Portal
 
-Portal is a private cloud computer that is marketed directly to consumers.
+Portal is a virtual private server that is marketed directly to consumers.
 You can write Portal apps that run on users' Portals.
 They are as versatile as web-applications and as private as locally installed apps.
 
@@ -16,13 +16,13 @@ Since Portal is based on well-established concepts and technology, this is very 
 
 ## How to think about your App
 
-When developing a Portal-app you need to think a little different about it compared to web-apps, desktop applications or mobile apps.
+When developing a Portal-app you need to think a little differently about it compared to web-apps, desktop applications or mobile apps.
 A Portal-app has a unique combination of features and paradigms.
 
 As it runs on a Portal which is a virtual machine on cloud infrastructure,
-it shares benefits of the cloud:
+it has the benefits of the cloud:
 
-* your app can be always on and always online which is great for serving content like a blog or continually monitoring something like sensor readings,
+* your app can be always on and always online, which is great for serving content like a blog or continually monitoring something like sensor readings,
 * your app is present on all the user's terminals, so you can create an omni-device experience, making it equally mobile for a smartphone and complex for a desktop computer or even combine multiple terminals simultaneously in new and unique workflows,
 * your app keeps its single source of truth on the Portal.
 
@@ -54,11 +54,11 @@ but also to make Portal more reliable and secure
 and to make your life as a Portal-app developer simpler: 
 you have to learn only very few new concepts to get started.
 
-A Portal app is published as a Docker image containing a webserver that listens for `http` and serves the static and dynamic content that makes up your app's GUI.
-The `http` endpoint is routed and authenticated by Portal, so there is no need to concern yourself with that.
+A Portal app is published as a Docker image containing a web server that listens for HTTP and serves the static and dynamic content that makes up your app's GUI.
+The HTTP endpoint is routed and authenticated by Portal, so there is no need to concern yourself with that.
 When a user installs your app, it will be available at a subdomain of the user's Portal: `<app-name>.<portal-URI>`.
 It will only be accessible from the user's paired devices.
 
-Giving your app more capabilities is easy, you can [request a part of Portal's file-system](persisting.md)
-or [add views that are public or only accessable to peers](routing_and_ac.md)
+Giving your app more capabilities is easy. You can [request a part of Portal's file-system](persisting.md)
+or [add views that are public or only accessible to peers](routing_and_ac.md)
 or [listen and react to Portal-wide events](events.md).

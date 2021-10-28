@@ -8,14 +8,14 @@ and the `app.json` file that tells a Portal how to run the image.
 ## The App Image
 
 Your docker image is run on the user's Portal when they install your app.
-It must contain a web-service which means it must serve `http` (not `https`!) on some port.
+It must contain a web-service which means it must serve HTTP (not HTTPS!) on some port.
 How exactly you accomplish this is up to you.
 You may e.g. use rendered templates for each view of your app.
 Or you may build a web application that runs in the browser and queries data using a RESTful interface.
 You also may use any language or framework you like best.
 
 However, we ask you to make your UI responsive.
-Portal provides an omni-device user experience, so every app should be equally comfortable to use
+Portal provides an omni-device user experience, so every app should be equally comfortable to use,
 whether on a notebook, tablet or smartphone.
 
 By default, only the Portal's owner can access your app's UI, 
@@ -41,4 +41,4 @@ Things you have to configure here are:
 In addition, this file contains metadata like the app's name, its version and a description
 that will be shown in the app store and other places.
 
-Read more about configuration options at the [page about `app.json`](app_json.md).
+Read more about configuration options on the [page about `app.json`](app_json.md).
