@@ -1,6 +1,10 @@
 site_name: Portal
 site_url: https://docs.getportal.org
 site_dir: public
+theme:
+  # name: gitbook
+  # name: bootstrap
+  name: material
 
 nav:
   - Home: 'index.md'
