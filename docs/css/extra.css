@@ -48,6 +48,12 @@ body.homepage>div.container>div.row>div.col-md-9 {
     max-width: 100%;
 }
 
-p>img {
-    width: 80%;
+[data-md-color-scheme="light"] {
+  --md-primary-fg-color:        #383e4a;
+  --md-accent-fg-color: #58cc5d;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #edf0f6;
+  --md-accent-fg-color: #58cc5d;
 }

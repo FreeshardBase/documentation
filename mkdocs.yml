@@ -13,9 +13,7 @@ theme:
     - navigation.tabs
     - navigation.top
   palette:
-    - scheme: default
-      primary: grey
-      accent: green
+    - scheme: light
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
@@ -40,6 +38,10 @@ nav:
 
 extra:
   social:
+    - icon: fontawesome/solid/globe
+      link: https://getportal.org
+    - icon: fontawesome/regular/envelope
+      link: mailto:contact@getportal.org
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/Portal25916803
     - icon: fontawesome/brands/linkedin
