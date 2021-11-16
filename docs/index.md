@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # Portal
 
 Portal is a virtual private server that is marketed directly to consumers.

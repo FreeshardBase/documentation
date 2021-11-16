@@ -1,10 +1,30 @@
 site_name: Portal
 site_url: https://docs.getportal.org
 site_dir: public
+copyright: "&copy; Portal. All rights reserved."
 theme:
-  # name: gitbook
-  # name: bootstrap
   name: material
+  logo: img/logo.svg
+  favicon: img/logo.svg
+  font:
+    text: montserrat
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.top
+  palette:
+    - scheme: default
+      primary: grey
+      accent: green
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: white
+      accent: green
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 nav:
   - Home: 'index.md'
@@ -18,8 +38,24 @@ nav:
     - 'events.md'
     - 'payment.md'
 
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/Portal25916803
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/get-portal
+    - icon: fontawesome/brands/medium
+      link: https://medium.com/getportal
+    - icon: fontawesome/brands/gitter
+      link: https://gitter.im/Portal-Apps/community
+
 extra_css:
     - css/extra.css
 
 markdown_extensions:
   - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      auto_title: true
+      linenums: true
+  - pymdownx.superfences
