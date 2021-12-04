@@ -35,6 +35,7 @@ nav:
     - 'internal_services.md'
     - 'events.md'
     - 'testing.md'
+    - 'app_template.md'
     - 'submitting.md'
     - 'payment.md'
 
