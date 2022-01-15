@@ -19,7 +19,27 @@ If your app is stopped, the mounted directories remain intact and will still be 
 If you release a new version of your app, it is your job to detect 
 whether the content of the mounted directories was created by the old version and migrate it if needed.
 
-Use these directories to persist data that is used only by your app.
+You might not want to run your application as root inside your container but as some other user.
+In this case, it would not have access to the mounted directories, since they are owned by root.
+In order to allow access, you can change the mounted directories' owner by defining its user and group id.
+Set it to the values of the user that runs the app.
+
+Use these app-specific directories to persist data that is used only by your app.
+
+### Example
+
+```json
+...
+  "data_dirs": [
+    "/user_data",
+    {
+      "path": "/more_data",
+      "uid": 1000,
+      "gid": 1000
+    }
+  ],
+...
+```
 
 ## Shared directories
 

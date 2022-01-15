@@ -13,7 +13,12 @@ containing some metadata and instructions on how to run your app.
   "image": "myapp:latest",
   "port": 8080,
   "data_dirs": [
-    "/user_data"
+    "/user_data",
+    {
+      "path": "/more_data",
+      "uid": 1000,
+      "gid": 1000
+    }
   ],
   "env_vars": {
     "DEBUG": "true"
