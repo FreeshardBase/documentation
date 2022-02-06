@@ -11,9 +11,9 @@ Each Portal has a unique URL containing its random six-digit identifier, e.g. `x
 Each app is reachable at a subdomain of that URL, e.g. `myapp.xyz123.p.getportal.org`.
 Requests to this subdomain are forwarded to the running docker container of that app.
 
-## SSH
+## SSL
 
-As an app developer, you do not need to concern yourself with SSH and certificates.
+As an app developer, you do not need to concern yourself with SSL and certificates.
 Your app's interface only needs to be reachable via HTTP at some arbitrary port.
 Portal manages its own certificate that is valid for all of its subdomains
 which means it covers all of its installed apps as well.
