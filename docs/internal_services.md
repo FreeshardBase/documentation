@@ -11,12 +11,36 @@ Use them by making REST requests against their APIs.
     and even completely break it.
     This will of course be locked down in the future, but for now: be careful what you do!
 
-## Identities
+## Portal Core
 
-Your app may query and modify identities stored on the Portal:
-the Portal's own identities, those of paired terminals, and those of known peers.
-The service that handles them is called `identity_handler`.
-You can reach its API at `http://ih/` and there is a full [OpenAPI Specification](https://ptl.gitlab.io/identity_handler/).
+The Portal core software stack is what manages all of a Portal's operations
+like its identities, terminals, peers or apps.
+It provides a [REST API](https://ptl.gitlab.io/portal_core/) that your app may use.
+Its base URL is `http://portal_core`, so e.g. you can list all peers by calling
+`GET http://portal_core/protected/peers`.
+
+## Postgres
+
+There is a Postgres instance running on every Portal
+and your app can request its own database on it.
+Enable it in the `app.json` by adding `postgres` under the section `services`.
+Then, you can pass the needed connection information as environment variables
+by using template strings.
+
+For example, include `"DATABASE_URL": "{{ apps[\"<myapp>\"].postgres.connection_string }}"`
+in the `env_vars` section, to pass the whole postgres connection string.
+All variables related to postgres start with `apps[\"<myapp>\"].postgres.`. Here is a full list of variables you may use.
+
+| variable            | example                                           |
+|---------------------|---------------------------------------------------|
+| `connection_string` | `postgres://myapp:mypassword@postgres:5432/myapp` |
+| `userspec`          | `myapp:mypassword`                                |
+| `user`              | `myapp`                                           |
+| `password`          | `mypassword`                                      |
+| `hostspec`          | `postgres:5432`                                   |
+| `host`              | `postgres`                                        |
+| `port`              | `5432`                                            |
+
 
 ## Peer Routing
 
