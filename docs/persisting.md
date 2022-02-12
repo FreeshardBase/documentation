@@ -52,3 +52,10 @@ Your app can request read or read-write access to these similar to app-specific 
 They are mounted inside your app's file system at a path that is specified in the `app.json`.
 
 Use these directories to access preexisting user data and share data with other apps that have access.
+
+## Built-In Services
+
+Each Portal runs some built-in services that your app may use.
+For example, your app can get its own database at the Portal's Postgres instance
+and use it to store its data.
+Take a look at the [section about Portal's internal services](internal_services.md) for more information.

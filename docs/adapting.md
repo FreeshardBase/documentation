@@ -1,47 +1,47 @@
 # Adapting an existing App
 
 A Portal App is essentially a Docker container with a web interface.
-This technical simplicity makes it easy to adapt many existing apps to run on Portal.
+This technical simplicity makes it easy to run many existing apps on Portal.
+However, to run smoothly and conform to user expectations, minor tweaks may be needed.
 
 ---
 
 ## Hosting an existing App on Portal
 
-It is a common practice to publish apps for self-hosting as Docker images.
+It is a common practice to publish self-hosting applications as Docker images.
 That makes deployment and setup easy and standardized.
 
 If an app has no other dependencies (like a database or cache), it can very easily be hosted on Portal.
 You just need to write a minimal `app.json` containing a name, the Docker image reference and the port of the web interface or API ([details here](app_json.md)).
-If it needs to persist data, mount a directory by adding a `data_dirs` entry.
-After writing the `app.json`, paste it into the *Custom App* field as described [here](testing.md).
+If it needs to persist data, mount a directory by adding a `data_dirs` entry
+or configure access to Portal's built-in database.
 
-The app will now run on your Portal and you can access its web interface from any paired device.
-If you want to make parts or all of the app publicly accessible, [read about access control](routing_and_ac.md).
+After writing the `app.json`, paste it into the *Custom App* field as described in the [section about Testing](testing.md).
+The app will now start running on your Portal and you can access its web interface from any paired device.
 
 ## Basic Adaptations
 
-Usually, apps for self-hosting work on Portal and benefit from hosting and access control.
-However, some assumptions of self-hosting are different in the Portal ecosystem
-which often leads to awkward user experience.
-Luckily, those can be often dealt with rather easily.
+Running an app as described above works as a first shot but usually makes an awkward user experience
+because a Portal is based on different assumptions compared to traditional self-hosting.
+Luckily, the most annoying bumps can often be dealt with rather easily.
 
 ### User Management
 
-Most existing self-hosting apps feature some kind of user management.
+Most existing self-hosting apps feature some kind of user management and corresponding login flow.
 This could be the usual username/password method with functions for registration and signup.
 Or it could be using single sign-on.
-Whatever the method, for Portal it is usually not needed.
+Whatever the method, for Portal it either must be modified slightly or is not needed at all.
 
-A Portal app has only a single owner who is also the main user.
-Having an app ask the user to register is therefore an awkward experience and should be avoided.
-It is also unnecessary because there is no need to authenticate incoming requests
-since the Portal already does that.
+In contrast to a self-hosting environment, each Portal is owned and primarily used by only a single person.
+Therefore, having an app ask the user to register makes not much sense.
+It is also unnecessary because there is no need to authenticate incoming requests.
+Portal already does that for you.
 
 Some apps provide configuration options to disable user management 
 or switch to proxy authentication.
-This mode is made for situations in which the app is running behind a reverse proxy
+This mode is made for situations in which the app is deployed behind a reverse proxy
 which performs authentication and adds a http header containing the logged-in user.
-Use these options if available to quickly adapt the app to the Portal ecosystem.
+Use these options if available to avoid a puzzling registration form.
 If you are a maintainer, adding an option of this kind should often be a pretty small task.
 
 If you are using proxy authentication, you can use the `X-Ptl-Client-Type` header to source the username.
@@ -50,7 +50,7 @@ It always contains one of `terminal`, `peer` or `public` depending on the reques
 ### Access Control
 
 If your app is only used by the main user - the Portal's owner - 
-you do not have to concern yourself with access control.
+you do not have to concern yourself with access control at all.
 By default, Portal only allows paired terminals to reach an app.
 
 If, however, your app contains views or API endpoints 
@@ -87,7 +87,7 @@ Based on that information, you can make arbitrarily complex access control decis
 
 Some adaptations to the Portal ecosystem require deeper modification of an app's codebase.
 They are often not absolutely required for a good user experience, 
-but they really make the difference of a full-fledged Portal app.
+but they really make the difference of a fully-fledged Portal app.
 
 ### Peer-2-Peer Communication
 
