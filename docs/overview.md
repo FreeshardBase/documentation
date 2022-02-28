@@ -25,6 +25,7 @@ See [Routing and Access Control](routing_and_ac.md) to learn how.
 
 At the moment we do not provide hosting for any images.
 You can use [Docker Hub](https://hub.docker.com/) or any other docker repository for that.
+Or, if for any reason you do not want to host your image, contact us and we will work something out.
 
 ## The `app.json` File
 

@@ -44,8 +44,8 @@ which performs authentication and adds a http header containing the logged-in us
 Use these options if available to avoid a puzzling registration form.
 If you are a maintainer, adding an option of this kind should often be a pretty small task.
 
-If you are using proxy authentication, you can use the `X-Ptl-Client-Type` header to source the username.
-It always contains one of `terminal`, `peer` or `public` depending on the request's origin.
+If you are using proxy authentication, you can configure your app such that Portal adds
+the necessary headers to all requests. See the [section about access control](routing_and_ac.md) for details.
 
 ### Access Control
 
@@ -78,9 +78,9 @@ With URL-path based AC, your app delegates access control to the Portal on which
 But if your AC needs are more complex, you might want to implement the required logic yourself.
 
 By choosing app-specific AC, you instruct the Portal to let all incoming requests reach your app
-but still populate the http headers `X-Ptl-Client-Type` and `X-Ptl-Client-Id`.
+but still populate the http headers with IDs and names of clients.
 This allows you to know for each request from which kind of client it originated
-(`terminal`, `peer` or `public`) and if applicable from which specific terminal or peer.
+and if applicable from which specific terminal or peer.
 Based on that information, you can make arbitrarily complex access control decisions.
 
 ## Advanced Adaptations

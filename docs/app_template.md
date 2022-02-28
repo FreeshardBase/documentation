@@ -96,6 +96,7 @@ Adapt it to your app by changing at least the name, description and image.
 
 ```json
 {
+  "v": "1.0",
   "name": "app-template-python",
   "description": "A fully functional and minimal Portal app that can be used to quickly bootstrap a new app using Python",
   "image": "registry.gitlab.com/ptl-public/app-template-python:master",
@@ -103,9 +104,23 @@ Adapt it to your app by changing at least the name, description and image.
   "data_dirs": [
     "/user_data"
   ],
-  "authentication": {
-    "default_access": "private",
-    "public_paths": ["/public/"]
+  "paths": {
+    "": {
+      "access": "private",
+      "headers": {
+        "X-Ptl-Client-Id": "{{ client_id }}",
+        "X-Ptl-Client-Name": "{{ client_name }}",
+        "X-Ptl-Client-Type": "terminal",
+        "X-Ptl-Foo": "bar"
+      }
+    },
+    "/public/": {
+      "access": "public",
+      "headers": {
+        "X-Ptl-Client-Type": "public",
+        "X-Ptl-Foo": "bar"
+      }
+    }
   }
 }
 ```
