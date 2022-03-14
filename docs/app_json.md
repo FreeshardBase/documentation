@@ -38,14 +38,14 @@ like the official name and a description.
       "headers": {
         "X-Ptl-Client-Id": "{{ client_id }}",
         "X-Ptl-Client-Name": "{{ client_name }}",
-        "X-Ptl-Client-Type": "terminal",
+        "X-Ptl-Client-Type": "{{ client_type }}",
         "X-Ptl-Foo": "bar"
       }
     },
     "/public/": {
       "access": "public",
       "headers": {
-        "X-Ptl-Client-Type": "public",
+        "X-Ptl-Client-Type": "{{ client_type }}",
         "X-Ptl-Foo": "baz"
       }
     }

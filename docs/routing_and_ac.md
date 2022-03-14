@@ -41,10 +41,11 @@ When defining the headers, you can use template variables contained in Jinja-lik
 Available variables are:
 
 
-| variable      | description                                      | example       |
-|---------------|--------------------------------------------------|---------------|
-| `client_id`   | The cryptographic ID of the connected Terminal   | `eie767w`     |
-| `client_name` | The user-assigned name of the connected Terminal | `my notebook` |
+| variable      | description                                      | example                |
+|---------------|--------------------------------------------------|------------------------|
+| `client_type` | The type of client that sent the request         | `terminal` or `public` |
+| `client_id`   | The cryptographic ID of the connected Terminal   | `eie767w`              |
+| `client_name` | The user-assigned name of the connected Terminal | `my notebook`          |
 
 
 Consider an app named *myapp* with has the `path` section in the `app.json` configured like this:
@@ -55,7 +56,7 @@ Consider an app named *myapp* with has the `path` section in the `app.json` conf
     "headers": {
       "X-Ptl-Client-Id": "{{ client_id }}",
       "X-Ptl-Client-Name": "{{ client_name }}",
-      "X-Ptl-Client-Type": "terminal"
+      "X-Ptl-Client-Type": "{{ client_type }}"
     }
   },
   "/public/": {
@@ -72,8 +73,9 @@ graph TD
   sub -->|myapp| pre{prefix?};
   sub -->|anything else| away[route another way];
   pre -->|<default>| auth{authentication?};
-  auth -->|success| head[apply headers];
   auth -->|fail| deny[deny access];
-  pre -->|/public| forward[forward to app container];
-  head --> forward
+  auth -->|success| head_auth[apply headers];
+  pre -->|/public| head_pub[apply headers]; 
+  head_pub --> forward[forward to app container];
+  head_auth --> forward
 ```
