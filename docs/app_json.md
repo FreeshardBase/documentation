@@ -85,10 +85,7 @@ With this snippet, you can tell your app the actual full domain at which it is p
 
 ### Variables
 
-| variable        | description                                   | example                                                                                                   |
-|-----------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `portal.domain` | The fully qualified domain name of the Portal | `8271dd.p.getportal.org`                                                                                  |
-| `portal.id`     | The full-length hash-ID of the Portal         | `8271ddlqxa5fcp7a5l0s61pbqqtglba31d65jg2fqhdwdw2kkr7l94b2q54hfdl2zfn5s5g1nkjy1z1a3f02tl8yln14050l8s598f2` |
+{!includes/template_vars_portal.md!}
 
 More variables are provided by Portal's built-in services if your app defines them as dependencies.
 See [Portal's Internal Services](internal_services.md) for details.

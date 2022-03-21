@@ -34,19 +34,23 @@ There are two types of access that you can use:
 * *public* means no access control; anyone can access this path.
 * *private* means that only paired terminals may access this path; these belong to the Portal's owner.
 
-After successful authentication, Portal adds the headers to the request that you defined for that path.
-You can use them for more fine-grained access control or other logic.
+After successful authentication, Portal adds headers to the request that you defined for that path.
+You can use them inside your app for more fine-grained access control or other logic.
 
 When defining the headers, you can use template variables contained in Jinja-like double curly braces.
 Available variables are:
 
+| variable           | description                                      | example                |
+|--------------------|--------------------------------------------------|------------------------|
+| `auth.client_type` | The type of client that sent the request         | `terminal` or `public` |
+| `auth.client_id`   | The cryptographic ID of the connected Terminal   | `eie767w`              |
+| `auth.client_name` | The user-assigned name of the connected Terminal | `my notebook`          |
 
-| variable      | description                                      | example                |
-|---------------|--------------------------------------------------|------------------------|
-| `client_type` | The type of client that sent the request         | `terminal` or `public` |
-| `client_id`   | The cryptographic ID of the connected Terminal   | `eie767w`              |
-| `client_name` | The user-assigned name of the connected Terminal | `my notebook`          |
+In addition, you can use all variables that describe the Portal itself.
 
+{!includes/template_vars_portal.md!}
+
+## Example
 
 Consider an app named *myapp* with has the `path` section in the `app.json` configured like this:
 ```json
@@ -54,9 +58,9 @@ Consider an app named *myapp* with has the `path` section in the `app.json` conf
   "": {
     "access": "private",
     "headers": {
-      "X-Ptl-Client-Id": "{{ client_id }}",
-      "X-Ptl-Client-Name": "{{ client_name }}",
-      "X-Ptl-Client-Type": "{{ client_type }}"
+      "X-Ptl-Client-Id": "{{ auth.client_id }}",
+      "X-Ptl-Client-Name": "{{ auth.client_name }}",
+      "X-Ptl-Client-Type": "{{ auth.client_type }}"
     }
   },
   "/public/": {
