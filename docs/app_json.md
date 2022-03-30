@@ -14,9 +14,8 @@ like the official name and a description.
 
 ```json
 {
-  "v": "1.0",
+  "v": "2.0",
   "name": "myapp",
-  "description": "A Portal app that serves as a simple example",
   "image": "myapp:1.2.3",
   "port": 8080,
   "data_dirs": [
@@ -49,23 +48,35 @@ like the official name and a description.
         "X-Ptl-Foo": "baz"
       }
     }
+  },
+  "store_info": {
+    "description_short": "A great app",
+    "description_long": [
+      "A really great app that serves as an example.",
+      "It also has a description that is two paragraphs long."
+    ],
+    "hint": [
+      "This app is not really part of the app store",
+      "In fact, this app does not really exist"
+    ],
+    "is_featured": true
   }
 }
 ```
 
 ## Description of Fields
 
-| field                | description                                                                                                                                                                                                           |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| v                    | The version of the app.json format. Should be "1.0".                                                                                                                                                                  |
-| name                 | Your app's name as seen in the app store, on the Portal home screen, and in the URL                                                                                                                                   |
-| description          | A short text that is displayed in the app store                                                                                                                                                                       |
-| image                | The docker image reference of your app; this is what you usually use with `docker run`                                                                                                                                |
-| port                 | The port at which your app publishes its GUI or API; this port will be forwarded to the user's browser                                                                                                                |
-| data_dirs (optional) | A list of directories inside your image; Portal will create matching directories inside its file system and mount those into them; see [Persisting Data](persisting.md) for details                                   |
-| services (optional)  | A list of built-in services that your app uses; Portal will prepare them for you and provide access information in the form of template variables; see [Portal's Internal Services](internal_services.md) for details |
-| env_vars (optional)  | A dictionary of environment variables that are set for your app                                                                                                                                                       |
-| paths                | An object which you can use to define access control rules for your app by defining how each URL path should be handled; for more details see [Routing and Access Control](routing_and_ac.md)                         |
+| field                 | description                                                                                                                                                                                                           |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| v                     | The version of the app.json format. Should be "1.0".                                                                                                                                                                  |
+| name                  | Your app's name as seen in the app store, on the Portal home screen, and in the URL                                                                                                                                   |
+| image                 | The docker image reference of your app; this is what you usually use with `docker run`                                                                                                                                |
+| port                  | The port at which your app publishes its GUI or API; this port will be forwarded to the user's browser                                                                                                                |
+| data_dirs (optional)  | A list of directories inside your image; Portal will create matching directories inside its file system and mount those into them; see [Persisting Data](persisting.md) for details                                   |
+| services (optional)   | A list of built-in services that your app uses; Portal will prepare them for you and provide access information in the form of template variables; see [Portal's Internal Services](internal_services.md) for details |
+| env_vars (optional)   | A dictionary of environment variables that are set for your app                                                                                                                                                       |
+| paths                 | An object which you can use to define access control rules for your app by defining how each URL path should be handled; for more details see [Routing and Access Control](routing_and_ac.md)                         |
+| store_info (optional) | Information that is read by the app store and displayed there.                                                                                                                                                        |
 
 ## Templating for environment variables
 
@@ -95,13 +106,17 @@ See [Portal's Internal Services](internal_services.md) for details.
 Since the format of the `app.json` evolves over time,
 it is important to include the version of the format in which it is written.
 It is contained in the `v` attribute.
-The current version is `1.0`.
+The current version is `2.0`.
 
 When new versions are released, we will attempt to make them backwards compatible.
 That means that Portal still can process the previous version
 and translate it to the current one.
 
 ### Past Updates
+
+#### version `1.0` to version `2.0`
+
+* Removed the `description` field and instead added the `store_info` section
 
 #### version `0.0` to version `1.0`
 
