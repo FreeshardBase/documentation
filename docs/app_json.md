@@ -28,7 +28,7 @@ like the official name and a description.
   ],
   "services": ["postgres"],
   "env_vars": {
-    "DATABASE_URL": "{{ apps[\"myapp\"].postgres.connection_string }}",
+    "DATABASE_URL": "{{ postgres.connection_string }}",
     "DEBUG": "true"
   },
   "paths": {
@@ -114,11 +114,15 @@ and translate it to the current one.
 
 ### Past Updates
 
+#### version `2.0` to version `3.0`
+
+* Changed the way, variables of internal services are addressed by `env_vars` templates. Example before: `{{ apps[\"myapp\"].postgres.connection_string }}` vs. example after: `{{ postgres.connection_string }}`.
+
 #### version `1.0` to version `2.0`
 
-* Removed the `description` field and instead added the `store_info` section
+* Removed the `description` field and instead added the `store_info` section.
 
 #### version `0.0` to version `1.0`
 
-* Removed the `authentication` section and instead added the `paths` section
-* Added the `v` attribute to indication the schema version - an `app.json` without `v` is assumed to be version `0.0`
+* Removed the `authentication` section and instead added the `paths` section.
+* Added the `v` attribute to indication the schema version - an `app.json` without `v` is assumed to be version `0.0`.

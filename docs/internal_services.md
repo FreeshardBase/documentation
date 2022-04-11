@@ -28,9 +28,9 @@ Enable it in the `app.json` by adding `postgres` under the section `services`.
 Then, you can pass the needed connection information as environment variables
 by using template strings.
 
-For example, include `"DATABASE_URL": "{{ apps[\"<myapp>\"].postgres.connection_string }}"`
+For example, include `"DATABASE_URL": "{{ postgres.connection_string }}"`
 in the `env_vars` section, to pass the whole postgres connection string.
-All variables related to postgres start with `apps[\"<myapp>\"].postgres.`. Here is a full list of variables you may use.
+All variables related to postgres start with `postgres.`. Here is a full list of variables you may use.
 
 | variable            | example                                           |
 |---------------------|---------------------------------------------------|
