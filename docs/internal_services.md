@@ -42,6 +42,17 @@ All variables related to postgres start with `postgres.`. Here is a full list of
 | `host`              | `postgres`                                        |
 | `port`              | `5432`                                            |
 
+## Docker Socket
+
+Portal makes heavy use of Docker.
+The Portal core, the reverse proxy, and every app are all realized as Docker containers.
+Apps that need to read the state of the Docker daemon may get read-only access to the Docker socket
+by adding `docker_sock_ro` under the section `services`.
+
+This causes the Docker socket to be mounted into the app container.
+It is equivalent to the option `-v /var/run/docker.sock:/var/run/docker.sock:ro` of the Docker CLI.
+
+No app can get read-access to the Docker socket, that is the privilege of the Portal core.
 
 ## Peer Routing
 
