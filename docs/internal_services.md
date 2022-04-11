@@ -52,7 +52,7 @@ by adding `docker_sock_ro` under the section `services`.
 This causes the Docker socket to be mounted into the app container.
 It is equivalent to the option `-v /var/run/docker.sock:/var/run/docker.sock:ro` of the Docker CLI.
 
-No app can get read-access to the Docker socket, that is the privilege of the Portal core.
+No app can get write-access to the Docker socket, that is the privilege of the Portal core.
 
 ## Peer Routing
 
