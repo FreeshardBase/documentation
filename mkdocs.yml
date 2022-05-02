@@ -34,6 +34,7 @@ nav:
     - 'peering.md'
     - 'internal_services.md'
     - 'events.md'
+    - 'lifecycle.md'
     - 'testing.md'
     - 'app_template.md'
     - 'adapting.md'

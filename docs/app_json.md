@@ -49,6 +49,10 @@ like the official name and a description.
       }
     }
   },
+  "lifecycle": {
+    "always_on": false,
+    "idle_time_for_shutdown": 60
+  },
   "store_info": {
     "description_short": "A great app",
     "description_long": [
@@ -76,6 +80,7 @@ like the official name and a description.
 | services (optional)   | A list of built-in services that your app uses; Portal will prepare them for you and provide access information in the form of template variables; see [Portal's Internal Services](internal_services.md) for details |
 | env_vars (optional)   | A dictionary of environment variables that are set for your app                                                                                                                                                       |
 | paths                 | An object which you can use to define access control rules for your app by defining how each URL path should be handled; for more details see [Routing and Access Control](routing_and_ac.md)                         |
+| lifecycle             | An object which defines if and when your app is automatically shut down in order to conserve resources.                                                                                                               |
 | store_info (optional) | Information that is read by the app store and displayed there.                                                                                                                                                        |
 
 ## Templating for environment variables
@@ -113,6 +118,10 @@ That means that Portal still can process the previous version
 and translate it to the current one.
 
 ### Past Updates
+
+#### version `3.0` to version `3.1`
+
+* Added the `lifecycle` section.
 
 #### version `2.0` to version `3.0`
 
