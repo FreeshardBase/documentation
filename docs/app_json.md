@@ -14,7 +14,7 @@ like the official name and a description.
 
 ```json
 {
-  "v": "2.0",
+  "v": "3.1",
   "name": "myapp",
   "image": "myapp:1.2.3",
   "port": 8080,
@@ -72,7 +72,7 @@ like the official name and a description.
 
 | field                 | description                                                                                                                                                                                                           |
 |-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| v                     | The version of the app.json format. Should be "1.0".                                                                                                                                                                  |
+| v                     | The version of the app.json format. Should be "3.1".                                                                                                                                                                  |
 | name                  | Your app's name as seen in the app store, on the Portal home screen, and in the URL                                                                                                                                   |
 | image                 | The docker image reference of your app; this is what you usually use with `docker run`                                                                                                                                |
 | port                  | The port at which your app publishes its GUI or API; this port will be forwarded to the user's browser                                                                                                                |
@@ -111,7 +111,7 @@ See [Portal's Internal Services](internal_services.md) for details.
 Since the format of the `app.json` evolves over time,
 it is important to include the version of the format in which it is written.
 It is contained in the `v` attribute.
-The current version is `2.0`.
+The current version is `3.1`.
 
 When new versions are released, we will attempt to make them backwards compatible.
 That means that Portal still can process the previous version
