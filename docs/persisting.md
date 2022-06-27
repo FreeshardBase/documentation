@@ -43,15 +43,29 @@ Use these app-specific directories to persist data that is used only by your app
 
 ## Shared directories
 
-!!! warning "Upcoming Feature"
-    Shared directories are not yet implemented.
-    You cannot use them yet and their implementation - when completed - might differ from this description. 
-
-Portal defines a set of shared directories like *own media* or *own documents*.
-Your app can request read or read-write access to these similar to app-specific directories.
+Portal defines a set of shared directories for which your app can request access to.
 They are mounted inside your app's file system at a path that is specified in the `app.json`.
-
 Use these directories to access preexisting user data and share data with other apps that have access.
+
+Available shared directories are:
+
+* `documents`
+* `media`
+* `music`
+
+### Example
+
+```json
+...
+  "data_dirs": [
+    "/user_data",
+    {
+      "path": "/documents",
+      "shared_dir": "documents"
+    }
+  ],
+...
+```
 
 ## Built-In Services
 

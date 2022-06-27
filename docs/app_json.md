@@ -14,7 +14,7 @@ like the official name and a description.
 
 ```json
 {
-  "v": "3.1",
+  "v": "3.2",
   "name": "myapp",
   "image": "myapp:1.2.3",
   "port": 8080,
@@ -24,6 +24,10 @@ like the official name and a description.
       "path": "/more_data",
       "uid": 1000,
       "gid": 1000
+    },
+    {
+      "path": "/media_data",
+      "shared_dir": "media"
     }
   ],
   "services": ["postgres"],
@@ -111,13 +115,17 @@ See [Portal's Internal Services](internal_services.md) for details.
 Since the format of the `app.json` evolves over time,
 it is important to include the version of the format in which it is written.
 It is contained in the `v` attribute.
-The current version is `3.1`.
+The current version is `3.2`.
 
 When new versions are released, we will attempt to make them backwards compatible.
 That means that Portal still can process the previous version
 and translate it to the current one.
 
 ### Past Updates
+
+#### version `3.1` to version `3.2`
+
+* Added the `shared_dir` field to objects of `data_dirs`.
 
 #### version `3.0` to version `3.1`
 
