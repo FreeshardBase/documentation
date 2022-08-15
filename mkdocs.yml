@@ -26,8 +26,9 @@ theme:
 
 nav:
   - Home: 'index.md'
-  - Guide:
+  - Developer Guide:
     - 'overview.md'
+    - 'existing_apps.md'
     - 'app_json.md'
     - 'persisting.md'
     - 'routing_and_ac.md'
