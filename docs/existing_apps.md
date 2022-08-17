@@ -1,9 +1,90 @@
 # Integration of Existing Apps
 
 Many apps that are made for self-hosting are also useful to run on Portal.
+And thanks to Portal's technical simplicity, this is often easy to do.
 However, the degree to which an app can be configured for a smooth user experience on Portal varies.
 
 ---
+
+## Tasks for integration of an existing App
+
+If all goes well, bringing an existing app into the Portal app store can be quick and easy.
+Sometimes a little more work has to be done, depending on the requirements that the app already meets.
+Here is a checklist to work through.
+
+### Make sure, the app meets level 1 requirements
+
+Many self-hosting apps already meet the requirements for level 1 integration [listed below](#app-requirements-for-level-1) but some do not.
+If your apps does not meet the requirements, it is for you to decide if the needed modifications are quick and easy or too much effort.
+
+For example your app might rely on a manual user-creation step after first start.
+Performing this step automatically configured by environment variables might be an easy modification.
+On the other hand, if your app relies on a Redis instance and cannot work without it,
+you are out of luck for now and have to wait until we offer Redis as a service on Portal.
+
+### Write an `app.json` file
+
+The `app.json` file tells Portal what to run and how to configure it.
+You will have to write one for your app.
+The easiest way is to copy the example from [here](app_json.md#full-example) and modify it.
+
+The most important fields are the name, the Docker image reference and the port of the web interface or API.
+If your app needs to persist data, mount a directory by adding a `data_dirs` entry ([see here](persisting.md))
+or configure access to Portal's built-in database ([see here](internal_services.md#postgres)).
+
+### Test your app on your Portal
+
+You need your own Portal for this step.
+If you do not have one, [contact us](mailto:contact@getportal.org), and we will provide a free trial.
+
+Copy the `app.json` and paste it into the *Custom App* field as described in the [section about Testing](testing.md).
+The app will now start running on your Portal and you can access its web interface from any paired device.
+
+### Make further adaptations
+
+Many apps can easily be configured such that the user experience is smoother.
+For example, you can use the `env_vars` field to provide environment variables
+or add http headers to calls to certain paths.
+These are the most common configurations that help smooth out the user experience.
+
+#### Proxy Authentication
+
+Most existing self-hosting apps feature some kind of user management and corresponding login flow.
+This could be the usual username/password method with functions for registration and signup.
+Or it could be using single sign-on.
+Whatever the method, for Portal it either must be modified slightly or is not needed at all.
+
+In contrast to a self-hosting environment, each Portal is owned and primarily used by only a single person.
+Therefore, having an app ask the user to register makes not much sense.
+It is also unnecessary because there is no need to authenticate incoming requests.
+Portal already does that for you.
+
+Some apps provide configuration options to disable user management 
+or switch to proxy authentication.
+This mode is made for situations in which the app is deployed behind a reverse proxy
+which performs authentication and adds a http header containing the logged-in user.
+Use these options if available to avoid a puzzling registration form.
+If you are a maintainer, adding an option of this kind should often be a pretty small task.
+
+If you are using proxy authentication, you can configure your app such that Portal adds
+the necessary headers to all requests. See the [section about access control](routing_and_ac.md#access-control) for details.
+
+#### Access Control
+
+If your app is only used by the main user - the Portal's owner - 
+you do not have to concern yourself with access control at all.
+By default, Portal only allows paired terminals to reach an app.
+
+If, however, your app contains views or API endpoints 
+that are meant to be accessed publicly (e.g. blog posts) or by the owner's peers (e.g. a chat API)
+you need to implement a kind of access control.
+
+There are generally two approaches: path-based AC and app-specific AC.
+Depending on the existing structure of your app and your willingness to make adaptation,
+one or the other might be suitable.
+Read more about them in the [section about routing and access control](routing_and_ac.md).
+
+## Levels of Integration
 
 We discern four levels of adaptation to Portal that an app can achieve:
 0) blocked, 1) usable with caveats, 2) general adaptations, 3) specific adaptations.
@@ -12,43 +93,45 @@ Apps that are made for self-hosting mostly are in category zero or one, some are
 Our aim is to motivate app developers to work towards bringing their apps into category three
 because it yields the best and smoothest experience for the user.
 
-## Level 0: Blocked
+### Level 0: Blocked
 
 Some apps cannot be run on Portal at all.
-They might consist of multiple Docker images that work together or rely on external services that Portal does not offer.
-As Portal is developed further, some of these apps might move into level 1 on their own.
+They might not offer a Docker image at all or consist of multiple Docker images that work together or rely on external services that Portal does not offer.
+As Portal is developed further, some of these apps might move into level 1 on their own
+but most will require some effort by the developer to bring it to level 1.
 
-## Level 1: Usable with Caveats
+### Level 1: Usable with Caveats
 
-These are apps that can run on Portal, but they do not offer a smooth user experience.
+These are apps that can run on Portal, but do not offer a smooth user experience.
 When using the app, it is clear that it was not made for Portal.
 Typical issues that break the user experience are an account creation and login screen - which should almost never be needed on Portal -
-or that resources that should be publicly accessible are not.
+or resources that should be publicly accessible but are not.
 
-### App Requirements for Level 1
+#### App Requirements for Level 1
 
-* The app is contained inside a single docker image and only depends on external services that Portal offers (see [Portal's Internal Services](internal_services.md)).
+* The whole app (backend and web-UI) is contained inside a single docker image.
+* The app only depends on services that Portal offers (see [Portal's Internal Services](internal_services.md)).
 * No manual setup is needed after the app starts for the first time. E.g. database migration, user creation.
 * System requirements in terms of processing and memory are relatively low.
 
-## Level 2: General Adaptations
+### Level 2: General Adaptations
 
 Apps that can be configured in a way that allows a mostly smooth user experience on Portal fall in this category.
 The configuration options are not made specifically for integration with Portal,
 instead they are useful for multiple common hosting scenarios.
 
-### App Requirements for Level 2
+#### App Requirements for Level 2
 
 * The app can be configured for proxy auth, such that it reads the logged-in username from a http header.
-* HTTP resource paths cleanly separate public and protected resources such that [Portal path-base AC](routing_and_ac.md#access-control) can be used.
+* HTTP resource paths cleanly separate public and protected resources such that [Portal path-based AC](routing_and_ac.md#access-control) can be used.
 
-## Level 3: Specific Adaptations
+### Level 3: Specific Adaptations
 
 A Portal is a unique environment for an app to run in.
-To fully use what the Portal has to offer, adaptations of the app must therefore also be unique tailored to the Portal.
+To fully use what the Portal has to offer, adaptations of the app must therefore also be uniquely tailored to the Portal.
 These adaptations are usually not useful in other hosting scenarios,
 but they enable an extraordinarily smooth user experience on Portal.
 
-### App Requirements for Level 3
+#### App Requirements for Level 3
 
 * [Portal's peering feature](peering.md) is used for multi-user apps.

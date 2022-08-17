@@ -1,23 +1,22 @@
-# App Monetization
+# Revenue Share
 
 As a developer of Portal-apps, you automatically earn money from people who have your app installed.
-The monetization scheme aligns incentives in a way that works best for everyone.
+The revenue share scheme aligns incentives in a way that works best for everyone.
 
 ---
 
 !!! warning "Upcoming Feature"
-    App monetization processes are not yet implemented.
-    You cannot profit from them yet and their implementation - when completed - might differ from this description. 
+    The revenue share process is not yet implemented.
+    You cannot profit from it yet and its implementation - when completed - might differ from this description. 
 
-Portal's monetization scheme for app developers aligns incentives in a way that works best for everyone.
+Portal's revenue share scheme for app developers aligns incentives in a way that works best for everyone.
 App developers receive a monthly payment that scales with the number of installed app instances
 and users have no additional cost when installing apps, so they are not discouraged from doing so.
 The process is also very low-effort for both parties with regard to setup and maintenance.
 
 # Payment and Decision Flow
 
-The monetization scheme consists of the following steps that are executed at a regular interval
-(most probably each month).
+The revenue share scheme consists of the following steps that are executed each month.
 
 1. Part of each user's monthly subscription fee is a mandatory flat app payment of a few euros.
 2. The Portal monitors which app are installed during each month and for how long.
@@ -29,7 +28,7 @@ The monetization scheme consists of the following steps that are executed at a r
 
 # Incentives
 
-This monetization scheme creates beneficial incentives for all involved parties.
+This scheme creates beneficial incentives for all involved parties.
 
 ## For App Developers
 

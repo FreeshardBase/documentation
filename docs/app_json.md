@@ -142,4 +142,4 @@ and translate it to the current one.
 #### version `0.0` to version `1.0`
 
 * Removed the `authentication` section and instead added the `paths` section.
-* Added the `v` attribute to indication the schema version - an `app.json` without `v` is assumed to be version `0.0`.
+* Added the `v` attribute to indicate the schema version - an `app.json` without `v` is assumed to be version `0.0`.

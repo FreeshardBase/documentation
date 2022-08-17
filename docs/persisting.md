@@ -43,9 +43,9 @@ Use these app-specific directories to persist data that is used only by your app
 
 ## Shared directories
 
-Portal defines a set of shared directories for which your app can request access to.
+Portal defines a set of shared directories to which your app can request access.
 They are mounted inside your app's file system at a path that is specified in the `app.json`.
-Use these directories to access preexisting user data and share data with other apps that have access.
+Use these directories to access preexisting user data and share data with other apps that have access to the same directories.
 
 Available shared directories are:
 
