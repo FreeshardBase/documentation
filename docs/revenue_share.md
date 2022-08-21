@@ -6,8 +6,8 @@ The revenue share scheme aligns incentives in a way that works best for everyone
 ---
 
 !!! warning "Upcoming Feature"
-The revenue share process is not yet implemented.
-You cannot profit from it yet and its implementation - when completed - might differ from this description.
+    The revenue share process is not yet implemented.
+    You cannot profit from it yet and its implementation - when completed - might differ from this description.
 
 Portal's revenue share scheme for app developers aligns incentives in a way that works best for everyone.
 App developers receive a monthly payment that scales with the number of installed app instances
