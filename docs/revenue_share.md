@@ -57,7 +57,7 @@ In the example, it would look like this:
 ### 4. Manual Adjustments
 
 The user is notified of the calculated weights and can now make adjustments.
-Maybe they want to boost a rally good app in particular, e.g. App 3.
+Maybe they want to boost an especially good app in particular, e.g. App 3.
 
 | App   | Weight | Boost | New Weight |
 |-------|--------|-------|------------|
