@@ -33,6 +33,7 @@ There are two types of access that you can use:
 
 * *public* means no access control; anyone can access this path.
 * *private* means that only paired terminals may access this path; these belong to the Portal's owner.
+* *peer* means that other Portals that have been added as peers may access this path.
 
 After authentication, if the request is forwarded, Portal adds headers to the request that you defined for that path.
 You can use them inside your app for more fine-grained access control or other logic.
@@ -40,11 +41,11 @@ You can use them inside your app for more fine-grained access control or other l
 When defining the headers, you can use template variables contained in Jinja-like double curly braces.
 Available variables are:
 
-| variable           | description                                      | example                             |
-|--------------------|--------------------------------------------------|-------------------------------------|
-| `auth.client_type` | The type of client that sent the request         | `terminal` or `peer` or `anonymous` |
-| `auth.client_id`   | The cryptographic ID of the connected Terminal   | `eie767w`                           |
-| `auth.client_name` | The user-assigned name of the connected Terminal | `my notebook`                       |
+| variable           | description                                    | example                             |
+|--------------------|------------------------------------------------|-------------------------------------|
+| `auth.client_type` | The type of client that sent the request       | `terminal` or `peer` or `anonymous` |
+| `auth.client_id`   | The cryptographic ID of the Terminal or Peer   | `eie767`                            |
+| `auth.client_name` | The user-assigned name of the Terminal or Peer | `my notebook`                       |
 
 In addition, you can use all variables that describe the Portal itself.
 
@@ -122,6 +123,8 @@ graph TD
   sub -->|anything else| away[route another way];
   auth -->|fail| head_no_auth[apply headers:<br>X-Ptl-Client-Type=public<br>X-Ptl-Client-Name=<br>X-Ptl-Client-Id=];
   head_no_auth --> forward[forward to app container];
-  auth -->|success| head_auth[apply headers:<br>X-Ptl-Client-Type=terminal<br>X-Ptl-Client-Name=My Notebook<br>X-Ptl-Client-Id=eie767w];
-  head_auth --> forward;
+  auth -->|success: Terminal| head_auth_terminal[apply headers:<br>X-Ptl-Client-Type=terminal<br>X-Ptl-Client-Name=My Notebook<br>X-Ptl-Client-Id=eie767w];
+  head_auth_terminal --> forward;
+  auth -->|success: Peer| head_auth_peer[apply headers:<br>X-Ptl-Client-Type=peer<br>X-Ptl-Client-Name=John Doe<br>X-Ptl-Client-Id=c0p3x5];
+  head_auth_peer --> forward;
 ```

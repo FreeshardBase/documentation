@@ -39,16 +39,25 @@ like the official name and a description.
     "": {
       "access": "private",
       "headers": {
-        "X-Ptl-Client-Id": "{{ client_id }}",
-        "X-Ptl-Client-Name": "{{ client_name }}",
-        "X-Ptl-Client-Type": "{{ client_type }}",
+        "X-Ptl-Client-Id": "{{ auth.client_id }}",
+        "X-Ptl-Client-Name": "{{ auth.client_name }}",
+        "X-Ptl-Client-Type": "{{ auth.client_type }}",
+        "X-Ptl-Foo": "bar"
+      }
+    },
+    "/peer/": {
+      "access": "peer",
+      "headers": {
+        "X-Ptl-Client-Id": "{{ auth.client_id }}",
+        "X-Ptl-Client-Name": "{{ auth.client_name }}",
+        "X-Ptl-Client-Type": "{{ auth.client_type }}",
         "X-Ptl-Foo": "bar"
       }
     },
     "/public/": {
       "access": "public",
       "headers": {
-        "X-Ptl-Client-Type": "{{ client_type }}",
+        "X-Ptl-Client-Type": "{{ auth.client_type }}",
         "X-Ptl-Foo": "baz"
       }
     }
