@@ -77,8 +77,8 @@ The user-adjusted weights are sent to the Portal backend and are used to split t
 
 ### 6. Sum Up and Payout
 
-For each app, the revenue share from all Portal is summed up and added to the app developers account,
-ready to be withdrawn at any time or sent automatically to their account.
+For each app, the revenue share from all Portals is summed up and added to the app developers account,
+ready to be withdrawn at any time or sent automatically to their bank account.
 
 ## Incentives
 

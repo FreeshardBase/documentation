@@ -40,11 +40,11 @@ You can use them inside your app for more fine-grained access control or other l
 When defining the headers, you can use template variables contained in Jinja-like double curly braces.
 Available variables are:
 
-| variable           | description                                      | example                |
-|--------------------|--------------------------------------------------|------------------------|
-| `auth.client_type` | The type of client that sent the request         | `terminal` or `public` |
-| `auth.client_id`   | The cryptographic ID of the connected Terminal   | `eie767w`              |
-| `auth.client_name` | The user-assigned name of the connected Terminal | `my notebook`          |
+| variable           | description                                      | example                             |
+|--------------------|--------------------------------------------------|-------------------------------------|
+| `auth.client_type` | The type of client that sent the request         | `terminal` or `peer` or `anonymous` |
+| `auth.client_id`   | The cryptographic ID of the connected Terminal   | `eie767w`                           |
+| `auth.client_name` | The user-assigned name of the connected Terminal | `my notebook`                       |
 
 In addition, you can use all variables that describe the Portal itself.
 
