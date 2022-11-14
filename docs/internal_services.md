@@ -54,12 +54,6 @@ It is equivalent to the option `-v /var/run/docker.sock:/var/run/docker.sock:ro`
 
 No app can get write-access to the Docker socket, that is the privilege of the Portal core.
 
-## Peer Routing
-
-!!! warning "Upcoming Feature"
-    Peering is not yet implemented.
-    You cannot use it yet and its implementation - when completed - might differ from this description.
-
 ## Other Apps
 
 Your app can contact other apps that are installed on the same Portal
