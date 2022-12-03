@@ -26,20 +26,20 @@ theme:
 
 nav:
   - Home: 'index.md'
-  - Developer Guide:
-    - 'overview.md'
-    - 'existing_apps.md'
-    - 'app_json.md'
-    - 'persisting.md'
-    - 'routing_and_ac.md'
-    - 'peering.md'
-    - 'internal_services.md'
-    - 'events.md'
-    - 'lifecycle.md'
-    - 'testing.md'
-    - 'app_template.md'
-    - 'submitting.md'
-    - 'revenue_share.md'
+  - Developer Docs:
+    - 'developer_docs/overview.md'
+    - 'developer_docs/existing_apps.md'
+    - 'developer_docs/app_json.md'
+    - 'developer_docs/persisting.md'
+    - 'developer_docs/routing_and_ac.md'
+    - 'developer_docs/peering.md'
+    - 'developer_docs/internal_services.md'
+    - 'developer_docs/events.md'
+    - 'developer_docs/lifecycle.md'
+    - 'developer_docs/testing.md'
+    - 'developer_docs/app_template.md'
+    - 'developer_docs/submitting.md'
+    - 'developer_docs/revenue_share.md'
 
 extra:
   social:

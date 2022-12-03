@@ -114,7 +114,7 @@ With this snippet, you can tell your app the actual full domain at which it is p
 
 ### Variables
 
-{!includes/template_vars_portal.md!}
+{!developer_docs/includes/template_vars_portal.md!}
 
 More variables are provided by Portal's built-in services if your app defines them as dependencies.
 See [Portal's Internal Services](internal_services.md) for details.

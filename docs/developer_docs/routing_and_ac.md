@@ -49,7 +49,7 @@ Available variables are:
 
 In addition, you can use all variables that describe the Portal itself.
 
-{!includes/template_vars_portal.md!}
+{!developer_docs/includes/template_vars_portal.md!}
 
 ## Examples
 

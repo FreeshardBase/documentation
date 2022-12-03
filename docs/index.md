@@ -65,6 +65,6 @@ The HTTP endpoint is routed and authenticated by Portal, so there is no need to 
 When a user installs your app, it will be available at a subdomain of the user's Portal: `<app-name>.<portal-URI>`.
 It will only be accessible from the user's paired devices.
 
-Giving your app more capabilities is easy. You can [request a part of Portal's file-system](persisting.md)
-or [add views that are public or only accessible to peers](routing_and_ac.md)
-or [listen and react to Portal-wide events](events.md).
+Giving your app more capabilities is easy. You can [request a part of Portal's file-system](developer_docs/persisting.md)
+or [add views that are public or only accessible to peers](developer_docs/routing_and_ac.md)
+or [listen and react to Portal-wide events](developer_docs/events.md).
