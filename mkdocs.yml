@@ -40,6 +40,8 @@ nav:
     - 'developer_docs/app_template.md'
     - 'developer_docs/submitting.md'
     - 'developer_docs/revenue_share.md'
+  - User Guides:
+    - 'user_guides/smart_home.md'
 
 extra:
   social:
@@ -62,6 +64,7 @@ extra_css:
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - attr_list
   - pymdownx.highlight:
       auto_title: true
       linenums: true

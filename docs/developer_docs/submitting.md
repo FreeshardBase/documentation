@@ -7,7 +7,7 @@ This allows all other Portal users to find and install it with a single click.
 
 ## Submission Process
 
-The backend of Portal's app store is [this repository on GitLab](https://gitlab.com/ptl-public/app-repository).
+The backend of Portal's app store is [this repository on GitLab](https://gitlab.com/ptl-public/app-repository){target=_blank}.
 There is a folder for each app containing the `app.json` and the app's icon.
 To submit your app, request contributor access to the repository
 and create a merge request in which you add the folder for your app.

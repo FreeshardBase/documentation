@@ -7,7 +7,7 @@ We prepared a template for Portal apps written in Python that you can use to qui
 ---
 
 !!! info ""
-    The app template is hosted [here on GitLab](https://gitlab.com/ptl-public/app-template-python).
+    The app template is hosted [here on GitLab](https://gitlab.com/ptl-public/app-template-python){target=_blank}.
     To get started, simply fork it and start building. 
 
 ## Features
