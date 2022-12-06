@@ -14,10 +14,15 @@ like the official name and a description.
 
 ```json
 {
-  "v": "3.2",
+  "v": "4.0",
   "name": "myapp",
   "image": "myapp:1.2.3",
-  "port": 8080,
+  "entrypoints": [
+    {
+      "container_port": 80, 
+      "entrypoint_port": "http"
+    }
+  ],
   "data_dirs": [
     "/user_data",
     {
@@ -85,10 +90,10 @@ like the official name and a description.
 
 | field                 | description                                                                                                                                                                                                           |
 |-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| v                     | The version of the app.json format. Should be "3.1".                                                                                                                                                                  |
+| v                     | The version of the app.json format. Should be "4.0".                                                                                                                                                                  |
 | name                  | Your app's name as seen in the app store, on the Portal home screen, and in the URL                                                                                                                                   |
 | image                 | The docker image reference of your app; this is what you usually use with `docker run`                                                                                                                                |
-| port                  | The port at which your app publishes its GUI or API; this port will be forwarded to the user's browser                                                                                                                |
+| entrypoints           | A list of ports your app exposes to the internet and the port/protocol to which it should be mapped; entrypoint can be `http` (mapped to 443) or `mqtt` (mapped to 8883)                                              |
 | data_dirs (optional)  | A list of directories inside your image; Portal will create matching directories inside its file system and mount those into them; see [Persisting Data](persisting.md) for details                                   |
 | services (optional)   | A list of built-in services that your app uses; Portal will prepare them for you and provide access information in the form of template variables; see [Portal's Internal Services](internal_services.md) for details |
 | env_vars (optional)   | A dictionary of environment variables that are set for your app                                                                                                                                                       |
@@ -114,7 +119,7 @@ With this snippet, you can tell your app the actual full domain at which it is p
 
 ### Variables
 
-{!includes/template_vars_portal.md!}
+{!developer_docs/includes/template_vars_portal.md!}
 
 More variables are provided by Portal's built-in services if your app defines them as dependencies.
 See [Portal's Internal Services](internal_services.md) for details.
@@ -124,13 +129,17 @@ See [Portal's Internal Services](internal_services.md) for details.
 Since the format of the `app.json` evolves over time,
 it is important to include the version of the format in which it is written.
 It is contained in the `v` attribute.
-The current version is `3.2`.
+The current version is `4.0`.
 
 When new versions are released, we will attempt to make them backwards compatible.
 That means that Portal still can process the previous version
 and translate it to the current one.
 
 ### Past Updates
+
+#### version `3.2` to version `4.0`
+
+* Replaced the `port` field with the `entrypoints` field in order to support other protocols beside HTTP.
 
 #### version `3.1` to version `3.2`
 

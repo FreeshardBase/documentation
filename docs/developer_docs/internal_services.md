@@ -16,7 +16,7 @@ Also let your app request access to shared services like a database.
 
 The Portal core software stack is what manages all of a Portal's operations
 like its identities, terminals, peers or apps.
-It provides a [REST API](https://ptl.gitlab.io/portal_core/) that your app may use.
+It provides a [REST API](https://ptl.gitlab.io/portal_core/){target=_blank} that your app may use.
 Its base URL is `http://portal_core`. For example, you can list all apps by calling
 `GET http://portal_core/protected/apps`.
 
