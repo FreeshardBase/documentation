@@ -26,6 +26,10 @@ you can install [MQTTX](https://mqttx.app/web){target=_blank} as well.
 
 ![Screenshot of installed apps](smart_home_img/installed_apps.png)
 
+!!! bug "Known Bug"
+    There is a known bug that causes app installation to sometimes fail if multiple apps are installed quickly.
+    If any app refuses to start, simply uninstall and reinstall it.
+
 ## Creating Clients and Permissions
 
 Open Cedalo Management Center and login with `admin:admin`.
@@ -44,7 +48,7 @@ Next, navigate to *roles* and create a new role.
 You only need to give it a name.
 A role contains a set of permissions and in order for the client to be able to do anything,
 we have to give it some permissions through that role.
-So on the tab *ACLs*, ass some permissions like seen in the screenshot.
+So on the tab *ACLs*, add some permissions like seen in the screenshot.
 
 ![Screenshot of Cedalo roles](smart_home_img/cedalo_roles.png)
 ![Screenshot of new role](smart_home_img/cedalo_new_role.png)
@@ -68,13 +72,15 @@ Install it from the app store if you have not already done so and open it.
 ![Screenshot of MQTTX welcome screen](smart_home_img/mqttx_welcome.png)
 
 Create a new connection and enter the connection details as shown on the screenshot.
-Replace the host with the URL of your own Portal.
+Replace the host with the URL of your Mosquitto app which is `mosquitto.<id>.p.getportal.org`
 Then click connect to establish a connection with your broker.
 
 ![Screenshot of MQTTX connection settings](smart_home_img/mqttx_connection.png)
 
-Note that we are using port 443 because MQTTX connects to mosquitto by using MQTT over websocket.
-The normal MQTT port is usually 8883.
+??? note "Why port 443?" 
+    We are using port 443 because MQTTX only supports connections using MQTT over websocket.
+    The normal MQTT port is usually 8883.
+    Mosquitto offers both variants.
 
 In order to test the connection, subscribe to the broker using a second client, e.g. the `mosquitto_sub` cli tool.
 You can subscribe using the same client that you used with MQTTX.
@@ -91,7 +97,12 @@ Now, send a message from MQTTX to some topic and watch `mosquitto_sub` receive i
 With the test, you made sure that the broker works end-to-end.
 Now, you can connect your smart home devices and your monitoring and automation solutions.
 
-At Portal, we are working toward providing ready-made apps for such use-cases
+It is recommended to create a separate client for each device using the Cedalo Management Center
+and give it the minimal permissions it needs.
+Then, point the devices to `mosquitto.<id>.p.getportal.org` using either the MQTT protocol on portl 8883
+or MQTT over websocket on port 443.
+
+We will continue to work toward providing ready-made apps for many use-cases
 and will release them in the future.
 On the roadmap are:
 
