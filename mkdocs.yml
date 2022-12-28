@@ -41,6 +41,7 @@ nav:
     - 'developer_docs/submitting.md'
     - 'developer_docs/revenue_share.md'
   - User Guides:
+    - 'user_guides/password_management.md'
     - 'user_guides/smart_home.md'
 
 extra:
