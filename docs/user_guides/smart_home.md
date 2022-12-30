@@ -7,7 +7,8 @@ With the right apps and setup, that broker can be your Portal.
 This allows you to monitor and control your IoT devices from anywhere
 and from any device you have paired.
 It also provides a privacy-preserving way of consolidating your IoT devices
-which might manage sensitive data.
+which is important if they manage sensitive data.
+You can even create automation rules that act on the data.
 
 This guide covers installation and first steps for setting up your Portal.
 
@@ -92,6 +93,40 @@ Now, send a message from MQTTX to some topic and watch `mosquitto_sub` receive i
 
 ![Screenshot of MQTTX message sending](smart_home_img/mqttx_message_sending.png)
 
+## Automating your Home with Node Red
+
+The [Node Red](https://nodered.org/) app allows you to easily write workflow automations
+like switching devices based on sensor data.
+It can connect to the Mosquitto app and consume messages (e.g. from sensors or switches)
+and produce messages (e.g. to send commands to lights, power outlets, etc.).
+
+![Screenshot of a Node Red flow using MQTT](smart_home_img/node-red-flow.png)
+
+Node Red has two MQTT nodes, one for sending, one for receiving.
+When you use them, they require you to configure a MQTT server.
+You need to do this only once and can reuse the same server on all MQTT nodes.
+
+But before you begin, you should create a unique client and password for Node Red
+using Cedalo Management Center.
+See above on how to do this.
+Give it the desired permissions, most probably the same as described above.
+
+Then add a MQTT node to your flow and configure it.
+
+![Screenshot of the configuration of a MQTT out node](smart_home_img/node-red-node-config.png)
+
+Setup the server.
+The server name is simply `mosquitto`, the port is 1883.
+
+![Screenshot of the configuration of a MQTT server](smart_home_img/node-red-server-config.png)
+
+Also enter the credentials you created before.
+
+![Screenshot of the credential configuration of a MQTT server](smart_home_img/node-red-credential-config.png)
+
+Now, you can use this server to receive and send messages.
+This allows you to create powerful automations.
+
 ## Next Steps
 
 With the test, you made sure that the broker works end-to-end.
@@ -106,7 +141,6 @@ We will continue to work toward providing ready-made apps for many use-cases
 and will release them in the future.
 On the roadmap are:
 
-* Extending the existing Node Red app to be able to connect to Mosquitto
 * Adding monitoring solutions like Grafana or Prometheus
 * Adding smart home dashboards like Home Assistant
 
