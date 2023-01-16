@@ -2,7 +2,7 @@
 
 Many smart home and IoT devices support the communication protocol [MQTT](https://mqtt.org/){target=_blank}
 and can be configured to connect to an arbitrary MQTT broker on the internet.
-With the right apps and setup, that broker can be your Portal.
+That broker can be your Portal.
 
 This allows you to monitor and control your IoT devices from anywhere
 and from any device you have paired.
@@ -40,22 +40,21 @@ You are greeted with a dashboard that shows you the state of your Mosquitto brok
 Navigate to *clients* and create a new client.
 Give it a name and a password.
 You will use this client for a first test.
-Later, it is advised to create a separate client for each IoT device you connect.
+Later, it is advised to create a separate client for each IoT device or service you connect.
 
 ![Screenshot of Cedalo clients](smart_home_img/cedalo_clients.png)
 ![Screenshot of new client](smart_home_img/cedalo_new_client.png)
 
-Next, navigate to *roles* and create a new role.
-You only need to give it a name.
-A role contains a set of permissions and in order for the client to be able to do anything,
-we have to give it some permissions through that role.
+Next, navigate to *roles* and create a new role and give it a name.
+A role contains a set of permissions and can be assigned to clients.
+This allows the clients to do the things that the assigned role permits them. 
 So on the tab *ACLs*, add some permissions like seen in the screenshot.
 
 ![Screenshot of Cedalo roles](smart_home_img/cedalo_roles.png)
 ![Screenshot of new role](smart_home_img/cedalo_new_role.png)
 ![Screenshot of a role's ACL](smart_home_img/cedalo_role_acl.png)
 
-Lastly, go back to *clients* and assign the newly created and configured role to the client.
+Lastly, go back to *clients* and assign the newly created role to the client.
 Now, the client is allowed to do all the things that were configured in the role.
 
 ![Screenshot of a role's assignment](smart_home_img/cedalo_role_assign.png)
@@ -84,7 +83,7 @@ Then click connect to establish a connection with your broker.
     Mosquitto offers both variants.
 
 In order to test the connection, subscribe to the broker using a second client, e.g. the `mosquitto_sub` cli tool.
-You can subscribe using the same client that you used with MQTTX.
+For this test, you can subscribe using the same client credentials that you used with MQTTX.
 See the screenshot for an example command.
 
 ![Screenshot of message reception with mosquitto_sub](smart_home_img/mosquitto_sub.png)
@@ -102,7 +101,7 @@ and produce messages (e.g. to send commands to lights, power outlets, etc.).
 
 ![Screenshot of a Node Red flow using MQTT](smart_home_img/node-red-flow.png)
 
-Node Red has two MQTT nodes, one for sending, one for receiving.
+Node Red offers two kinds MQTT nodes, one for sending, one for receiving.
 When you use them, they require you to configure a MQTT server.
 You need to do this only once and can reuse the same server on all MQTT nodes.
 
@@ -115,7 +114,7 @@ Then add a MQTT node to your flow and configure it.
 
 ![Screenshot of the configuration of a MQTT out node](smart_home_img/node-red-node-config.png)
 
-Setup the server.
+Set up the server.
 The server name is simply `mosquitto`, the port is 1883.
 
 ![Screenshot of the configuration of a MQTT server](smart_home_img/node-red-server-config.png)
@@ -124,26 +123,68 @@ Also enter the credentials you created before.
 
 ![Screenshot of the credential configuration of a MQTT server](smart_home_img/node-red-credential-config.png)
 
-Now, you can use this server to receive and send messages.
-This allows you to create powerful automations.
+Now, you can use this server to receive and send messages to create powerful automations.
+Search for [node-red examples](https://duckduckgo.com/?q=node-red+examples&ia=web){target=_blank} for some inspiration.
+
+## Monitoring and Controlling with Home Assistant
+
+Home Assistant is a flexible and powerful tool to manage and automate the devices in your home.
+It allows you to create dashboards, automations, alerts and much more.
+You can install it from the Portal app store.
+
+![Screenshot of the Home-Assistant app in the store](smart_home_img/ha_app_card.png)
+
+When first opening Home Assistant, you must create an account.
+Pick a secure password: other than most Portal apps, the web interface is public.
+This allows you to create accounts for other members of your household, too. 
+
+![Screenshot of the Home-Assistant registration view](smart_home_img/ha_start_register.png)
+
+After registration, follow the setup assistant.
+
+![Screenshot of the Home-Assistant setup view](smart_home_img/ha_start_setup.png)
+![Screenshot of the Home-Assistant telemetry selection view](smart_home_img/ha_start_telemetry.png)
+
+It is normal that no devices are listed here.
+If you install home assistant on your own hardware inside your home network,
+you would see all devices that are present.
+But Portal is not in your home network so this list is empty.
+
+![Screenshot of the Home-Assistant device selection view](smart_home_img/ha_start_devices.png)
+
+In order to establish a channel to your MQTT-enabled devices,
+we need to connect home assistant to your Portals MQTT broker.
+Navigate to _Settings > Devices & Services_.
+
+![Screenshot of the Home-Assistant settings view](smart_home_img/ha_start_settings.png)
+
+Search for and select the MQTT option.
+
+![Screenshot of the Home-Assistant mqtt selection](smart_home_img/ha_mqtt_select.png)
+
+Like with Node-Red, the broker is simply `mosquitto` and the port is 1883.
+It is good security practice to create dedicated client credentials for home assistant.
+Use Cedalo management center as outlined above to do that.
+
+![Screenshot of the Home-Assistant mqtt configuration view](smart_home_img/ha_mqtt_configure.png)
+
+You can test the connection in a similar way as before.
+Use MQTTX or any other client to send and receive messages to and from home assistant.
+
+![Screenshot of the Home-Assistant mqtt testing scenario](smart_home_img/ha_mqtt_test.png)
 
 ## Next Steps
 
-With the test, you made sure that the broker works end-to-end.
-Now, you can connect your smart home devices and your monitoring and automation solutions.
+The next step is to connect smart home devices and monitor, control, and automate them.
 
-It is recommended to create a separate client for each device using the Cedalo Management Center
-and give it the minimal permissions it needs.
-Then, point the devices to `mosquitto.<id>.p.getportal.org` using either the MQTT protocol on portl 8883
+As mentioned earlier, it is recommended to create a separate client for each device 
+using the Cedalo Management Center and give it the minimal permissions it needs.
+Then, point the devices to `mosquitto.<id>.p.getportal.org` using either the MQTT protocol on port 8883
 or MQTT over websocket on port 443.
 
-We will continue to work toward providing ready-made apps for many use-cases
-and will release them in the future.
-On the roadmap are:
-
-* Adding monitoring solutions like Grafana or Prometheus
-* Adding smart home dashboards like Home Assistant
-
-If you have any other ideas or wishes,
-please tell us at our [Discord server](https://discord.gg/ZXQDuTGcCf)
-or using our [feedback platform](https://feedback.getportal.org/).
+The smart home journey on Portal is just beginning, and we plan on adding more apps and functions in the future.
+We would love to hear about your experiences, the dashboards and automations you build
+and the kind of devices you connect.
+Also, if you have ideas or wishes for further development, let us know
+at our [Discord server](https://discord.gg/ZXQDuTGcCf){target=_blank}
+or using our [feedback platform](https://feedback.getportal.org/){target=_blank}.
