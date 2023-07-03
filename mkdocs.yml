@@ -4,6 +4,7 @@ site_dir: public
 copyright: "&copy; Portal. All rights reserved."
 theme:
   name: material
+  custom_dir: overrides
   logo: img/logo.svg
   favicon: img/logo.svg
   font:

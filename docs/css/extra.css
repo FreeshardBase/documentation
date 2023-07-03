@@ -57,3 +57,22 @@ body.homepage>div.container>div.row>div.col-md-9 {
   --md-primary-fg-color: #edf0f6;
   --md-accent-fg-color: #58cc5d;
 }
+
+/* Banner */
+.banner {
+    position: sticky;   /* Follows as you scroll */
+    top: 0;             /* Absolute top of page */
+    left: 0;
+    width: 100%;
+    z-index: 1;         /* Tells the renderer "this is important", otherwise Admonition and Code Blocks will render into it */
+    text-align: center;
+    background-color: var(--md-accent-fg-color);
+}
+
+.banner p {
+    margin: 0.5em;
+    padding: 0;
+    color: #383e4a;
+    font-size: 1.5em;
+    font-weight: 300;
+}
