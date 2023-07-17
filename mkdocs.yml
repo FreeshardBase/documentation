@@ -47,6 +47,11 @@ nav:
   - User Guides:
     - 'user_guides/password_management.md'
     - 'user_guides/smart_home.md'
+  - Blog:
+      - 'blog/index.md'
+
+plugins:
+  - blog
 
 extra:
   status:
