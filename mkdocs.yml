@@ -30,7 +30,8 @@ nav:
   - Developer Docs:
     - 'developer_docs/overview.md'
     - 'developer_docs/existing_apps.md'
-    - 'developer_docs/app_json.md'
+    - 'developer_docs/docker_compose_template.md'
+    - 'developer_docs/app_meta_json.md'
     - 'developer_docs/persisting.md'
     - 'developer_docs/routing_and_ac.md'
     - 'developer_docs/peering.md'

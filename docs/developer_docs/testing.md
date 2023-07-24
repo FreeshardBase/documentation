@@ -9,7 +9,7 @@ The app store is not the only way of installing apps.
 You can also use the *Install Custom App* function under the app store options.
 It lets you write or paste the app metadata - what you would normally put in the `app.json` file -
 and directly install an app from it.
-Refer to the [page about `app.json`](app_json.md) for details on its format.
+Refer to the [page about `app.json`](app_meta_json.md) for details on its format.
 
 ![Install Custom App](img/install_custom_app.png)
 

@@ -10,6 +10,10 @@ It tells the Portal what to run by defining a docker image and how to run it.
 And it contains information that is important to display in the app store,
 like the official name and a description.
 
+## Schema
+
+[Here...](https://storageaccountportab0da.blob.core.windows.net/json-schema/0-21-0/schema_app_meta_1.0.json)
+
 ## Full Example
 
 ```json
