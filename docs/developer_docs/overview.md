@@ -1,6 +1,6 @@
 # Overview
 
-Your app is made up of two distinct artifacts: a collection of docker images that contains the app itself
+Your app is made up of two distinct artifacts: a collection of docker images that contain the runtime logic of the app
 and a collection of files that describe the app's configuration and metadata.
 Three files make up the metadata: The `docker-compose.yml.template` works like a normal `docker-compose.yml` file,
 but with optional template variables that are replaced by the Portal when the app is installed.
@@ -22,16 +22,17 @@ Or you may build a web application that runs in the browser and queries data usi
 You also may use any language or framework you like best.
 
 However, we ask you to make your UI responsive.
-Portal provides an omni-device user experience, so every app should be equally comfortable to use,
+Portal provides a cross-device user experience, so every app should be equally comfortable to use,
 whether on a notebook, tablet or smartphone.
 
 Which additional containers you need is also up to you and depends on your app.
-If you can start your app using a `docker-compose.yml` file, you have a head start,
-because this file can be used as a template for the Portal's `docker-compose.yml.template` file.
+If you already can start your app using a `docker-compose.yml` file, you are already half way there,
+because usually this file must only be modified slightly to derive the `docker-compose.yml.template` file.
 
 By default, only the Portal's owner can access your app's UI
-using the terminals they have paired with their Portal.
-If you want to make part of your app public or usable by the owner's peers, you can do so.
+using the devices they have paired with their Portal.
+If you want to make part of your app public or usable by the owner's peers,
+you can do so by adding appropriate entries in the `app_meta.json`.
 See [Routing and Access Control](routing_and_ac.md) to learn how.
 
 At the moment we do not provide hosting for any images.

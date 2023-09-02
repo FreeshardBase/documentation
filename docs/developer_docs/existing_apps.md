@@ -16,7 +16,7 @@ We roughly discern four levels of adaptation to Portal that an app can achieve:
 1. specifically adapted.
 
 Apps that are made for self-hosting mostly are in category zero or one, some are in category two, none is currently in category three.
-Our aim is to motivate app developers to work towards bringing their apps into category three
+Our aim is to motivate app developers to work towards bringing their apps into category four
 because it yields the best and smoothest experience for the user.
 
 ### Level 0: Blocked
@@ -24,7 +24,7 @@ because it yields the best and smoothest experience for the user.
 Some apps cannot be run on Portal at all.
 They might not offer a Docker image at all or rely on external services or specific hardware that Portal does not offer.
 As Portal is developed further, some of these apps might move into level 1 on their own
-but most will require some effort by the developer to bring it to level 1.
+but most will require some effort by the developer to bring them to level 1.
 
 ### Level 1: Usable with Caveats
 
@@ -48,7 +48,8 @@ instead they are useful for multiple common hosting scenarios.
 
 #### App Requirements for Level 2
 
-* The app can be configured for proxy auth, such that it reads the logged-in username from a http header.
+* The app can be configured to allow for a smooth single-user experience. E.g. no account creation or login screen.
+    This is usually done by disabling user management or switching to proxy authentication.
 * HTTP resource paths cleanly separate public and protected resources such that [Portal path-based AC](routing_and_ac.md#access-control) can be used.
 
 ### Level 3: Specifically Adapted
@@ -85,7 +86,7 @@ See here for [details about Docker Compose](https://docs.docker.com/compose/comp
 
 Often, you can take an existing `docker-compose.yml` file as a starting point and
 modify some configuration values as needed.
-In particular, you want to take a look volume mounts and environment variables.
+In particular, you want to take a look at volume mounts and environment variables.
 See [here](docker_compose_template.md) for more details.
 
 ### Write an `app_meta.json` file
@@ -138,7 +139,7 @@ the necessary headers to all requests. See the [section about access control](ro
 
 If your app is only used by the main user - the Portal's owner - 
 you do not have to concern yourself with access control at all.
-By default, Portal only allows paired terminals to reach an app.
+By default, Portal only allows paired devices to reach an app.
 
 If, however, your app contains views or API endpoints 
 that are meant to be accessed publicly (e.g. blog posts) or by the owner's peers (e.g. a chat API)
