@@ -27,10 +27,6 @@ you can install [MQTTX](https://mqttx.app/web){target=_blank} as well.
 
 ![Screenshot of installed apps](smart_home_img/installed_apps.png)
 
-!!! bug "Known Bug"
-    There is a known bug that causes app installation to sometimes fail if multiple apps are installed quickly.
-    If any app refuses to start, simply uninstall and reinstall it.
-
 ## Creating Clients and Permissions
 
 Open Cedalo Management Center and login with `admin:admin`.
