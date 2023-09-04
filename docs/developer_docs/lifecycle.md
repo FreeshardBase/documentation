@@ -1,4 +1,6 @@
-# The App Lifecycle
+---
+title: The App Lifecycle
+---
 
 Portal starts and stops installed apps on demand and lets you configure this behaviour.
 

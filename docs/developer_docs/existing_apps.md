@@ -1,4 +1,6 @@
-# Integration of Existing Apps
+---
+title: Integration of Existing Apps
+---
 
 Many apps that are made for self-hosting are also useful to run on Portal.
 And thanks to Portal's technical simplicity, this is often easy to do.

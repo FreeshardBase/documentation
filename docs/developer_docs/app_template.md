@@ -1,4 +1,6 @@
-# The App Template
+---
+title: The App Template
+---
 
 When building a Portal app from scratch, there is a lot of scaffolding to do
 before you can start on the actual business logic.

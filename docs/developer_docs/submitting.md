@@ -1,4 +1,6 @@
-# Submitting to the App Store
+---
+title: Submitting to the App Store
+---
 
 When your app is ready and tested, you can submit it to be listed in the Portal app store.
 This allows all other Portal users to find and install it with a single click.

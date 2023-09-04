@@ -1,4 +1,6 @@
-# Overview
+---
+title: Overview
+---
 
 Your app is made up of two distinct artifacts: a collection of docker images that contain the runtime logic of the app
 and a collection of files that describe the app's configuration and metadata.

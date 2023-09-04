@@ -1,4 +1,7 @@
-# Peering
+---
+title: Peering
+status: disabled
+---
 
 A Portal's owner can enter other Portals' IDs in order to peer with them.
 This allows apps to establish end-to-end encrypted and authenticated communication
@@ -6,7 +9,7 @@ between itself and another instance of the same app that is running on a peer.
 
 ---
 
-!!! warning "Deactivated Feature"
+!!! warning "Feature is disabled"
     At the moment, there is no app in the app store that uses this feature.
     For this reason and in order not to confuse users, the feature is deactivated currently.
     If you plan to make use of it, please [contact us](mailto:contact@getportal.org).

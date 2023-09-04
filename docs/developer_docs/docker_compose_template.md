@@ -1,4 +1,6 @@
-# The Docker-Compose Template
+---
+title: The Docker-Compose Template
+---
 
 When starting an app, Portal simply brings up a docker-compose file just like you would with `docker-compose up`.
 This file is generated during installation of the app from a `docker-compose.yml.template` that you have to provide.

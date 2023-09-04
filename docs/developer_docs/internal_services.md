@@ -1,4 +1,6 @@
-# Portal's Internal Services
+---
+title: Portal's Internal Services
+---
 
 The core software stack that manages a Portal offers several services to installed apps.
 Use them by making REST requests against their APIs.

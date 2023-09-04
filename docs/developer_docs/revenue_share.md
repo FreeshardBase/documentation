@@ -1,4 +1,7 @@
-# Revenue Share
+---
+title: Revenue Share
+status: upcoming
+---
 
 As a developer of Portal-apps, you automatically earn money from people who have your app installed.
 The revenue share scheme aligns incentives in a way that works best for everyone.

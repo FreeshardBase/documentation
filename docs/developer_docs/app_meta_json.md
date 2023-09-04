@@ -1,4 +1,6 @@
-# The app_meta.json File
+---
+title: The app_meta.json File
+---
 
 A Portal must know a few things about your app that cannot be configured in the `docker-compose.yml.template` file
 because they are specific to how Portal treats your app.

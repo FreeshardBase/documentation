@@ -1,4 +1,6 @@
-# Routing and Access Control
+---
+title: Routing and Access Control
+---
 
 Incoming requests for your app are routed and authenticated by the Portal software 
 according to your configuration in `app_meta.json`.
