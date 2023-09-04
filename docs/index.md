@@ -15,7 +15,7 @@ They are as versatile as web-applications and as private as locally installed ap
 ![Portal Architecture](img/arch.png)
 
 A Portal-app runs on a user's personal Portal and is accessed via any device
-that the user has paired with their Portal, we call them terminals.
+that the user has paired with their Portal.
 
 You can write your own Portal app and have users install and run it.
 Since Portal is based on well-established concepts and technology, this is very easy and straightforward.
@@ -29,14 +29,14 @@ As it runs on a Portal which is a virtual machine on cloud infrastructure,
 it has the benefits of the cloud:
 
 * your app can be always on and always online, which is great for serving content like a blog or continually monitoring something like sensor readings,
-* your app is present on all the user's terminals, so you can create an omni-device experience, making it equally mobile for a smartphone and complex for a desktop computer or even combine multiple terminals simultaneously in new and unique workflows,
+* your app is present on all the user's devices, so you can create a cross-device experience, making it equally mobile for a smartphone and complex for a desktop computer or even combine and sync multiple devices in new and unique workflows,
 * your app keeps its single source of truth on the Portal.
 
 However, since a Portal is a single user's private space, a Portal-app also has aspects of a local application:
 
 * each running instance serves a single user, there is no user management,
-* there is a local file-system on the Portal that belongs to the user and to which your app can request permission,
-* the infrastructure that runs your app is already there, no need to think about hosting.
+* there is a local file-system on the Portal that belongs to the user and your app can use it to persist data,
+* the infrastructure that runs your app is already there, you don't need to think about hosting.
 
 ## What the Portal does for you
 

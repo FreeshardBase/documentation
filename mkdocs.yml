@@ -4,7 +4,7 @@ site_dir: public
 copyright: "&copy; Portal. All rights reserved."
 theme:
   name: material
-  custom_dir: overrides
+  # custom_dir: overrides
   logo: img/logo.svg
   favicon: img/logo.svg
   font:
@@ -13,6 +13,8 @@ theme:
     - navigation.instant
     - navigation.tabs
     - navigation.top
+    - content.code.copy
+    - content.code.annotate
   palette:
     - scheme: light
       toggle:
@@ -29,23 +31,27 @@ nav:
   - Home: 'index.md'
   - Developer Docs:
     - 'developer_docs/overview.md'
-    - 'developer_docs/existing_apps.md'
-    - 'developer_docs/app_json.md'
+    - 'developer_docs/docker_compose_template.md'
+    - 'developer_docs/app_meta_json.md'
     - 'developer_docs/persisting.md'
     - 'developer_docs/routing_and_ac.md'
-    - 'developer_docs/peering.md'
     - 'developer_docs/internal_services.md'
+    - 'developer_docs/peering.md'
     - 'developer_docs/events.md'
     - 'developer_docs/lifecycle.md'
     - 'developer_docs/testing.md'
-    - 'developer_docs/app_template.md'
     - 'developer_docs/submitting.md'
     - 'developer_docs/revenue_share.md'
+    - 'developer_docs/existing_apps.md'
+    # - 'developer_docs/app_template.md'
   - User Guides:
     - 'user_guides/password_management.md'
     - 'user_guides/smart_home.md'
 
 extra:
+  status:
+    disabled: Feature is disabled
+    upcoming: Upcoming feature
   social:
     - icon: fontawesome/solid/globe
       link: https://getportal.org
