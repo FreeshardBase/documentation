@@ -1,7 +1,7 @@
 # Persisting Data
 
 If your app needs to persist data between restarts or upgrades, 
-it can do so by requesting access to a part of the Portal's file system.
+it can do so by mounting a directory of the Portal's file system.
 Use this feature for a database or user-data in the shape of files.
 Shared directories allow data exchange between apps.
 
@@ -9,45 +9,34 @@ Shared directories allow data exchange between apps.
 
 ## App-specific directories
 
-For each installed app, Portal creates a separate app-directory inside its file system 
-and allows the app to mount subdirectories of that directory into itself
-by specifying them in the `app.json`.
-This feature is based on Docker [bind mounts](https://docs.docker.com/storage/bind-mounts/).
+For each installed app, Portal creates a separate app-directory inside its file system.
+You can mount subdirectories of this directory into your app's file system
+by using the `fs.app_data` variable in the `docker-compose.yml.template`.
 
-Initially, these directories will be empty and your app can arbitrarily read and write inside them.
+Initially, this directory will be empty and your app can arbitrarily read and write inside it.
 If your app is stopped, the mounted directories remain intact and will still be there when your app restarts.
 If you release a new version of your app, it is your job to detect 
 whether the content of the mounted directories was created by the old version and migrate it if needed.
 
-You might not want to run your application as root inside your container but as some other user.
-In this case, it would not have access to the mounted directories, since they are owned by root.
-In order to allow access, you can change the mounted directories' owner by defining its user and group id.
-Set it to the values of the user that runs the app.
-
-Use these app-specific directories to persist data that is used only by your app.
+Use this app-specific directory to persist data that is used only by your app.
 
 ### Example
 
-```json
-...
-  "data_dirs": [
-    "/user_data",
-    {
-      "path": "/more_data",
-      "uid": 1000,
-      "gid": 1000
-    }
-  ],
-...
+In the `docker-compose.yml.template`:
+
+```yaml
+        volumes:
+        - "{{ fs.app_data }}/data:/data"
 ```
 
 ## Shared directories
 
-Portal defines a set of shared directories to which your app can request access.
-They are mounted inside your app's file system at a path that is specified in the `app.json`.
-Use these directories to access preexisting user data and share data with other apps that have access to the same directories.
+Portal defines a single shared directory.
+You can mount it or subdirectories of it into your app's file system,
+allowing your app to access preexisting user data and share data with other apps that have access to the same directories.
+Use the `fs.shared` variable in the `docker-compose.yml.template`.
 
-Available shared directories are:
+Examples of shared directories are:
 
 * `documents`
 * `media`
@@ -55,21 +44,9 @@ Available shared directories are:
 
 ### Example
 
-```json
-...
-  "data_dirs": [
-    "/user_data",
-    {
-      "path": "/documents",
-      "shared_dir": "documents"
-    }
-  ],
-...
+In the `docker-compose.yml.template`:
+
+```yaml
+        volumes:
+        - "{{ fs.shared }}/documents:/documents"
 ```
-
-## Built-In Services
-
-Each Portal runs some built-in services that your app may use.
-For example, your app can get its own database at the Portal's Postgres instance
-and use it to store its data.
-Take a look at the [section about Portal's internal services](internal_services.md) for more information.

@@ -27,7 +27,7 @@ Assume for this example a monthly app fee of 3.00€.
 
 ### 2. App Usage Monitoring
 
-During each month, the Portal monitors which app are installed and for how long.
+During each month, the Portal monitors which apps are installed and for how long.
 Assume the following distribution where App 1 is installed for the whole month
 and at the middle of the month, App 2 was uninstalled and App 3 was installed instead.
 
@@ -57,23 +57,23 @@ In the example, it would look like this:
 ### 4. Manual Adjustments
 
 The user is notified of the calculated weights and can now make adjustments.
-Maybe they want to boost an especially good app in particular, e.g. App 3.
+Maybe they want to boost an especially good app, e.g. App 3.
 
-| App   | Weight | Boost | New Weight |
-|-------|--------|-------|------------|
-| App 1 | 50%    |       | 37.5%      |
-| App 2 | 25%    |       | 12.5%      |
-| App 3 | 25%    | ⭐     | 50%        |
+| App   | Weight | Boost | Boosted Weight |
+|-------|--------|-------|----------------|
+| App 1 | 50%    |       | 37.5%          |
+| App 2 | 25%    |       | 12.5%          |
+| App 3 | 25%    | ⭐     | 50%            |
 
 ### 5. Splitting the Flat Fee
 
 The user-adjusted weights are sent to the Portal backend and are used to split this month's app fee.
 
-| App   | Weight | Boost | New Weight | Revenue Share |
-|-------|--------|-------|------------|---------------|
-| App 1 | 50%    |       | 37.5%      | 1.125€        |
-| App 2 | 25%    |       | 12.5%      | 0.375€        |
-| App 3 | 25%    | ⭐     | 50%        | 1.5€          |
+| App   | Weight | Boost | Boosted Weight | Revenue Share |
+|-------|--------|-------|----------------|---------------|
+| App 1 | 50%    |       | 37.5%          | 1.125€        |
+| App 2 | 25%    |       | 12.5%          | 0.375€        |
+| App 3 | 25%    | ⭐     | 50%            | 1.5€          |
 
 ### 6. Sum Up and Payout
 

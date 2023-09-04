@@ -16,9 +16,9 @@ docker-compose up --no-start
 
 ## Start
 
-The Portal's reverse proxy forwards all http traffic to your app and takes care of e.g. authentication.
-It is described in detail under [Routing and Access Control](routing_and_ac.md).
-One of its tasks is to inform the Portal core software of traffic to an app
+The Portal's reverse proxy forwards all http traffic to your app and takes care of authentication and other concerns.
+This is described in detail under [Routing and Access Control](routing_and_ac.md).
+One of its tasks is to inform the Portal core of incoming traffic to an app
 such that the app can be started if it is not running.
 Since the container was created during installation, only the `docker start` command is issued.
 
@@ -32,7 +32,7 @@ The container is only stopped, but not removed. Essentially, the `docker stop` c
 
 ## Configuration
 
-You may configure your apps lifecycle behaviour via the `lifecycle` section inside the `app.json`.
+You may configure your apps lifecycle behaviour via the `lifecycle` section inside the `app_meta.json`.
 For example:
 
 ```json

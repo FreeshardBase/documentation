@@ -19,7 +19,7 @@ Click on the plus buttons for a description of each field.
   "icon": "icon.png", // (4)!
   "entrypoints": [ // (5)!
     {
-      "container_name": "actual",
+      "container_name": "my-app",
       "container_port": 8080,
       "entrypoint_port": "http"
     }
@@ -68,12 +68,7 @@ Click on the plus buttons for a description of each field.
     and should be set according to your app's CPU and memory requirements.
     If you do not specify this, your app will be available on all Portal sizes.
 9. This is where you can configure the information that is displayed in the app store.
-    * The `description_short` is a short description that is on the app card.
-    * The `description_long` is a longer description that is displayed when the user clicks on the app card.
-      It can be a list of strings, each of which will be displayed as a paragraph.
-    * The `hint` is a short text that you can use to describe limitations of your app.
-    * The `is_featured` flag determines if your app is featured in the app store.
-      We will only feature apps that are of high quality and integrate well with Portal.
+    See [Submitting to the App Store](submitting.md) for more information.
 
 ## Schema
 

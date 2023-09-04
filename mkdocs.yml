@@ -41,7 +41,7 @@ nav:
     - 'developer_docs/events.md'
     - 'developer_docs/lifecycle.md'
     - 'developer_docs/testing.md'
-    - 'developer_docs/app_template.md'
+    # - 'developer_docs/app_template.md'
     - 'developer_docs/submitting.md'
     - 'developer_docs/revenue_share.md'
   - User Guides:

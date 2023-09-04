@@ -1,28 +1,31 @@
 # Routing and Access Control
 
 Incoming requests for your app are routed and authenticated by the Portal software 
-according to your configuration in `app.json`.
+according to your configuration in `app_meta.json`.
 
 ---
 
 ## Routing
 
 Each Portal has a unique URL containing its random six-digit identifier, e.g. `xyz123.p.getportal.org`.
-Each app is reachable at a subdomain of that URL, e.g. `myapp.xyz123.p.getportal.org`.
-Requests to this subdomain are forwarded to the running docker container of that app.
+Each app is reachable at a subdomain of that URL, e.g. `my-app.xyz123.p.getportal.org`.
+HTTP Requests to this subdomain are forwarded to a port of one the docker containers of that app
+that is specified in the `app_meta.json` file in the `entrypoints` section.
+
+You can also configure Portal to forward MQTT connections in the same way,
+but they are not protected by Portal's access control mechanism like HTTP requests are.
 
 ## TLS
 
 As an app developer, you do not need to concern yourself with TLS and certificates.
-Your app only needs to expose one or more arbitrary ports.
+Your app only needs to expose a port that offers HTTP connections.
 Portal manages its own certificate that is valid for all of its subdomains
 which means it covers all of its installed apps as well.
 
 ## Access Control
 
-Portal is not only authenticated against incoming requests with its certificate.
-It also authenticates the sources of those requests - if configured to do so - and applies access control.
-By using the `paths` section in the `app.json`, you can choose
+Portal attempts to authenticate the sources of incoming requests and applies access control accordingly.
+By using the `paths` section in the `app_meta.json`, you can choose
 which path prefixes should have which type of access
 and what should be the default access type.
 
@@ -31,7 +34,7 @@ and what should be the default access type.
     Entrypoints of the type `mqtt` are *public* by default, and you have to add your own access control mechanism. 
 
 Path prefixes are evaluated against the path of the incoming request from longest to shortest.
-The first matching prefix is chosen and its access is applied to the request.
+The first matching prefix is chosen and its access control policy is applied to the request.
 You _must_ include the empty string `""` as the default option that is evaluated last. 
 There are three types of access that you can use:
 
@@ -63,7 +66,7 @@ If your app's path schema naturally distinguishes public and private parts by th
 then defining access control like described above may be a suitable approach.
 You just have to define the default access and the paths that should be private/public.
 
-Consider an app named *myapp* which has the `path` section in the `app.json` configured like this:
+Consider an app named *myapp* which has the `path` section in the `app_meta.json` configured like this:
 ```json
 "paths": {
   "": {
@@ -104,7 +107,7 @@ This allows you to know for each request from which kind of client it originated
 and if applicable from which specific terminal or peer.
 Based on that information, you can make arbitrarily complex access control decisions.
 
-Consider an app named *myapp* which has the `path` section in the `app.json` configured like this:
+Consider an app named *myapp* which has the `path` section in the `app_meta.json` configured like this:
 ```json
 "paths": {
   "": {

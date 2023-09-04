@@ -116,6 +116,17 @@ When you submit your app for the app store, we will check that it does not viola
 You may not mount any host directories other than the ones provided in the filesystem variables.
 And when mounting `fs.app_data`, you should have a good reason.
 
+### Docker Socket
+
+You may mount the docker socket into your container, as long as you mount it with the read-only flag.
+This is useful for apps that monitor the docker daemon, for example to show the status of other apps.
+The mount entry should look like this:
+
+```yaml
+volumes:
+- "/var/run/docker.sock:/var/run/docker.sock:ro"
+```
+
 ### Performance
 
 Memory and CPU capacity on a Portal vary depending on a Portal's size and are never infinite.
