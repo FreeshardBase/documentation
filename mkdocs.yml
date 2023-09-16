@@ -44,9 +44,14 @@ nav:
     - 'developer_docs/revenue_share.md'
     - 'developer_docs/existing_apps.md'
     # - 'developer_docs/app_template.md'
+  - Blog:
+      - 'blog/index.md'
   - User Guides:
-    - 'user_guides/password_management.md'
-    - 'user_guides/smart_home.md'
+      - 'user_guides/password_management.md'
+      - 'user_guides/smart_home.md'
+
+plugins:
+  - blog
 
 extra:
   status:
