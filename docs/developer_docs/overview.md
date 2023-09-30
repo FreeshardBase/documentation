@@ -48,7 +48,7 @@ Each app has a directory there that contains:
 
 * the `docker-compose.yml.template` file,
 * the `app_meta.json` file,
-* and the app's icon.
+* and the app's icon (optional).
 
 ### The `docker-compose.yml.template` File
 
