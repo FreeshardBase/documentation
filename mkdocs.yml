@@ -49,6 +49,17 @@ nav:
   - User Guides:
       - 'user_guides/password_management.md'
       - 'user_guides/smart_home.md'
+  - Master Plan:
+      - 'master_plan/overview.md'
+      - 'master_plan/intro.md'
+      - 'master_plan/problems.md'
+      - 'master_plan/requirements.md'
+      - 'master_plan/technical_description.md'
+      - 'master_plan/benefits_and_implications.md'
+      - 'master_plan/business_model.md'
+      - 'master_plan/roadmap.md'
+      - 'master_plan/endgame.md'
+      - 'master_plan/far_future.md'
 
 plugins:
   - blog
