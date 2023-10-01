@@ -39,7 +39,7 @@ nav:
     - 'developer_docs/peering.md'
     - 'developer_docs/events.md'
     - 'developer_docs/lifecycle.md'
-    - 'developer_docs/testing.md'
+    - 'developer_docs/custom_apps.md'
     - 'developer_docs/submitting.md'
     - 'developer_docs/revenue_share.md'
     - 'developer_docs/existing_apps.md'
