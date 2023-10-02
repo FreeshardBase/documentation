@@ -1,11 +1,9 @@
 image: python:3.8-buster
 
-before_script:
-  - pip install -r requirements.txt
-
 test:
   stage: test
   script:
+  - pip install -r requirements.txt
   - mkdocs build --strict --verbose --site-dir test
   artifacts:
     paths:
@@ -16,9 +14,36 @@ test:
 pages:
   stage: deploy
   script:
+  - pip install -r requirements.txt
   - mkdocs build --strict --verbose
   artifacts:
     paths:
     - public
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+master-plan:
+  stage: deploy
+  image: registry.gitlab.com/ptl/portal-ci-image:main
+  script:
+    - pip install pyyaml
+    - filename=$(python3 build_store_data.py)
+    - az storage blob upload -f "docs/master_plan/$filename" --blob-url "https://storageaccountportab0da.blob.core.windows.net/public-assets/master_plan/$filename?$AZ_STORAGE_SAS_TOKEN"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  tags:
+    - dind
+    - portal
+
+master-plan-snapshot:
+  stage: deploy
+  image: registry.gitlab.com/ptl/portal-ci-image:main
+  script:
+    - pip install pyyaml
+    - filename=$(python3 make_latex.py $CI_COMMIT_REF_SLUG)
+    - az storage blob upload -f "docs/master_plan/$filename" --blob-url "https://storageaccountportab0da.blob.core.windows.net/public-assets/master_plan/$filename?$AZ_STORAGE_SAS_TOKEN"
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+  tags:
+    - dind
+    - portal
