@@ -9,12 +9,18 @@ def main():
 	mkdocs_yml = read_mkdocs_yml()
 	chapters = make_chapter_list(mkdocs_yml)
 
-	pandoc_command = 'docker run --rm -v "$(pwd):/data" -u $(id -u):$(id -g) pandoc/extra --template eisvogel '
+	pandoc_command = 'docker run --rm -v "$(pwd):/data" -u $(id -u):$(id -g) pandoc/extra --template eisvogel'
 	chapters_list = ' '.join(chapters)
 	output_file = make_output_file_name()
 	subprocess.run(f'{pandoc_command} {chapters_list} -o {output_file}', shell=True, cwd='docs/master_plan')
 
-	print(output_file)
+	blob_url = f'https://storageaccountportab0da.blob.core.windows.net/public-assets/master_plan/{output_file}'
+	subprocess.run(
+		f'az storage blob upload --auth-mode login -f {output_file} --blob-url {blob_url} --overwrite',
+		shell=True,
+		cwd='docs/master_plan')
+
+	print(f'Uploaded to {blob_url}')
 
 
 def read_mkdocs_yml():
@@ -32,6 +38,7 @@ def make_chapter_list(mkdocs_yml):
 	prefix_len = len('master_plan/')
 	chapters = [c[prefix_len:] for c in master_plan['Master Plan']]
 	chapters = ['meta.md'] + chapters
+	print(chapters)
 	return chapters
 
 
