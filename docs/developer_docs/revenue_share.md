@@ -1,16 +1,11 @@
 ---
 title: Revenue Share
-status: upcoming
 ---
 
 As a developer of Portal-apps, you automatically earn money from people who have your app installed.
 The revenue share scheme aligns incentives in a way that works best for everyone.
 
 ---
-
-!!! warning "Upcoming Feature"
-    The revenue share process is not yet implemented.
-    You cannot profit from it yet and its implementation - when completed - might differ from this description.
 
 Portal's revenue share scheme for app developers aligns incentives in a way that works best for everyone.
 App developers receive a monthly payment that scales with the number of installed app instances
@@ -58,6 +53,10 @@ In the example, it would look like this:
 | App 3 | 25%    |
 
 ### 4. Manual Adjustments
+
+!!! warning "Upcoming Feature"
+    The option for manual adjustment is not yet implemented.
+    Users cannot change the weights yet and its implementation - when completed - might differ from this description.
 
 The user is notified of the calculated weights and can now make adjustments.
 Maybe they want to boost an especially good app, e.g. App 3.
