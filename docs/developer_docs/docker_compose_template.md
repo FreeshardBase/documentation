@@ -4,7 +4,7 @@ title: The Docker-Compose Template
 
 When starting an app, Portal simply brings up a docker-compose file just like you would with `docker-compose up`.
 This file is generated during installation of the app from a `docker-compose.yml.template` that you have to provide.
-This template is a normal docker-compose file with some special variables that Portal will replace with the correct values.
+The template is a normal docker-compose file with some special variables that Portal will replace with the correct values.
 
 ---
 
@@ -39,6 +39,7 @@ services:
 4. In order to persist data, you need to mount a host directory.
    For data that only concerns your app, you should use the `fs.app_data` variable
    and a subdirectory that matches the directory inside the container.
+   Read more in the section on [persisting data](persisting.md).
 5. You need to connect your app to the `portal` network specified above.
 
 ## Complex Example
@@ -73,8 +74,6 @@ services:
     my-app-redis: # (6)!
         image: redis:6.2
         container_name: my-app-redis
-        expose:
-        - 6379
         volumes:
         - "{{ fs.app_data }}/redis_data:/redis_data" # (7)!
         networks:

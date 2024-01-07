@@ -2,7 +2,7 @@
 title: Routing and Access Control
 ---
 
-Incoming requests for your app are routed and authenticated by the Portal software 
+Incoming requests for your app are routed and authenticated by the Portal core 
 according to your configuration in `app_meta.json`.
 
 ---
@@ -92,7 +92,7 @@ graph TD
   Request --> sub{subdomain?};
   sub -->|myapp| pre{prefix?};
   sub -->|anything else| away[route another way];
-  pre -->|<default>| auth{authentication?};
+  pre -->|not /public| auth{authentication?};
   auth -->|fail| deny[deny access];
   auth -->|success| head_auth[apply headers:<br>X-Ptl-Client-Type=terminal<br>X-Ptl-Client-Name=My Notebook<br>X-Ptl-Client-Id=eie767w];
   pre -->|/public| forward[forward to app container];
@@ -107,7 +107,7 @@ By choosing app-specific AC, you instruct the Portal to let all incoming request
 but still populate the http headers with IDs and names of clients.
 This allows you to know for each request from which kind of client it originated
 and if applicable from which specific terminal or peer.
-Based on that information, you can make arbitrarily complex access control decisions.
+Based on that information, you can make all the access control decisions you need.
 
 Consider an app named *myapp* which has the `path` section in the `app_meta.json` configured like this:
 ```json

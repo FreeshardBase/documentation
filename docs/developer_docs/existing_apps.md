@@ -17,51 +17,51 @@ We roughly discern four levels of adaptation to Portal that an app can achieve:
 1. generally adapted, 
 1. specifically adapted.
 
-Apps that are made for self-hosting mostly are in category zero or one, some are in category two, none is currently in category three.
+Apps that are made for self-hosting mostly are in category one or two, some are in category three, none is currently in category four.
 Our aim is to motivate app developers to work towards bringing their apps into category four
 because it yields the best and smoothest experience for the user.
 
-### Level 0: Blocked
+### Level 1: Blocked
 
 Some apps cannot be run on Portal at all.
 They might not offer a Docker image at all or rely on external services or specific hardware that Portal does not offer.
-As Portal is developed further, some of these apps might move into level 1 on their own
-but most will require some effort by the developer to bring them to level 1.
+As Portal is developed further, some of these apps might move into level 2 on their own
+but most will require some effort by the developer to bring them to level 2.
 
-### Level 1: Usable with Caveats
+### Level 2: Usable with Caveats
 
 These are apps that can run on Portal, but do not offer a smooth user experience.
 When using the app, it is clear that it was not made for Portal.
 Typical issues that break the user experience are an account creation and login screen - which should almost never be needed on Portal -
 or resources that should be publicly accessible but are not.
 
-#### App Requirements for Level 1
+#### App Requirements for Level 2
 
 * The whole app (backend and web-UI) is contained in a collection of docker images.
 * The app only depends on services that Portal offers (see [Portal's Internal Services](internal_services.md)).
 * No manual setup is needed after the app starts for the first time. E.g. database migration, user creation.
 * System requirements in terms of processing and memory are relatively modest.
 
-### Level 2: Generally Adapted
+### Level 3: Generally Adapted
 
 Apps that can be configured in a way that allows a mostly smooth user experience on Portal fall in this category.
 The configuration options are not made specifically for integration with Portal,
 instead they are useful for multiple common hosting scenarios.
 
-#### App Requirements for Level 2
+#### App Requirements for Level 3
 
 * The app can be configured to allow for a smooth single-user experience. E.g. no account creation or login screen.
     This is usually done by disabling user management or switching to proxy authentication.
 * HTTP resource paths cleanly separate public and protected resources such that [Portal path-based AC](routing_and_ac.md#access-control) can be used.
 
-### Level 3: Specifically Adapted
+### Level 4: Specifically Adapted
 
 A Portal is a unique environment for an app to run in.
 To fully use what the Portal has to offer, adaptations of the app must therefore also be uniquely tailored to the Portal.
 These adaptations are usually not useful in other hosting scenarios,
 but they enable an extraordinarily smooth user experience on Portal.
 
-#### App Requirements for Level 3
+#### App Requirements for Level 4
 
 * [Portal's peering feature](peering.md) is used for multi-user apps.
 
@@ -71,9 +71,9 @@ If all goes well, bringing an existing app into the Portal app store can be quic
 Sometimes a little more work has to be done, depending on the requirements that the app already meets.
 Here is a checklist to work through.
 
-### Make sure, the app meets at least level 1 requirements
+### Make sure, the app meets at least level 2 requirements
 
-Many self-hosting apps already meet the requirements for level 1 integration [listed above](#app-requirements-for-level-1) but some do not.
+Many self-hosting apps already meet the requirements for level 2 integration [listed above](#app-requirements-for-level-2) but some do not.
 If your app does not meet the requirements, it is for you to decide if the needed modifications are quick and easy or too much effort.
 
 For example your app might rely on a manual user-creation step after first start.
@@ -100,13 +100,9 @@ To aid you in this task, we provide a [schema](app_meta_json.md#schema) for the 
 
 ### Test your app on your Portal
 
-!!! warning "Temporary Limitation"
-    Currently, you cannot test your app on your Portal without publishing it to the official app store.
-    We are working on a feature for installing custom apps.
-    Until then, [contact us](mailto:contact@getportal.org) when you are ready to test your app.
-
 You need your own Portal for this step.
 If you do not have one, you can get a free trial [here](https://trial.getportal.org/).
+Then, you can package your app as a Portal app and install it as described [here](custom_apps.md).
 
 ### Make further adaptations
 

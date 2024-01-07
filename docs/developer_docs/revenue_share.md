@@ -7,7 +7,7 @@ The revenue share scheme aligns incentives in a way that works best for everyone
 
 ---
 
-Portal's revenue share scheme for app developers aligns incentives in a way that works best for everyone.
+In order to reward app developers for their work, Portal uses a revenue share scheme.
 App developers receive a monthly payment that scales with the number of installed app instances
 and users have no additional cost when installing apps, so they are not discouraged from doing so.
 The process is also very low-effort for both parties with regard to setup and maintenance.

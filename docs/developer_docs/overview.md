@@ -28,10 +28,10 @@ Portal provides a cross-device user experience, so every app should be equally c
 whether on a notebook, tablet or smartphone.
 
 Which additional containers you need is also up to you and depends on your app.
-If you already can start your app using a `docker-compose.yml` file, you are already half way there,
+If you have a `docker-compose.yml` file that starts your app, you are already half way there,
 because usually this file must only be modified slightly to derive the `docker-compose.yml.template` file.
 
-By default, only the Portal's owner can access your app's UI
+For many apps, it is sufficient if only the Portal's owner can access the app's UI
 using the devices they have paired with their Portal.
 If you want to make part of your app public or usable by the owner's peers,
 you can do so by adding appropriate entries in the `app_meta.json`.

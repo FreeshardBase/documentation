@@ -8,7 +8,7 @@ Portal starts and stops installed apps on demand and lets you configure this beh
 
 ## Installation and Creation
 
-When a user installs your app, the image is pulled and a container is created.
+When a user installs your app, the image is pulled and the containers are created.
 However, the app is not started yet.
 Basically, the following command is executed.
 
@@ -22,15 +22,15 @@ The Portal's reverse proxy forwards all http traffic to your app and takes care 
 This is described in detail under [Routing and Access Control](routing_and_ac.md).
 One of its tasks is to inform the Portal core of incoming traffic to an app
 such that the app can be started if it is not running.
-Since the container was created during installation, only the `docker start` command is issued.
 
 During the time it takes for the app to start, a splash screen is displayed and regularly refreshed.
-This splash screen is provided by the Portal core and as an app developer, you do not have to do anything.
+This splash screen is provided by the Portal core and as an app developer,
+you do not have to do anything to make it work.
 
 ## Stop
 
 After some idle time - i.e. a time period without http traffic to an app - the Portal core stops the app.
-The container is only stopped, but not removed. Essentially, the `docker stop` command is issued.
+The container is only stopped, but not removed. Essentially, the `docker-compose stop` command is issued.
 
 ## Configuration
 
@@ -47,6 +47,6 @@ For example:
 You may set `always_on` to `true` causing your app to never be stopped.
 In this case, providing an `idle_time_for_shutdown` is forbidden.
 
-Or you may set and `idle_time_for_shutdown` in seconds.
+Or you may set an `idle_time_for_shutdown` in seconds.
 The default is `60`.
 In this case, `always_on` must not be set or set to `false`.

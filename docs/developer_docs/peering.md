@@ -83,7 +83,7 @@ See the [API docs](https://ptl.gitlab.io/portal_core/#tag/protected/operation/li
 Once the desired peer and its ID is known, your app can send http requests to it.
 However, it cannot send the requests directly, because then,
 the receiver Portal cannot authenticate the sender.
-Instead, the request must be sent through Portal core which adds the necessary authentication.
+Instead, the request must be sent through Portal core which adds the necessary authentication header.
 
 Consider the app `my-app` that would like to send a `GET` request to the path `foo/bar`
 on a peer Portal with the ID `b8rk3f`.
@@ -99,7 +99,7 @@ When sending a request to a peer, this is the sequence that it follows.
 sequenceDiagram
   participant Aa as myapp on c0p3x5
   participant Ac as Core on c0p3x5
-  participant Bp as proxy on b8rk3f
+  participant Bp as Proxy on b8rk3f
   participant Bc as Core on b8rk3f
   participant Ba as myapp on b8rk3f
 
@@ -114,5 +114,5 @@ sequenceDiagram
 ```
 
 * `Core on c0p3x5` adds a signature to the request
-* `proxy on b8rk3f` accepts the request and decides about routing
+* `Proxy on b8rk3f` accepts the request and decides about routing
 * `Core on b8rk3f` verifies the signature and decides about access control according to the configuration in `app_meta.json`
