@@ -115,7 +115,7 @@ When you submit your app for the app store, we will check that it does not viola
 ### Filesystem access
 
 You may not mount any host directories other than the ones provided in the filesystem variables.
-And when mounting `fs.app_data`, you should have a good reason.
+And when mounting `fs.all_app_data`, you should have a good reason.
 
 ### Docker Socket
 

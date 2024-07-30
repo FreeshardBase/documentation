@@ -15,7 +15,7 @@ Click on the plus buttons for a description of each field.
 
 ```json
 {
-  "v": "1.0", // (1)!
+  "v": "1.1", // (1)!
   "app_version": "0.1.1", // (2)!
   "name": "my-app", // (3)!
   "pretty_name": "My App", // (10)!
@@ -49,7 +49,7 @@ Click on the plus buttons for a description of each field.
 }
 ```
 
-1. The version of the `app_meta.json` format. Should be "1.0".
+1. The version of the `app_meta.json` format. Should be "1.1".
 2. The version of your app. This is used to determine if an update is available.
     It can but does not have to match with your own versioning scheme.
 3. The name of your app as seen in the URL.
