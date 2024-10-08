@@ -1,26 +1,54 @@
 ---
 hide:
-  - navigation
+  #- navigation
   - toc
 ---
 
 # Portal
 
-Portal is a virtual private server that is marketed directly to consumers.
-You can write Portal apps that run on users' Portals.
-They are as versatile as web-applications and as private as locally installed apps.
+Most technologies have first been a tool for professionals before they became a tool for consumers.
+Cloud computers have not yet made this transition, although _personal cloud computers_ would have a lot to offer. 
+
+But with current technology, the time is right.
+
+Portal is the cloud computer for consumers.
+
+Private like your home.
+
+Simple as your phone.
+
+Always with you on the nearest screen.
 
 ---
 
+With Portal, everyone can have their own cloud computer and enjoy the benefits that come with it.
+
+* A **single place** for all your data and applications.
+* Accessing data and applications from **any device**.
+* An **always-on** and **always-online** personal server.
+* The **privacy and security** of dedicated and owned infrastructure.
+
+## How it works
+
 ![Portal Architecture](img/arch.png)
 
-A Portal-app runs on a user's personal Portal and is accessed via any device
-that the user has paired with their Portal.
+## Key Concepts
 
-You can write your own Portal app and have users install and run it.
-Since Portal is based on well-established concepts and technology, this is very easy and straightforward.
+### Always On, Always Online
 
-## How to think about your App
+### Device Pairing
+
+### Apps
+
+(Start/Stop)
+
+### Portal Pairing
+
+### Web Interface
+
+### How to think about your App
+
+### Subscription and Management
 
 When developing a Portal-app you need to think a little differently about it compared to web-apps, desktop applications or mobile apps.
 A Portal-app has a unique combination of features and paradigms.
