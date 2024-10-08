@@ -20,6 +20,7 @@ Click on the plus buttons for a description of each field.
   "name": "my-app", // (3)!
   "pretty_name": "My App", // (10)!
   "icon": "icon.png", // (4)!
+  "homepage": "https://myapp.com", // (12)!
   "upstream_repo": "https://github.com/namespace/myapp", // (11)!
   "entrypoints": [ // (5)!
     {
@@ -76,9 +77,11 @@ Click on the plus buttons for a description of each field.
     See [Submitting to the App Store](submitting.md) for more information.
 10. The name of your app as seen in the app store and below the icon on the Portal home screen.
     It can be different from the `name` field and may include uppercase letters and spaces.
-11. The URL of the repository where the source code of your app is hosted.
+11. (Optional) The URL of the repository where the source code of your app is hosted.
     Right now, this is only used for automatically checking for updates.
     It only works with GitHub repositories which use the "Release" feature.
+12. (Optional) The URL of the homepage of your app.
+    This is where users can find more information about your app.
 
 ## Schema
 
@@ -103,7 +106,7 @@ and translate it to the current one.
 
 #### Version 1.2
 
-* Added the `upstream_repo` field.
+* Added the `homepage` and `upstream_repo` fields.
 
 #### Version 1.1
 
