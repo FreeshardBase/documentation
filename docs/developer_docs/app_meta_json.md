@@ -20,6 +20,7 @@ Click on the plus buttons for a description of each field.
   "name": "my-app", // (3)!
   "pretty_name": "My App", // (10)!
   "icon": "icon.png", // (4)!
+  "upstream_repo": "https://github.com/namespace/myapp", // (11)!
   "entrypoints": [ // (5)!
     {
       "container_name": "my-app",
@@ -75,11 +76,14 @@ Click on the plus buttons for a description of each field.
     See [Submitting to the App Store](submitting.md) for more information.
 10. The name of your app as seen in the app store and below the icon on the Portal home screen.
     It can be different from the `name` field and may include uppercase letters and spaces.
+11. The URL of the repository where the source code of your app is hosted.
+    Right now, this is only used for automatically checking for updates.
+    It only works with GitHub repositories which use the "Release" feature.
 
 ## Schema
 
 To help you write your `app_meta.json` file,we publish a JSON schema that describes the format 
-[here](https://storageaccountportab0da.blob.core.windows.net/json-schema/0-21-0/schema_app_meta_1.0.json).
+[here](https://storageaccountportab0da.blob.core.windows.net/json-schema/0-30-2/schema_app_meta_1.2.json).
 Add it to your IDE to get auto-completion and validation.
 Here is a guide for [Visual Studio Code](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings)
 and one for [PyCharm](https://www.jetbrains.com/help/pycharm/json.html#ws_json_schema_add_custom).
@@ -89,13 +93,17 @@ and one for [PyCharm](https://www.jetbrains.com/help/pycharm/json.html#ws_json_s
 Since the format of the `app_meta.json` evolves over time,
 it is important to include the version of the format in which it is written.
 It is contained in the `v` attribute.
-The current version is `1.1`.
+The current version is `1.2`.
 
 When new versions are released, we will attempt to make them backwards compatible.
 That means that Portal still can process the previous version
 and translate it to the current one.
 
 ### Past Updates
+
+#### Version 1.2
+
+* Added the `upstream_repo` field.
 
 #### Version 1.1
 
