@@ -154,7 +154,6 @@ and - most importantly - more free time that is not spent organizing and searchi
 
 I hope this article has inspired you to give Paperless on Portal a try.
 If you want, you can start with a free trial.
-(Once you have your Portal, [write us](mailto:help@getportal.org) so we can unlock the needed Portal size for you.)
 
 [:sparkles: Create Trial Portal](https://trial.getportal.org/?apps=paperless-ngx){ target=_blank .md-button .md-button--primary }
 
