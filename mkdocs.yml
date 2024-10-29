@@ -28,7 +28,15 @@ theme:
         name: Switch to light mode
 
 nav:
-  - Home: 'index.md'
+  - Overview:
+    - 'overview/index.md'
+    - Concepts:
+      - 'overview/concepts/single_user_isolation.md'
+      - 'overview/concepts/devices.md'
+      - 'overview/concepts/apps.md'
+      # - 'overview/concepts/ubiquity.md'
+      # - 'overview/concepts/user_interface.md'
+      # - 'overview/concepts/peers.md'
   - Developer Docs:
     - 'developer_docs/overview.md'
     - 'developer_docs/docker_compose_template.md'
