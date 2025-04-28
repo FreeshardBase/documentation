@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    if: github.ref != 'refs/heads/master'
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.8-buster
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build MkDocs site for testing
+        run: mkdocs build --strict --verbose --site-dir test
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test
+          path: test
+
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.8-buster
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build MkDocs site for deployment
+        run: mkdocs build --strict --verbose
+
+      - name: Upload deployment artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          path: public
