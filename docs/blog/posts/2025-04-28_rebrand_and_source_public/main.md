@@ -7,148 +7,107 @@ authors:
 
 # Rebrand and Public Source Code
 
-The brand _Portal_ was always meant to be a placeholder.
+The brand _Portal_ was always meant to be a placeholder, one that felt increasingly stale lately.
+So I did some brainstorming and sketching and came up with a new name and logo.
+From now on, Portal will be called:
 
-![Digitizing your Documents](title.jpg){ width="500" }
+![freeshard logo](Freeshard_logo_for_light.png){ width="500" }
 
 <!-- more --> 
 
-## Why use Paperless?
+## About Portal
 
-The need to manage documents is pretty universal in the modern world (sometimes frustratingly so) and there are many ways to do it.
-You could keep the paper in ever-growing binders or boxes. 
-You could scan them and store them on your computer. 
-Or put them in a cloud service like Dropbox or Google Drive.
-Many people probably do a combination of these things.
-But they all have their downsides, like the time it takes to scan and organize documents, the risk of losing them, or the privacy concerns of storing them in the cloud.
+To be totally honest, I came up with the name _Portal_ after playing the Valve game with the same name.
+At the time I really had no good name for the project and Portal felt kinda ok: short, easy to remember.
+I did not know how serious all this was going to be, so the bar for branding was pretty low.
+A collaborator later found the logo on a stock image database.
+So it was all a bit low-effort, just to have something.
 
-Paperless on Portal is a way to get rid or at least significantly reduce these downsides.
-With a proper setup and its smart features, it makes organizing fast and effortless.
-Since the documents are kept and processed only on Portal, 
-they are always available and secure and automatically backed up as well as under your exclusive control (like everything on your Portal).
-To my knowledge, there is no other service that offers this combination of features.
+Of course the name Portal has its problems.
+It is a very common noun, one that is even more commonly used in the IT area.
+That makes it hard to find a domain name - getportal.org is unwieldy and the _.org_ TLD doesn't really fit - and search engines won't place it prominently.
+It is also weird from a semantic point of view:
+A portal is like a door, a gateway, leading to somewhere.
+Where does the product _Portal_ lead? Nowhere, really.
+It is more like a destination, a thing in itself.
 
-Here, you can also see exactly the three main hallmarks that make up the DNA of Portal itself: simplicity, ubiquity, and ownership.
+So all this did not fit and after a long time deprioritizing a rebranding this feeling just grew and grew until I finally put the task on the table.
 
-## Overview
+## About Freeshard
 
-In a nutshell, my Paperless workflow looks like this:
+Coming up with a new name - a new identity really - still took quite some time.
+This was a creative process and such a process cannot be rushed.
+So from time to time I revisited the task, tried to come up with other words and meanings, only to drop it again, waiting for the next sprint of inspiration.
 
-``` mermaid
-graph LR
-    Scanner -- send --> email[E-Mail Account];
-    email -- consume/process --> Paperless;
-    Paperless -- check --> Paperless;
-    Paperless -- search --> Smartphone;
-    Paperless -- search --> Laptop;
-    Paperless -- search --> Tablet;
-```
+Some of the ideas I wanted to convey were stability/homeliness/intimacy/faithfulness, freedom/independence/self-control, value/uniqueness.
+I played around with variations and translation of words like _one, avatar, daemon, deck, hub/center_ and others.
+In the end, it became _freeshard_, and I am pretty happy with it.
 
-1. I scan all incoming documents and trash the originals.
-2. The scanner directly sends the scanned documents to Paperless on Portal via a dedicated email address.
-3. Paperless automatically processes the documents: it extracts text, categorizes the document (date, type, correspondent), and applies tags.
-4. Then, I manually look over the consumed documents in Paperless and correct any mistakes.
-5. Once organized, I can search for documents on any device using the Paperless web interface.
+Freeshard is actually a known term, albeit only in the bubble of old-school online-games.
+When someone who is not the publisher of a game hosts their own game server - with or without the publisher's permission - this is called a freeshard.
+So the aspect of self-hosting and individual freedom is right there in the traditional meaning of the word.
 
-Let's now go into more detail on each of these steps. If you want, you can also [create your own setup](#try-it-yourself) and follow along.
+Also, the term _shard_ is reminiscent of a piece of a gemstone, hinting at stability, value, and uniqueness.
+However, a shard is only a single piece and many shards make a consistent whole.
+This is a good analogy for the project, where the peer-to-peer connections of shards will eventually turn individual tools into a much more useful ecosystem.
+In fact, I decided that I'll call the individual instances _shards_.
 
-## Scanning
+So all these thoughts went into the name and make it a good fit.
+The cherry on top then was the fact that the freeshard.net domain was free - perfekt.
 
-![Scanning](scanner.gif)
+Next task: creating...
 
-For fast and easy scanning, I use a duplex feeder scanner but of course, if you are patient, a flatbed will do the trick.
-Mine is the _Brother ADS-1700W_ which is small and light and chews through a stack of paper in no time.
-It is a delight to use and I can highly recommend it.
+## The Logo
 
-The scanner connects to my Wi-Fi network and has a feature to send scanned documents directly to an email address.
-I have saved this as a shortcut so the scan takes a single tap.
-The email address it sends to is a dedicated one that I created just for this purpose.
+I started sketching and doodling whenever I felt like it.
+With the term _shard_ as part of the name, I wanted to make some kind of gem-like faceted structure but also include a certain technologyness.
+Here are some of the sketches, the final design evolved surprisingly quickly.
+It just kinda made sense.
 
-!!! note ""
-    Here, I set up a dedicated email account just for incoming documents.
-    However, you can also use your existing email account if you prefer and have Paperless only consume mails from a specific sender or with a specific subject.
-    In the future, we want Portal to host its own mail server so you can even skip this step.
+![Sketches 1](sketches1.png)
+![Sketches 2](sketches2.png)
+![Construct](Freeshard_logo_construct.png)
 
-## Consuming
+The simplicity with only two angles for the outlines, the symetry, the "shardiness".
+It reminds me of a rocket taking off but the lines can also be seen as wireless transmission signs like in the wifi symbol.
+Or you see the central element as a shard and the small elements of its paired devices.
+If I sqint real hard, it even reminds me of the Starfleet logo.
+All of this was not planned of course, but it is always nice if you can make up origin stories for your logo after the fact.
 
-This email account is monitored by Paperless. Once a minute, it checks for new mails and 
-consumes all mail attachments as new documents.
-So I can scan a document, and it will be in Paperless within a minute.
-I sometimes forward emails with attachments I want to keep to this address, so they end up in Paperless as well.
-And if I have a document lying around in the filesystem, I can just upload it using the web interface.
+## Move to GitHub and Fair Source
 
-Connecting Paperless to the email account works in the same way you would connect a mail client like Thunderbird or Outlook.
+While I was already modifying the project all over the place for the rebranding, it makes sense to tackle other big changes at the same time, right?
+No, it does not, in fact it goes against all recommendations for software development, which somehow does not prevent me from [doing it anyway](../2023-09-16_app_integration_overhaul/main.md).
 
-![Email setup](paperless_email_setup.png)
+Your shard is supposed to be your _home on the internet_ (as per the tagline), a place you can trust.
+A tiny, unknown startup company offering an online service is not really the best way to build that trust though.
+But when you show people the source code of the product, even let them host it themselves, things are different.
+So that is the next obvious step for freeshard.
 
-Once the email account is set up, you can create rules that tell Paperless how to process incoming emails.
-In this case with a dedicated email account, I only need a single rule that consumes all email attachments and then deletes the email.
-A nice trick is to add the `consumed` tag to all documents.
-That way, I can easily filter for documents that I have not yet checked.
+Unfortunately, for publishing source code _GitHub_ really is the most popular and widely used service in town, by a huge margin.
+And freeshard was hosted on Git**Lab**, so it had to move.
 
-![Email rule](paperless_email_rule.png)
+That move was surprisingly not as easy as I anticipated.
+An org and some repos are created quickly but rewriting the CI/CD pipeline took some more effort 
+and making the code ready to be published and easy to run for everyone who wants to try it even more so.
 
-## Organizing
-
-Paperless is able to extract text from the documents and categorize them on its own based on the content.
-After a bit of automated learning, it gets quite good at this so
-most of the time, there is no need for me to correct anything.
-
-Nevertheless, with the help of the `consumed` tag, I still double-check every document manually.
-After verifying and correcting any mistakes I remove the "consumed" tag.
-This usually takes only a few seconds for each document, so no effort at all.
-
-Some people might need to get used to not having folders in which to put their documents.
-In Paperless, all documents are in a single list instead and the organization is done with their metadata and filters.
-This is actually more powerful and flexible.
-
-If you think about it, folders are just a way to organize documents by category, something that tags can do as well.
-So instead of putting a document in a folder called _apartment_, you can just add the tag _apartment_ to it.
-In fact, tags are more flexible than folders because a document can have multiple tags 
-but if you want a document to be in multiple folders, you have to make copies of it.
-For example, a tax-deductible bill for your apartment can have the tags _apartment_ and _tax_.
-
-??? note "What if I need to keep the original?"
-    There are some especially important documents of which you just have to keep a physical copy.
-    For these, Paperless has a special feature: the _archive serial number_ (ASN).
-    The idea is this: you still scan the document and manage it in Paperless, but you also keep the physical copy.
-    In order to find the copy quickly, you assign it an ASN (in Paperless and on a post-it on the original) 
-    and put all your copies in a binder in order of the ASN.
-    When searching the original, you first search inside Paperless, look up the ASN, 
-    and use it to find the physical copy by doing a [binary search](https://en.wikipedia.org/wiki/Binary_search) in the binder.
-
-## Searching
-
-Thanks to this metadata, searching for documents is easy and powerful.
-I can filter the list of documents by date, type, correspondent, or tags.
-
-For example, when the yearly tax declaration is due, I can filter by type _invoice_ and date _last year_ and have a good first selection of documents to include.
-Usually, it turns out that some of the invoices are not relevant, so I refine the filter by removing those _correspondents_ from the list.
-In just a few minutes, I have a complete list of all relevant documents.
-
-![Filtering by date](paperless_date_filter.png)
-
-Another powerful feature is the fact that I now have all of my documents accessible from any device.
-I mentioned this before, but it is worth repeating.
-Imagine being at a governments office or somewhere similar, realizing you need a document that is at home.
-That just won't happen anymore.
+And then there is the license.
+I am not sure yet, if I chose the right one using a [functional source license](https://fair.io/licenses/){ target=_blank } but at least I think I did not shoot myself in the foot with it.
+Maybe it will change in the future.
+As of now, I am glad people can read the source code and host their own shards which will hopefully help build trust
+and at the same time, I am the only one who may build a commercial service out of freeshard. 
 
 ## Conclusion
 
-There is no need to digitize all of your documents at once.
-About a year ago, I just started with the new documents that came in and that has been very helpful already.
-Digitizing old documents is still on my todo list, but it is not urgent.
+So that was another huge change for the project.
+It feels more mature now, although the basic functions are still the same.
+I am hoping now for a community to evolve with all its unforeseeable and chaotic and productive side effects.
 
-![My Paperless Stats](statistics.png){ width="400" }
+You can find the GitHub repo [here](https://github.com/FreeshardBase/freeshard){ target=_blank }. Give it a star if you like.
+Try to run it locally, it should only take a few minutes, [here are the steps](https://github.com/FreeshardBase/freeshard?tab=readme-ov-file#localhost){ target=_blank }.
+If you run into problems or have an idea for a feature, [open an issue](https://github.com/FreeshardBase/freeshard/issues){ target=_blank }.
 
-The benefits of going paperless are already clear: less clutter, easier organization, better accessibility,
-and - most importantly - more free time that is not spent organizing and searching for documents.
+Managed shards are not available yet, but they will come soon.
+In the meantime, you can still [try](https://trial.getportal.org/){ target=_blank } or [buy](https://getportal.org/#subscribe){ target=_blank } a managed Portal (which is still essentially the same thing.)
 
-## Try it yourself
-
-I hope this article has inspired you to give Paperless on Portal a try.
-If you want, you can start with a free trial.
-
-[:sparkles: Create Trial Portal](https://trial.getportal.org/?apps=paperless-ngx){ target=_blank .md-button .md-button--primary }
-
-And if you have any questions or need help with your setup, feel free to join the [Portal Discord](https://discord.gg/ZXQDuTGcCf){ target=_blank }.
+Hope you have a good time with it, and I am looking forward to your comments at [Discord](https://discord.gg/ZXQDuTGcCf){ target=_blank } or via [email](mailto:contact@freeshard.net).
