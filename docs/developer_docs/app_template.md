@@ -2,9 +2,9 @@
 title: The App Template
 ---
 
-When building a Portal app from scratch, there is a lot of scaffolding to do
+When building a freeshard app from scratch, there is a lot of scaffolding to do
 before you can start on the actual business logic.
-We prepared a template for Portal apps written in Python that you can use to quickly bootstrap a new app.
+We prepared a template for freeshard apps written in Python that you can use to quickly bootstrap a new app.
 
 ---
 
@@ -37,7 +37,7 @@ The configuration is loaded during startup.
 ### TinyDB
 
 We added [TinyDB](https://tinydb.readthedocs.io/en/latest/index.html) for persistence.
-Since Portal apps are often single-user apps, there is rarely need for the usual ACID features.
+Since freeshard apps are often single-user apps, there is rarely need for the usual ACID features.
 TinyDB instead offers simplicity and flexibility and lets you start quickly.
 
 It is initialized in `app_template/database.py` and used in `app_template/web/private.py` and `app_template/web/public.py`
@@ -90,7 +90,7 @@ the documentation is uploaded to the project's GitLab pages space.
 
 ## Install the template
 
-This template is a fully functioning Portal app, and it is available in the app store.
+This template is a fully functioning freeshard app, and it is available in the app store.
 It just does not do a lot, and it is up to you to fill it with content.
 
 Use the `app.json` below as a starting point for your own one.
@@ -100,7 +100,7 @@ Adapt it to your app by changing at least the name, description and image.
 {
   "v": "1.0",
   "name": "app-template-python",
-  "description": "A fully functional and minimal Portal app that can be used to quickly bootstrap a new app using Python",
+  "description": "A fully functional and minimal freeshard app that can be used to quickly bootstrap a new app using Python",
   "image": "registry.gitlab.com/ptl-public/app-template-python:master",
   "port": 80,
   "data_dirs": [

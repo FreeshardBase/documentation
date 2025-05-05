@@ -2,12 +2,12 @@
 title: Revenue Share
 ---
 
-As a developer of Portal-apps, you automatically earn money from people who have your app installed.
+As a developer of freeshard apps, you automatically earn money from people who have your app installed.
 The revenue share scheme aligns incentives in a way that works best for everyone.
 
 ---
 
-In order to reward app developers for their work, Portal uses a revenue share scheme.
+In order to reward app developers for their work, freeshard uses a revenue share scheme.
 App developers receive a monthly payment that scales with the number of installed app instances
 and users have no additional cost when installing apps, so they are not discouraged from doing so.
 The process is also very low-effort for both parties with regard to setup and maintenance.
@@ -25,7 +25,7 @@ Assume for this example a monthly app fee of 3.00€.
 
 ### 2. App Usage Monitoring
 
-During each month, the Portal monitors which apps are installed and for how long.
+During each month, the shard monitors which apps are installed and for how long.
 Assume the following distribution where App 1 is installed for the whole month
 and at the middle of the month, App 2 was uninstalled and App 3 was installed instead.
 
@@ -42,7 +42,7 @@ gantt
 
 ### 3. Weight Calculation
 
-At the end of the month, Portal uses this information to calculate a weight for each app
+At the end of the month, the shard uses this information to calculate a weight for each app
 matching the relative time it was installed.
 In the example, it would look like this:
 
@@ -69,7 +69,7 @@ Maybe they want to boost an especially good app, e.g. App 3.
 
 ### 5. Splitting the Flat Fee
 
-The user-adjusted weights are sent to the Portal backend and are used to split this month's app fee.
+The user-adjusted weights are sent to the freeshard backend and are used to split this month's app fee.
 
 | App   | Weight | Boost | Boosted Weight | Revenue Share |
 |-------|--------|-------|----------------|---------------|
@@ -79,7 +79,7 @@ The user-adjusted weights are sent to the Portal backend and are used to split t
 
 ### 6. Sum Up and Payout
 
-For each app, the revenue share from all Portals is summed up and added to the app developers account,
+For each app, the revenue share from all shards is summed up and added to the app developers account,
 ready to be withdrawn at any time or sent automatically to their bank account.
 
 ## Incentives
@@ -97,9 +97,9 @@ you profit from continuously maintaining and updating your app.
 In addition, you profit more the fewer other apps a user has installed.
 This is the case if your app covers many use-cases and is versatile.
 
-### For Portal Users
+### For Freeshard Users
 
-As a Portal user, your flat app payment is a constant and mandatory part of your Portal's price tag.
+As a freeshard user, your flat app payment is a constant and mandatory part of your shard's price tag.
 There is not a single additional thing you must do to enable it.
 And no matter how many or few apps you use, you always pay the same amount.
 

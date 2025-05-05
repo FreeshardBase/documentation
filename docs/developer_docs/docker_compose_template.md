@@ -2,11 +2,13 @@
 title: The Docker-Compose Template
 ---
 
-When starting an app, Portal simply brings up a docker-compose file just like you would with `docker-compose up`.
+When starting an app, the shard simply brings up a docker-compose file just like you would with `docker-compose up`.
 This file is generated during installation of the app from a `docker-compose.yml.template` that you have to provide.
-The template is a normal docker-compose file with some special variables that Portal will replace with the correct values.
+The template is a normal docker-compose file with some special variables that the shard will replace with the correct values.
 
 ---
+
+{!developer_docs/includes/portal_name_info.md!}
 
 ## Minimal Example
 
@@ -31,7 +33,7 @@ services:
         - portal # (5)!
 ```
 
-1. This is the network that Portal uses to connect all apps together and to the reverse proxy and Portal core.
+1. This is the network that the shard uses to connect all apps together and to the reverse proxy and the shard core.
     You need to include this in your template.
 2. This is the image that will be used for your app. Please specify a fixed version, not just `my-app:latest`.
    When you update your app, you will also need to release a new version of the metadata including a new template.
@@ -84,9 +86,9 @@ services:
 2. We mount the shared data directory into the app container in order for the app to be able to exchange data with other apps.
 3. The app need to know the hostname of the redis container, so we set it as an environment variable.
 4. Some apps need to know their base URL, so we set it as an environment variable.
-    Since the Portal's domain name is only known at install time, we need to use the `portal.domain` variable.
-    An app's domain name is always `<app-name>.<portal domain>`.
-5. We can also use the `portal.short_id` variable to get the Portal's six-digit unique identifier.
+    Since the shard's domain name is only known at install time, we need to use the `portal.domain` variable.
+    An app's domain name is always `<app-name>.<shard domain>`.
+5. We can also use the `portal.short_id` variable to get the shard's six-digit unique identifier.
     This is useful for example to set the title of the app.
 6. This app need a redis database, so we add a redis container to the docker-compose file.
     The naming convention for additional containers is `my-app-<name>`, where `<name>` is the name of the container.
@@ -130,7 +132,7 @@ volumes:
 
 ### Performance
 
-Memory and CPU capacity on a Portal vary depending on a Portal's size and are never infinite.
-So starting a large number of containers or containers that use a lot of resources can slow down the Portal.
+Memory and CPU capacity on a shard vary depending on a shard's size and are never infinite.
+So starting a large number of containers or containers that use a lot of resources can slow down the shard.
 Also remember that your app might not be the only one running at any time.
-If your app is very resource intensive, you should set the `min_portal_size` option in the `app_meta.json` to a high value.
+If your app is very resource intensive, you should set the `minimum_portal_size` option in the `app_meta.json` to a high value.

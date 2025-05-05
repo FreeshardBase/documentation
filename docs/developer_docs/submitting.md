@@ -2,14 +2,14 @@
 title: Submitting to the App Store
 ---
 
-When your app is ready and tested, you can submit it to be listed in the Portal app store.
-This allows all other Portal users to find and install it with a single click.
+When your app is ready and tested, you can submit it to be listed in the freeshard app store.
+This allows all other freeshard users to find and install it with a single click.
 
 ---
 
 ## Submission Process
 
-The backend of Portal's app store is [this repository on GitLab](https://gitlab.com/ptl-public/app-repository){target=_blank}.
+The backend of freeshard's app store is [this repository on GitLab](https://gitlab.com/ptl-public/app-repository){target=_blank}.
 There is a folder for each app containing the `app_meta.json`, the `docker-compose.yml.template` and the app's icon.
 To submit your app, request contributor access to the repository
 and create a merge request in which you add the folder for your app.

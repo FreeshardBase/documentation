@@ -2,11 +2,13 @@
 title: The app_meta.json File
 ---
 
-A Portal must know a few things about your app that cannot be configured in the `docker-compose.yml.template` file
-because they are specific to how Portal treats your app.
+A shard must know a few things about your app that cannot be configured in the `docker-compose.yml.template` file
+because they are specific to how the shard treats your app.
 This is what the `app_meta.json` file is for.
 
 ---
+
+{!developer_docs/includes/portal_name_info.md!}
 
 ## Full Example
 
@@ -15,7 +17,7 @@ Click on the plus buttons for a description of each field.
 
 ```json
 {
-  "v": "1.1", // (1)!
+  "v": "1.2", // (1)!
   "app_version": "0.1.1", // (2)!
   "name": "my-app", // (3)!
   "pretty_name": "My App", // (10)!
@@ -51,9 +53,9 @@ Click on the plus buttons for a description of each field.
 }
 ```
 
-1. The version of the `app_meta.json` format. Should be "1.1".
+1. The version of the `app_meta.json` format. Should be "1.2".
 2. The version of your app. This is used to determine if an update is available.
-    It can but does not have to match with your own versioning scheme.
+    It is recommended to match with your own versioning scheme.
 3. The name of your app as seen in the URL.
     It must be unique across all apps in the app store.
     It can only contain lowercase letters, numbers, and dashes.
@@ -68,14 +70,14 @@ Click on the plus buttons for a description of each field.
     It is a mapping of path prefixes to access control settings.
     The empty string `""` is the default and will be used for all paths that are not explicitly configured.
     Read more about access control [here](routing_and_ac.md).
-7. Most Portal apps do not run continuously but are started on demand and stopped after an idle period.
+7. Most freeshard apps do not run continuously but are started on demand and stopped after an idle period.
     This is where you can configure this behavior. Read more about it [here](lifecycle.md).
-8. This is the minimum size of a Portal that is required to run your app 
+8. This is the minimum size of a managed shard that is required to run your app 
     and should be set according to your app's CPU and memory requirements.
-    If you do not specify this, your app will be available on all Portal sizes.
+    If you do not specify this, your app will be available on all VM sizes.
 9. This is where you can configure the information that is displayed in the app store.
     See [Submitting to the App Store](submitting.md) for more information.
-10. The name of your app as seen in the app store and below the icon on the Portal home screen.
+10. The name of your app as seen in the app store and below the icon on the shard home screen.
     It can be different from the `name` field and may include uppercase letters and spaces.
 11. (Optional) The URL of the repository where the source code of your app is hosted.
     Right now, this is only used for automatically checking for updates.
@@ -88,8 +90,8 @@ Click on the plus buttons for a description of each field.
 To help you write your `app_meta.json` file,we publish a JSON schema that describes the format 
 [here](https://storageaccountportab0da.blob.core.windows.net/json-schema/0-30-2/schema_app_meta_1.2.json).
 Add it to your IDE to get auto-completion and validation.
-Here is a guide for [Visual Studio Code](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings)
-and one for [PyCharm](https://www.jetbrains.com/help/pycharm/json.html#ws_json_schema_add_custom).
+Here is a guide for [Visual Studio Code](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings){target=blank}
+and one for [PyCharm](https://www.jetbrains.com/help/pycharm/json.html#ws_json_schema_add_custom){target=blank}.
 
 ## Versioning
 
@@ -99,7 +101,7 @@ It is contained in the `v` attribute.
 The current version is `1.2`.
 
 When new versions are released, we will attempt to make them backwards compatible.
-That means that Portal still can process the previous version
+That means that freeshard still can process the previous version
 and translate it to the current one.
 
 ### Past Updates

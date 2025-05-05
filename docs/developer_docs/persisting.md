@@ -3,7 +3,7 @@ title: Persisting Data
 ---
 
 If your app needs to persist data between restarts or upgrades, 
-it can do so by mounting a directory of the Portal's file system.
+it can do so by mounting a directory of the shard's filesystem.
 Use this feature for a database or user-data in the shape of files.
 Shared directories allow data exchange between apps.
 
@@ -11,7 +11,7 @@ Shared directories allow data exchange between apps.
 
 ## App-specific directories
 
-For each installed app, Portal creates a separate app-directory inside its file system.
+For each installed app, a shard creates a separate app-directory inside its file system.
 You can mount subdirectories of this directory into your app's file system
 by using the `fs.app_data` variable in the `docker-compose.yml.template`.
 
@@ -33,7 +33,7 @@ In the `docker-compose.yml.template`:
 
 ## Shared directories
 
-Portal defines a single shared directory.
+A shard defines a single shared directory.
 You can mount it or subdirectories of it into your app's file system,
 allowing your app to access preexisting user data and share data with other apps that have access to the same directories.
 Use the `fs.shared` variable in the `docker-compose.yml.template`.

@@ -1,12 +1,12 @@
-site_name: Portal
-site_url: https://docs.getportal.org
+site_name: freeshard
+site_url: https://docs.freeshard.net
 site_dir: public
-copyright: "&copy; Portal. All rights reserved."
+copyright: "&copy; 2024 Good For Business UG (haftungsbeschränkt)"
 theme:
   name: material
   # custom_dir: overrides
-  logo: img/logo.svg
-  favicon: img/logo.svg
+  logo: img/logo.png
+  favicon: img/logo.png
   font:
     text: montserrat
   features:
@@ -60,6 +60,7 @@ nav:
 
 plugins:
   - blog
+  - glightbox
 
 extra:
   status:
@@ -67,13 +68,13 @@ extra:
     upcoming: Upcoming feature
   social:
     - icon: fontawesome/solid/globe
-      link: https://getportal.org
+      link: https://freeshard.net
     - icon: fontawesome/regular/envelope
-      link: mailto:contact@getportal.org
+      link: mailto:contact@freeshard.net
     - icon: fontawesome/brands/discord
       link: https://discord.gg/ZXQDuTGcCf
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/company/get-portal
+      link: https://www.linkedin.com/company/freeshard
 
 extra_css:
     - css/extra.css
