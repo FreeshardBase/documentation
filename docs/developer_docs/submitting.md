@@ -9,16 +9,15 @@ This allows all other freeshard users to find and install it with a single click
 
 ## Submission Process
 
-The backend of freeshard's app store is [this repository on GitLab](https://gitlab.com/ptl-public/app-repository){target=_blank}.
+The backend of freeshard's app store is [this repository on GitHub](https://github.com/FreeshardBase/app-repository){target=_blank}.
 There is a folder for each app containing the `app_meta.json`, the `docker-compose.yml.template` and the app's icon.
-To submit your app, request contributor access to the repository
-and create a merge request in which you add the folder for your app.
+To submit your app  create a pull request in which you add the folder for your app.
 Obviously, you may not modify any other apps except your own.
 
 When committing your changes, please name your branch `app/<your-app>`.
 
-If you make changes to your app you should update the app's files, 
-commit them to the same branch, and submit another merge request.
+If you want to publish an update for your app you should update the app's files
+and create another pull request.
 
 ## Metadata for the App Store
 
