@@ -5,7 +5,7 @@ authors:
   - max
 ---
 
-# Unblocking apps by fixing a performance bottleneck
+# Unblocking Apps by fixing a Performance Bottleneck
 
 ![Cover image](cover.png)
 
@@ -51,11 +51,11 @@ After taking a look at what is actually queried from the database for each reque
 
 ## Blinker-Signals
 
-Quick side note: shard-core uses a simple signal-bus based on the [Blinker](https://blinker.readthedocs.io/en/stable/) library. A signal is just an object that can be invoked and subscribed to. When it is invoked, it calls all of its subscribers and that way the invoking function does not need to know what those subscribers are. In cases where a signal must be invoked from multiple different locations, this can reduce an n-to-n complexity (each caller calling all consumers) to two one-to-n complexities (caller to signal, signal to consumers).
+Quick side note: shard-core uses a simple signal-bus based on the [Blinker](https://blinker.readthedocs.io/en/stable/){ target=_blank } library. A signal is just an object that can be invoked and subscribed to. When it is invoked, it calls all of its subscribers and that way the invoking function does not need to know what those subscribers are. In cases where a signal must be invoked from multiple different locations, this can reduce an n-to-n complexity (each caller calling all consumers) to two one-to-n complexities (n callers to one signal, one signal to n consumers).
 
 I included the system in shard-core because I found it conceptually elegant at the time, but after working with it, it turned out to not really be needed that much (the n being mostly small) and being its own source of problems and complexity, so I considered for quite a while to remove it and just do the calls directly.
 
-But to get back to the cache invalidation problem, this is where the signal-bus really came in handy. It allowed me to set up caches that invalidate themselves based on a signal they receive. And at every point where the cached data is modified, a signal (like `on_apps_update` or `on_identity_update`) is emitted that notifies consumers of that modification. The cache invalidator was just one of those consumers. So now the mutation sites do not even know about the cache.
+But to get back to the cache invalidation problem, this is where the signal-bus really came in handy. It allowed me to set up caches that invalidate themselves based on a signal they receive: at every point where the cached data is modified, a signal (like `on_apps_update` or `on_identity_update`) is emitted that notifies consumers of that modification. The cache invalidator is just one of those consumers. So now the mutation sites do not even know about the cache.
 
 Thanks to the ease of this fix, which was due to the existing signals, I am now leaning again toward keeping them.
 
@@ -65,6 +65,6 @@ With the cache in place, the number of database connections on the hot path of e
 
 The patch added 60 lines of code and removed 25. And it transformed a painful experience into a fun one. And that without changing the UI or requiring complicated setup or migration or anything. Really good efficiency. Really good effect for that small of a change.
 
-My two key takeaways are these. 1. Performance and speed is not a soft target. It is not nice to have. It can fundamentally change the experience. I've seen a talk by Linus Torvalds when he first introduced Git and the audience at Google didn't get it, but he was right. And this fix was a really good reminder. 2. Database connections and queries, even if the database is on the same host, add a significant overhead. If you do them too often, it will add up and be noticeable.
+My two key takeaways are these. 1. Performance and speed is not a soft target. It is not nice to have. It can fundamentally change the experience. I've seen a talk by Linus Torvalds when he first introduced Git and the audience at Google (using SVN) didn't get it, but he was right. And this fix was a really good reminder. 2. Database connections and queries, even if the database is on the same host, add a significant overhead. If you do too many on a hot path, it will add up and be noticeable.
 
-The update is already deployed on all existing and future shards. If you have one, maybe revisit apps you found slow before and try them again. If you don't have one, you are invited to a free 24-hour trial [here](https://freeshard.net/en/trial/).
+The update is already deployed on all existing and future shards. If you have one, maybe revisit apps you found slow before and try them again. If you don't have one, you are invited to a free 24-hour trial [here](https://freeshard.net/en/trial/){ target=_blank }.
