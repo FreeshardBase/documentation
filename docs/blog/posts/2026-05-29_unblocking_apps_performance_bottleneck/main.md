@@ -15,7 +15,7 @@ For a while now there was a problem with the Immich app. On the web it did not s
 
 ## How requests travel inside a Shard
 
-Every request that hits a shard goes through Traefik first. It is then decided whether that request may pass on to the app or is blocked. All requests from paired devices may pass on as well as requests that target a public endpoint. This is decided by the shard core application. And that means every request gets forwarded by Traefik to that application where the decision needs to happen.
+Every request that hits a shard goes through Traefik first. It is then decided whether that request may pass on to the app or is blocked. All requests from paired devices may pass on as well as requests that target a public endpoint. This is decided by the shard core application. And that means every request gets forwarded by Traefik to that application where the decision needs to happen. It is like a bouncer who has to check your ID for every single sip of your drink, not just once at the door.
 
 In order to make that decision, the shard core needs to query a few bits of information. What kind of app is targeted? How is its permission model configured? What device is requesting access? This is all in the database, so the database needs to be queried. And to query the database, a database connection is required. This connection is not created each time, but pulled from a pool of connections that are standing by and can be used and then returned to the pool.
 
@@ -23,21 +23,21 @@ In order to make that decision, the shard core needs to query a few bits of info
 flowchart TD
     Browser([Paired browser])
     Traefik[Traefik]
-    ShardCore[shard_core<br/>/internal/auth]
-    DB[(Postgres)]
-    App[App container<br/>e.g. Actual Budget]
+    ShardCore[Shard Core<br/>/internal/auth]
+    DB[(Database)]
+    App[App<br/>e.g. Immich]
 
     Browser -->|HTTPS request| Traefik
     Traefik -->|forwardAuth| ShardCore
     ShardCore -->|find app + identity| DB
-    ShardCore -->|200 / 401| Traefik
-    Traefik -->|forward on 200| App
+    ShardCore -->|allow/block| Traefik
+    Traefik -->|forward| App
     App -->|response| Browser
 ```
 
 ## The Bottleneck
 
-As it turned out, each single request pulled two connections from the pool to answer the question of whether it is allowed or must be blocked. Also the pool had only four connections available at a time. This is the default setting and I never questioned it, I did not even consciously see it. But when an app opens 30 or 40 requests on its first start, only the first two can be served right away. All the others are waiting for database connections to be returned and then given out again. A whole bunch of requests block for a long time.
+As it turned out, each single request pulled two connections from the pool to answer the question of whether it is allowed or must be blocked. Also the pool had only four connections available at a time. This is the default setting and I never questioned it, I did not even consciously see it. But when an app opens 30 or 40 requests on its first start, only the first two can be served right away. All the others are waiting for database connections to be returned and then given out again. A whole bunch of requests block for a long time. The crowd piles up behind the rope while the bouncer works through them two at a time.
 
 In fact, for apps like Immich or Actual, which open lots of connections during their startup, the long tail of piled-up and waiting requests frequently hit the 45-second browser timeout and the app fails to load at all.
 
