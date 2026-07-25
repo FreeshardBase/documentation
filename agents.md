@@ -11,10 +11,13 @@ Developer and user documentation site for Freeshard, published at docs.freeshard
 
 ## Commands
 
+Environment is managed with **uv** (no `pyproject.toml`; deps live in `requirements.txt`).
+
 ```bash
-pip install -r requirements.txt   # Install dependencies
-mkdocs serve                      # Dev server on localhost:8000
-mkdocs build                      # Generate static site to public/
+uv venv                            # Create .venv (once)
+uv pip install -r requirements.txt # Install dependencies
+uv run mkdocs serve                # Dev server on localhost:8000
+uv run mkdocs build                # Generate static site to public/
 ```
 
 ## Structure
