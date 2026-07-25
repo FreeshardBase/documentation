@@ -2,5 +2,7 @@ public
 
 .idea
 
+.claude/worktrees
+
 venv
 .venv
