@@ -53,7 +53,7 @@ Cold starts don't disappear entirely. An app that stays idle long enough, or one
 
 ## Making a cheap VPS survive swap
 
-Leaning on swap has an obvious risk: swap is slow, and a box that thrashes on wake is worse than one that was just slow to begin with. Two things keep this honest.
+Leaning on swap has an obvious risk: swap is slow, and a box that thrashes on wake is worse than one that was just slow to begin with. Two things keep that from happening.
 
 First, **zswap**. Before a page goes to the swapfile on disk, it goes through a compressed cache held in RAM (zstd compression, decompressing in microseconds). On a small VPS most of the paged-out memory never touches the disk at all; it lives compressed in a slice of RAM and comes back almost for free. Every shard now gets a RAM-sized swapfile plus zswap, because the paging half is useless without somewhere to page into.
 
