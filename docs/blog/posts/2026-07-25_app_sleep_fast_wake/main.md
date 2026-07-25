@@ -57,7 +57,7 @@ Leaning on swap has an obvious risk: swap is slow, and a box that thrashes on wa
 
 First, **zswap**. Before a page goes to the swapfile on disk, it goes through a compressed cache held in RAM (zstd compression, decompressing in microseconds). On a small VPS most of the paged-out memory never touches the disk at all; it lives compressed in a slice of RAM and comes back almost for free. Every shard now gets a RAM-sized swapfile plus zswap, because the paging half is useless without somewhere to page into.
 
-Second, none of this shipped as a leap of faith. It went out behind a kill-switch and with telemetry, transition counters, pause and unpause latency percentiles, PSI snapshots, swap usage, all reported so we can watch the real behavior rather than trust the design doc. We've only just started watching, though, so I can't hand you real-world numbers yet, that's the next thing to report.
+Second, it shipped behind a kill-switch, with telemetry: transition counters, pause and unpause latency percentiles, PSI snapshots, swap usage, all reported so we can watch the real behavior rather than trust the design doc. We've only just started watching, though, so I can't hand you real-world numbers yet, that's the next thing to report.
 
 ## Where this leaves you
 
