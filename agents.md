@@ -7,7 +7,7 @@ Developer and user documentation site for Freeshard, published at docs.freeshard
 - **Generator**: MkDocs with Material theme
 - **Plugins**: blog, glightbox (image lightbox)
 - **Markdown extensions**: admonitions, details, syntax highlighting, Mermaid diagrams, emoji, markdown-include
-- **Dependencies**: `requirements.txt` (mkdocs, mkdocs-material, markdown-include, mkdocs-glightbox)
+- **Dependencies**: `requirements.txt` (mkdocs, mkdocs-material, markdown-include, mkdocs-glightbox), pinned to exact versions — MkDocs 1.x is unmaintained and MkDocs 2.0 is not a viable upgrade (no plugin system, no Material support). Do not bump these; the migration target is Zensical, blocked on its blog plugin ([zensical/backlog#30](https://github.com/zensical/backlog/issues/30)).
 
 ## Commands
 
@@ -58,4 +58,4 @@ Supported via `pymdownx.superfences` custom fence. Use ` ```mermaid ` code block
 
 ## Deployment
 
-Built and deployed via GitLab Pages. The `site_dir` is `public/` (GitLab Pages convention). Site URL: `https://docs.freeshard.net`.
+Built and deployed via GitHub Pages (`.github/workflows/ci.yml`). Every push builds with `mkdocs build --strict`; pushes to `main` also deploy. The `site_dir` is `public/`. Site URL: `https://docs.freeshard.net`.
