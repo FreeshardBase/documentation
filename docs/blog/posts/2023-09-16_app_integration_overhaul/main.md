@@ -93,7 +93,7 @@ So to sum up, an app now consists of the following four artefacts:
 3. the `docker-compose.yml.template` which is a template for the `docker-compose.yml` file and
 4. an image file that is the app's icon.
 
-The docs contain all the details about the new app format [here](../../../developer_docs/overview.md#app-format){target=_blank}.
+The docs contain all the details about the new app format [here](../../../developer_docs/overview.md#the-apps-metadata){target=_blank}.
 
 And by the way, I of course also had to migrate all existing apps to the new format - or at least those that actually were used.
 
