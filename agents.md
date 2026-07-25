@@ -7,7 +7,7 @@ Developer and user documentation site for Freeshard, published at docs.freeshard
 - **Generator**: MkDocs with Material theme
 - **Plugins**: blog, glightbox (image lightbox)
 - **Markdown extensions**: admonitions, details, syntax highlighting, Mermaid diagrams, emoji, markdown-include
-- **Dependencies**: `requirements.txt` (mkdocs, mkdocs-material, markdown-include, mkdocs-glightbox), pinned to exact versions — MkDocs 1.x is unmaintained and MkDocs 2.0 is not a viable upgrade (no plugin system, no Material support). Do not bump these; the migration target is Zensical, blocked on its blog plugin ([zensical/backlog#30](https://github.com/zensical/backlog/issues/30)).
+- **Dependencies**: `requirements.txt` (mkdocs, mkdocs-material, markdown-include, mkdocs-glightbox), pinned to exact versions — MkDocs 1.x is unmaintained and MkDocs 2.0 is not a viable upgrade (no plugin system, no Material support). Do not bump these; the migration target is Zensical, tracked in [issue #10](https://github.com/FreeshardBase/documentation/issues/10) and blocked on moving the blog to the landing page ([issue #4](https://github.com/FreeshardBase/documentation/issues/4)).
 
 ## Commands
 
