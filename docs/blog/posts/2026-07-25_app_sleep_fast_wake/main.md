@@ -65,4 +65,4 @@ If you own a shard, your idle apps now get out of the way. They give their memor
 
 The interesting part, at least to me, is that the answer was not the exotic one. Checkpoint/restore is the flashy idea everyone reaches for; the thing that actually shipped is a freezer, a swapfile, and a compressed cache, primitives that have been in the kernel for years. Sometimes the boring tools win.
 
-Is there any app you host where wake time drives you up the wall? [Tell me which one](mailto:contact@freeshard.net) and how you use it. The idle heuristics are still being tuned, and real usage is what tunes them.
+Is there any app you host where wake time drives you up the wall? [Tell me which one](mailto:contact@freeshard.net) and how you use it. And as always, if something isn't behaving the way it should, tell me that too. The idle heuristics are still being tuned, and real usage is what tunes them, just as real bug reports are what fix bugs.
