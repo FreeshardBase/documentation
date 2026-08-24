@@ -59,3 +59,11 @@ Supported via `pymdownx.superfences` custom fence. Use ` ```mermaid ` code block
 ## Deployment
 
 Built and deployed via GitHub Pages (`.github/workflows/ci.yml`). Every push builds with `mkdocs build --strict`; pushes to `main` also deploy. The `site_dir` is `public/`. Site URL: `https://docs.freeshard.net`.
+
+## Commits
+
+[Scoped Commits](https://scopedcommits.com/): `<scope>: <description>`. The scope is the area of the tree the change touches, never a change type — write `user_guides: document the backup restore flow`, not `fix(user_guides): ...`. Body and trailers are optional; a change's reasoning belongs in the body, not in a code comment.
+
+Scopes for this repo: `blog` `developer_docs` `user_guides` `overview` `theme` `ci` `meta`
+
+`meta` covers repo-level files (agents.md, README, justfile). For a change spanning several scopes, use a broader one, list two comma-separated, or use `treewide`. Merges and reverts keep their own format. Don't generate a changelog from the commit log — release notes come from merged PRs.
