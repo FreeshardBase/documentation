@@ -4,7 +4,7 @@
 > coding agents (e.g. the app-repository `add-app` skill) that build and submit
 > Freeshard apps. Authoritative copy of `docs.freeshard.net/developer_docs`.
 >
-> Generated: 2026-06-29
+> Generated: 2026-11-03
 > Source: github.com/FreeshardBase/documentation
 > Regenerate with the repo-local `generate-digest` skill (`.claude/skills/generate-digest/`).
 
@@ -47,7 +47,8 @@ forwarded to the container/port named in `app_meta.json` `entrypoints`.
 ## `docker-compose.yml.template`
 
 A normal docker-compose file plus Jinja-style `{{ ... }}` template variables that
-the shard substitutes at install time. The shard runs it like `docker-compose up`.
+the shard substitutes at install time, and a `secret('<name>')` helper for
+generated passwords. The shard runs it like `docker-compose up`.
 
 Minimal example:
 
@@ -68,7 +69,7 @@ services:
         - portal                   # must join the portal network
 ```
 
-Complex example (dependency container + env vars + shared dir):
+Complex example (password-protected dependency container + env vars + shared dir):
 
 ```yaml
 version: '3.5'
@@ -92,10 +93,12 @@ services:
         - REDIS_HOST=my-app-redis
         - BASE_URL=https://my-app.{{ portal.domain }}   # app domain = <app-name>.<shard domain>
         - TITLE=My app on {{ portal.short_id }}
+        - REDIS_PASSWORD={{ secret('redis_password') }}   # generated once, then reused
 
     my-app-redis:                  # extra containers named my-app-<name>
         image: redis:6.2
         container_name: my-app-redis
+        command: redis-server --requirepass {{ secret('redis_password') }}   # same name = same value
         volumes:
         - "{{ fs.app_data }}/redis_data:/redis_data"   # use fs.app_data, same dir tree as the app
         networks:
@@ -121,6 +124,24 @@ Filesystem variables:
 | `fs.all_app_data`     | Absolute path to the app-data parent directory    | `/home/user/.freeshard/user_data/app_data`         |
 | `fs.shared`           | Absolute path to the shared data directory        | `/home/user/.freeshard/user_data/shared`           |
 | `fs.installation_dir` | Absolute path to your installation files          | `/home/user/.freeshard/core/installed_apps/my-app` |
+
+Secrets (`{{ secret('<name>') }}`, from freeshard 0.41.2):
+
+- For values that must not be static or predictable, e.g. an internal DB password:
+  `- POSTGRES_PASSWORD={{ secret('db_password') }}`.
+- Name is arbitrary; referencing it declares it. No `app_meta.json` entry.
+- First render that references a name generates 32 chars of `[A-Za-z0-9]` and
+  stores it. Afterwards the same value is returned for that name: across app
+  updates, restarts and reinstalls. Never rotated.
+- Same name → same value everywhere in the template (all containers). Different
+  names → different values. Scoped per app: another app's `secret('db_password')`
+  is a different value.
+- Kept on uninstall (like app data), so a reinstall reuses it. Included in the
+  shard backup.
+- Alphanumeric only, so safe unquoted in env vars, commands and URLs, e.g.
+  `postgres://my-app:{{ secret('db_password') }}@my-app-postgres/my-app`.
+- Renaming a secret in a later app version yields a new value; a database
+  initialized with the old one will reject it. Keep names stable.
 
 ### Limitations (enforced on app-store submission)
 
