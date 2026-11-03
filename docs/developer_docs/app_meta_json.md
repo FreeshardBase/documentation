@@ -17,7 +17,7 @@ Click on the plus buttons for a description of each field.
 
 ```json
 {
-  "v": "1.2", // (1)!
+  "v": "1.3", // (1)!
   "app_version": "0.1.1", // (2)!
   "name": "my-app", // (3)!
   "pretty_name": "My App", // (10)!
@@ -38,7 +38,8 @@ Click on the plus buttons for a description of each field.
   },
   "lifecycle": { // (7)!
     "always_on": false,
-    "idle_time_for_shutdown": 3600
+    "idle_for_pause": 300,
+    "idle_for_stop": 3600
   },
   "minimum_portal_size": "s", // (8)!
   "minimum_freeshard_version": ">=0.41.3", // (13)!
@@ -54,7 +55,7 @@ Click on the plus buttons for a description of each field.
 }
 ```
 
-1. The version of the `app_meta.json` format. Should be "1.2".
+1. The version of the `app_meta.json` format. Should be "1.3".
 2. The version of your app. This is used to determine if an update is available.
     It is recommended to match with your own versioning scheme.
 3. The name of your app as seen in the URL.
@@ -71,7 +72,7 @@ Click on the plus buttons for a description of each field.
     It is a mapping of path prefixes to access control settings.
     The empty string `""` is the default and will be used for all paths that are not explicitly configured.
     Read more about access control [here](routing_and_ac.md).
-7. Most freeshard apps do not run continuously but are started on demand and stopped after an idle period.
+7. Most freeshard apps do not run continuously but are started on demand, and paused and stopped after an idle period.
     This is where you can configure this behavior. Read more about it [here](lifecycle.md).
 8. This is the minimum size of a managed shard that is required to run your app 
     and should be set according to your app's CPU and memory requirements.
@@ -119,8 +120,10 @@ Older shards do not know the field and ignore it.
 
 ## Schema
 
-To help you write your `app_meta.json` file,we publish a JSON schema that describes the format 
+To help you write your `app_meta.json` file, we publish a JSON schema that describes the format 
 [here](https://storageaccountportab0da.blob.core.windows.net/json-schema/0-30-2/schema_app_meta_1.2.json).
+Note that this schema still describes version 1.2, so it does not know the version 1.3 lifecycle fields
+or `minimum_freeshard_version`.
 Add it to your IDE to get auto-completion and validation.
 Here is a guide for [Visual Studio Code](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings){target=blank}
 and one for [PyCharm](https://www.jetbrains.com/help/pycharm/json.html#ws_json_schema_add_custom){target=blank}.
@@ -130,13 +133,20 @@ and one for [PyCharm](https://www.jetbrains.com/help/pycharm/json.html#ws_json_s
 Since the format of the `app_meta.json` evolves over time,
 it is important to include the version of the format in which it is written.
 It is contained in the `v` attribute.
-The current version is `1.2`.
+The current version is `1.3`.
 
 When new versions are released, we will attempt to make them backwards compatible.
 That means that freeshard still can process the previous version
 and translate it to the current one.
 
 ### Past Updates
+
+#### Version 1.3
+
+* Replaced `idle_time_for_shutdown` in `lifecycle` with `idle_for_pause`, `idle_for_stop` and `skip_pause`.
+  See [The App Lifecycle](lifecycle.md#configuration).
+  When freeshard translates an older file, `idle_time_for_shutdown` becomes `idle_for_pause`.
+* Shards older than freeshard 0.40.0 cannot read version 1.3 files.
 
 #### Version 1.2
 

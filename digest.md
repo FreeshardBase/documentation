@@ -156,11 +156,11 @@ Secrets (`{{ secret('<name>') }}`, needs freeshard 0.41.3, so declare
 ## `app_meta.json`
 
 Tells the shard how to run and present the app. Current format version `v` =
-`"1.2"`. Full example:
+`"1.3"`. Full example:
 
 ```json
 {
-  "v": "1.2",
+  "v": "1.3",
   "app_version": "0.1.1",
   "name": "my-app",
   "pretty_name": "My App",
@@ -181,7 +181,8 @@ Tells the shard how to run and present the app. Current format version `v` =
   },
   "lifecycle": {
     "always_on": false,
-    "idle_time_for_shutdown": 3600
+    "idle_for_pause": 300,
+    "idle_for_stop": 3600
   },
   "minimum_portal_size": "s",
   "minimum_freeshard_version": ">=0.41.3",
@@ -199,7 +200,7 @@ Tells the shard how to run and present the app. Current format version `v` =
 
 Field reference:
 
-- `v` — `app_meta.json` format version, should be `"1.2"`.
+- `v` — `app_meta.json` format version, should be `"1.3"`.
 - `app_version` — your app's version; used for update detection. Match your own scheme.
 - `name` — URL name, **unique across the app store**, lowercase letters/numbers/dashes only.
 - `pretty_name` — display name (app store + home screen); may have uppercase/spaces.
@@ -211,7 +212,7 @@ Field reference:
   - `container_port` — port the app listens on inside the container.
   - `entrypoint_port` — `http` (→443) or `mqtt` (→8883).
 - `paths` — access control by path prefix (see below). Must include `""` default.
-- `lifecycle` — start/stop behavior (see Lifecycle).
+- `lifecycle` — pause/stop behavior (see Lifecycle).
 - `minimum_portal_size` — min shard size required (e.g. `"s"`); omit = all sizes.
 - `minimum_freeshard_version` — *(optional)* PEP 440 specifier the shard version must
   satisfy, e.g. `">=0.41.3"`. Needs an operator: `"0.41.3"` is invalid and makes the
@@ -225,8 +226,11 @@ Field reference:
 
 JSON schema (add to IDE for autocompletion/validation):
 `https://storageaccountportab0da.blob.core.windows.net/json-schema/0-30-2/schema_app_meta_1.2.json`
+(still describes 1.2: no 1.3 lifecycle fields, no `minimum_freeshard_version`; no 1.3 schema is published)
 
-Version history: **1.2** added `homepage` + `upstream_repo`; **1.1** added
+Version history: **1.3** replaced `lifecycle.idle_time_for_shutdown` with
+`idle_for_pause`/`idle_for_stop`/`skip_pause` (old field is read as `idle_for_pause`;
+shards older than 0.40.0 cannot read 1.3 files); **1.2** added `homepage` + `upstream_repo`; **1.1** added
 `pretty_name`. New versions aim to be backwards compatible (older files are
 translated to current).
 
@@ -306,20 +310,34 @@ The shard starts/stops apps on demand to conserve resources.
 - **Start**: triggered by incoming HTTP traffic; the shard core starts the app and
   shows a self-refreshing splash screen meanwhile (provided by the shard, no work
   for you).
-- **Stop**: after idle time with no HTTP traffic, `docker-compose stop` (containers
-  stopped, not removed).
+- **Pause**: after `idle_for_pause` with no HTTP traffic, containers are frozen and
+  their memory moved to swap; resumes quickly on the next request.
+- **Stop**: after `idle_for_stop`, `docker-compose stop` (containers stopped, not
+  removed); started again on the next request.
+- Low memory: shard pauses/stops least-recently-used apps early, one per cycle.
+  Low disk: every app is stopped, `always_on` included.
 
-Configure via `lifecycle` in `app_meta.json`:
+Configure via `lifecycle` in `app_meta.json` (all optional, seconds):
 
 ```json
 "lifecycle": {
-  "always_on": false,
-  "idle_time_for_shutdown": 60
+  "idle_for_pause": 300,
+  "idle_for_stop": 3600
 }
 ```
 
-- `always_on: true` → never stopped; then `idle_time_for_shutdown` is **forbidden**.
-- `idle_time_for_shutdown` (seconds, default `60`) → requires `always_on` unset/false.
+| field            | meaning                                         | default        |
+|------------------|-------------------------------------------------|----------------|
+| `idle_for_pause` | idle time until pause                           | `60`           |
+| `idle_for_stop`  | idle time until stop                            | `10800` (3h)   |
+| `skip_pause`     | never pause, only stop after `idle_for_stop`    | `false`        |
+| `always_on`      | never pause or stop                             | `false`        |
+
+- Both idle times ≥ `5`; `idle_for_pause` < `idle_for_stop`.
+- `skip_pause` (for apps that don't tolerate freezing) forbids `idle_for_pause`.
+- `always_on: true` forbids every other lifecycle field.
+- Pausing can be switched off per shard; then apps are only stopped after `idle_for_stop`.
+- Format ≤1.2 used a single `idle_time_for_shutdown`; still read, as `idle_for_pause`.
 
 ## Shard internal services
 
