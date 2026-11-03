@@ -213,7 +213,7 @@ Field reference:
   - `entrypoint_port` — `http` (→443) or `mqtt` (→8883).
 - `paths` — access control by path prefix (see below). Must include `""` default.
 - `lifecycle` — pause/stop behavior (see Lifecycle).
-- `minimum_portal_size` — min shard size required (e.g. `"s"`); omit = all sizes.
+- `minimum_portal_size` — min shard size required: `xs` `s` `m` `l` `xl`; omit = all sizes.
 - `minimum_freeshard_version` — *(optional)* PEP 440 specifier the shard version must
   satisfy, e.g. `">=0.41.3"`. Needs an operator: `"0.41.3"` is invalid and makes the
   app uninstallable. Omit = all versions. Set it whenever the app uses a feature that

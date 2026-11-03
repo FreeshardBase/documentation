@@ -76,6 +76,7 @@ Click on the plus buttons for a description of each field.
     This is where you can configure this behavior. Read more about it [here](lifecycle.md).
 8. This is the minimum size of a managed shard that is required to run your app 
     and should be set according to your app's CPU and memory requirements.
+    Possible values are `xs`, `s`, `m`, `l` and `xl`.
     If you do not specify this, your app will be available on all VM sizes.
 9. This is where you can configure the information that is displayed in the app store.
     See [Submitting to the App Store](submitting.md) for more information.
