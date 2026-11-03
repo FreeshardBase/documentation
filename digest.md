@@ -125,7 +125,7 @@ Filesystem variables:
 | `fs.shared`           | Absolute path to the shared data directory        | `/home/user/.freeshard/user_data/shared`           |
 | `fs.installation_dir` | Absolute path to your installation files          | `/home/user/.freeshard/core/installed_apps/my-app` |
 
-Secrets (`{{ secret('<name>') }}`, from freeshard 0.41.2):
+Secrets (`{{ secret('<name>') }}`, from freeshard 0.41.3):
 
 - For values that must not be static or predictable, e.g. an internal DB password:
   `- POSTGRES_PASSWORD={{ secret('db_password') }}`.

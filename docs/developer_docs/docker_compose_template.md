@@ -147,7 +147,7 @@ Note that a secret is tied to its name.
 If a later version of your app references `secret('db_pass')` where it used to say `secret('db_password')`,
 it gets a new value, and a database that was set up with the old one will no longer accept it.
 
-The `secret()` helper is available from freeshard version 0.41.2.
+The `secret()` helper is available from freeshard version 0.41.3.
 
 ## Limitations
 
