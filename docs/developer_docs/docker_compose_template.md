@@ -4,7 +4,8 @@ title: The Docker-Compose Template
 
 When starting an app, the shard simply brings up a docker-compose file just like you would with `docker-compose up`.
 This file is generated during installation of the app from a `docker-compose.yml.template` that you have to provide.
-The template is a normal docker-compose file with some special variables that the shard will replace with the correct values.
+The template is a normal docker-compose file with some special variables that the shard will replace with the correct values,
+and a `secret()` helper that fills in generated passwords.
 
 ---
 
@@ -47,7 +48,7 @@ services:
 ## Complex Example
 
 Now let's look at a more complex example.
-Here we have an app that depends on a redis database and has some environment variables that need to be set.
+Here we have an app that depends on a password-protected redis database and has some environment variables that need to be set.
 We also want to access the shared part of the filesystem where apps can store data that is shared between them.
 
 ```yaml
@@ -72,12 +73,14 @@ services:
         - REDIS_HOST=my-app-redis # (3)!
         - BASE_URL=https://my-app.{{ portal.domain }} # (4)!
         - TITLE=My app on {{ portal.short_id }} # (5)!
+        - REDIS_PASSWORD={{ secret('redis_password') }} # (6)!
 
-    my-app-redis: # (6)!
+    my-app-redis: # (7)!
         image: redis:6.2
         container_name: my-app-redis
+        command: redis-server --requirepass {{ secret('redis_password') }} # (8)!
         volumes:
-        - "{{ fs.app_data }}/redis_data:/redis_data" # (7)!
+        - "{{ fs.app_data }}/redis_data:/redis_data" # (9)!
         networks:
         - portal
 ```
@@ -90,9 +93,14 @@ services:
     An app's domain name is always `<app-name>.<shard domain>`.
 5. We can also use the `portal.short_id` variable to get the shard's six-digit unique identifier.
     This is useful for example to set the title of the app.
-6. This app need a redis database, so we add a redis container to the docker-compose file.
+6. The app needs the redis password. `secret('redis_password')` generates a random password
+    the first time the template is rendered and returns the same value on every later render.
+    Read more in the section on [secrets](#secrets).
+7. This app need a redis database, so we add a redis container to the docker-compose file.
     The naming convention for additional containers is `my-app-<name>`, where `<name>` is the name of the container.
-7. We mount a directory for redis to store its data. Note that we use `fs.app_data` just as for the app itself
+8. Redis is started with the same secret as its password.
+    Because both containers reference the name `redis_password`, they get the same value.
+9. We mount a directory for redis to store its data. Note that we use `fs.app_data` just as for the app itself
     so the redis data will be stored in the same directory as the app data.
 
 ## Variables
@@ -106,6 +114,44 @@ Here is a complete list of all variables that you can use in your template.
 ### Filesystem Variables
 
 {!developer_docs/includes/template_vars_fs.md!}
+
+### Secrets
+
+Some values must not be static or predictable, for example the password of a database that only your app talks to.
+For these, call the `secret()` helper with a name of your choice:
+
+```yaml
+environment:
+- POSTGRES_PASSWORD={{ secret('db_password') }}
+```
+
+There is nothing to declare beforehand: the name exists as soon as the template references it.
+The shard handles it like this:
+
+- The first time a template that references a name is rendered, the shard generates a random value
+  of 32 letters and digits (`[A-Za-z0-9]`) and stores it.
+- From then on, `secret()` returns that same value for that name.
+  It stays the same across app updates, restarts and reinstalls, and it is never rotated.
+- Every reference to the same name returns the same value, within one template and across containers.
+  Different names get different values.
+- Secrets are scoped to your app.
+  Another app that uses the same name gets its own, different value.
+- Secrets are kept when the app is uninstalled, just like its data,
+  so reinstalling the app reuses them.
+  They are also part of the shard's backup.
+
+Because the value only contains letters and digits, it can go anywhere in the template without quoting or escaping,
+for example inside a connection URL like `postgres://my-app:{{ secret('db_password') }}@my-app-postgres/my-app`.
+
+Note that a secret is tied to its name.
+If a later version of your app references `secret('db_pass')` where it used to say `secret('db_password')`,
+it gets a new value, and a database that was set up with the old one will no longer accept it.
+
+Secrets are stored unencrypted on the shard.
+Scoping keeps apps from colliding on names, it is not a security boundary between apps:
+a malicious app template could read other apps' secrets.
+
+The `secret()` helper is available from freeshard version 0.41.2.
 
 ## Limitations
 
