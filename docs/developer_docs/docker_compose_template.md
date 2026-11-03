@@ -147,10 +147,6 @@ Note that a secret is tied to its name.
 If a later version of your app references `secret('db_pass')` where it used to say `secret('db_password')`,
 it gets a new value, and a database that was set up with the old one will no longer accept it.
 
-Secrets are stored unencrypted on the shard.
-Scoping keeps apps from colliding on names, it is not a security boundary between apps:
-a malicious app template could read other apps' secrets.
-
 The `secret()` helper is available from freeshard version 0.41.2.
 
 ## Limitations
