@@ -117,6 +117,12 @@ Here is a complete list of all variables that you can use in your template.
 
 ### Secrets
 
+!!! info "Requires freeshard 0.41.3"
+    `secret()` is available from freeshard version 0.41.3.
+    On older shards, a template that uses it cannot be rendered.
+    Declare `"minimum_freeshard_version": ">=0.41.3"` in your `app_meta.json` to state this requirement.
+    Read more in the section on [the minimum freeshard version](app_meta_json.md#minimum-freeshard-version).
+
 Some values must not be static or predictable, for example the password of a database that only your app talks to.
 For these, call the `secret()` helper with a name of your choice:
 
@@ -146,8 +152,6 @@ for example inside a connection URL like `postgres://my-app:{{ secret('db_passwo
 Note that a secret is tied to its name.
 If a later version of your app references `secret('db_pass')` where it used to say `secret('db_password')`,
 it gets a new value, and a database that was set up with the old one will no longer accept it.
-
-The `secret()` helper is available from freeshard version 0.41.2.
 
 ## Limitations
 

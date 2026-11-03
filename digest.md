@@ -125,7 +125,8 @@ Filesystem variables:
 | `fs.shared`           | Absolute path to the shared data directory        | `/home/user/.freeshard/user_data/shared`           |
 | `fs.installation_dir` | Absolute path to your installation files          | `/home/user/.freeshard/core/installed_apps/my-app` |
 
-Secrets (`{{ secret('<name>') }}`, from freeshard 0.41.2):
+Secrets (`{{ secret('<name>') }}`, needs freeshard 0.41.3, so declare
+`"minimum_freeshard_version": ">=0.41.3"` in `app_meta.json`):
 
 - For values that must not be static or predictable, e.g. an internal DB password:
   `- POSTGRES_PASSWORD={{ secret('db_password') }}`.
@@ -183,6 +184,7 @@ Tells the shard how to run and present the app. Current format version `v` =
     "idle_time_for_shutdown": 3600
   },
   "minimum_portal_size": "s",
+  "minimum_freeshard_version": ">=0.41.3",
   "store_info": {
     "description_short": "This is a very good app.",
     "description_long": [
@@ -211,6 +213,14 @@ Field reference:
 - `paths` — access control by path prefix (see below). Must include `""` default.
 - `lifecycle` — start/stop behavior (see Lifecycle).
 - `minimum_portal_size` — min shard size required (e.g. `"s"`); omit = all sizes.
+- `minimum_freeshard_version` — *(optional)* PEP 440 specifier the shard version must
+  satisfy, e.g. `">=0.41.3"`. Needs an operator: `"0.41.3"` is invalid and makes the
+  app uninstallable. Omit = all versions. Set it whenever the app uses a feature that
+  only newer shards have (e.g. `secret()` → `">=0.41.3"`). Effect on a shard that
+  does not satisfy it: installed app is not started ("Shard too old" page) until the
+  shard is updated. Shards older than 0.41.3 do not know the field and ignore it.
+  (status: upcoming) Hiding not-installed apps in the app store from shards that do
+  not satisfy it; today the store shows every app on every shard.
 - `store_info` — app-store display metadata (see Submitting).
 
 JSON schema (add to IDE for autocompletion/validation):
