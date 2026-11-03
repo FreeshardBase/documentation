@@ -41,6 +41,7 @@ Click on the plus buttons for a description of each field.
     "idle_time_for_shutdown": 3600
   },
   "minimum_portal_size": "s", // (8)!
+  "minimum_freeshard_version": ">=0.41.3", // (13)!
   "store_info": { // (9)!
     "description_short": "This is a very good app.",
     "description_long": [
@@ -84,6 +85,37 @@ Click on the plus buttons for a description of each field.
     It only works with GitHub repositories which use the "Release" feature.
 12. (Optional) The URL of the homepage of your app.
     This is where users can find more information about your app.
+13. (Optional) The freeshard version your app needs.
+    Read more in the section on [the minimum freeshard version](#minimum-freeshard-version).
+
+## Minimum Freeshard Version
+
+Some template features and platform behavior only exist from a certain freeshard version on,
+for example the [`secret()` helper](docker_compose_template.md#secrets), which needs 0.41.3.
+If your app depends on such a feature, declare it with `minimum_freeshard_version`:
+
+```json
+"minimum_freeshard_version": ">=0.41.3"
+```
+
+The value is a [PEP 440 version specifier](https://packaging.python.org/en/latest/specifications/version-specifiers/){target=blank},
+so it needs an operator: write `">=0.41.3"`, not `"0.41.3"`.
+A value that is not a valid specifier makes the `app_meta.json` invalid, and the app cannot be installed.
+If you do not specify this, your app is available on all freeshard versions.
+
+The shard compares the requirement against the freeshard version it is running.
+An installed app on a shard that does not satisfy the requirement is not started.
+Instead of the app, the owner sees a "Shard too old" page naming the required version.
+As soon as the shard is updated to a matching version, the app starts normally.
+
+Note that this check only exists from freeshard 0.41.3 on.
+Older shards do not know the field and ignore it.
+
+!!! warning "Upcoming Feature"
+    Hiding apps in the app store is not yet implemented.
+    Once it is, the app store will not show an app to owners whose shard does not satisfy its requirement,
+    so they cannot install it in the first place.
+    Until then, the app store shows every app on every shard.
 
 ## Schema
 
