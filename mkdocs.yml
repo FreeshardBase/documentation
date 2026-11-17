@@ -52,6 +52,8 @@ nav:
     - 'developer_docs/revenue_share.md'
     - 'developer_docs/existing_apps.md'
     # - 'developer_docs/app_template.md'
+  - Self-Hosting:
+    - 'self_hosting/index.md'
   - User Guides:
       - 'user_guides/password_management.md'
       - 'user_guides/smart_home.md'
