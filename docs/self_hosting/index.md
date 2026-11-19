@@ -96,11 +96,12 @@ After changing `.env`, run `docker compose up -d` again.
 
 ### The owner's email address
 
-Leave the owner's email address under **Settings** empty.
-Nothing on a self-hosted shard uses it yet: the shard cannot send mail, no app reads the address, and the login provider that passes it to apps is not enabled for self-hosted shards.
-The hint on the Settings page that storage warnings and billing messages go to this address applies to hosted shards only.
+Set your own email address under **Settings** right after pairing the first device, before you log into any app.
+Apps log you in through the shard's built-in login provider, which passes them this address.
+Without one, those apps create fresh accounts instead of linking to an existing account by address.
 
-If you set one anyway, it counts as soon as you save it, because there is no confirmation mail.
+A self-hosted shard cannot send mail, so the address is not confirmed by a link as on a hosted shard: it counts as soon as you save it.
+Check it for typos before saving.
 
 ## What a self-hosted shard still gets from Freeshard
 
