@@ -97,7 +97,7 @@ After changing `.env`, run `docker compose up -d` again.
 ### The owner's email address
 
 Set your own email address under **Settings** right after pairing the first device, before you log into any app.
-Apps log you in through the shard's built-in login provider, which passes them this address.
+Apps that support it log you in through the shard's built-in login provider, which passes them this address.
 Without one, those apps create fresh accounts instead of linking to an existing account by address.
 
 A self-hosted shard cannot send mail, so the address is not confirmed by a link as on a hosted shard: it counts as soon as you save it.
