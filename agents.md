@@ -26,6 +26,7 @@ uv run mkdocs build                # Generate static site to public/
 docs/
   overview/              Product overview and concepts
     concepts/              Single-user isolation, devices, apps
+  self_hosting/          Running a shard on your own machine (prerequisites, known gaps)
   developer_docs/        Developer documentation for app creators
     includes/              Reusable markdown snippets (template vars, portal name info)
     img/                   Developer docs images
@@ -39,7 +40,7 @@ mkdocs.yml               Site config, navigation, theme, plugins
 ## Conventions
 
 ### Navigation
-Navigation is explicitly defined in `mkdocs.yml` under the `nav` key. Three top-level sections: Overview, Developer Docs, User Guides. Adding a new page requires adding it to `nav`.
+Navigation is explicitly defined in `mkdocs.yml` under the `nav` key. Four top-level sections: Overview, Developer Docs, Self-Hosting, User Guides. Adding a new page requires adding it to `nav`.
 
 ### Retired Blog
 The blog no longer lives here. It moved to `freeshard.net/<lang>/blog/`, as an Astro content collection in the `landing-page` repo — write new posts there, not here.
@@ -67,6 +68,6 @@ Built and deployed via GitHub Pages (`.github/workflows/ci.yml`). Every push bui
 
 [Scoped Commits](https://scopedcommits.com/): `<scope>: <description>`. The scope is the area of the tree the change touches, never a change type — write `user_guides: document the backup restore flow`, not `fix(user_guides): ...`. Body and trailers are optional; a change's reasoning belongs in the body, not in a code comment.
 
-Scopes for this repo: `blog` `developer_docs` `user_guides` `overview` `theme` `ci` `meta`
+Scopes for this repo: `blog` `developer_docs` `self_hosting` `user_guides` `overview` `theme` `ci` `meta`
 
 `meta` covers repo-level files (agents.md, README, justfile). For a change spanning several scopes, use a broader one, list two comma-separated, or use `treewide`. Merges and reverts keep their own format. Don't generate a changelog from the commit log — release notes come from merged PRs.
