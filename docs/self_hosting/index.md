@@ -11,9 +11,8 @@ This page is the complete guide: what you need, how to try it locally, how to ru
 
 ## Prerequisites
 
-* **A Linux machine with an x86-64 (amd64) CPU.** The Shard Core image is only built for amd64, so ARM boards such as a Raspberry Pi will not work.
-* **Docker Engine with the Compose v2 plugin.** All commands below use `docker compose`. The retired v1 tool `docker-compose` is not supported.
-* **A host to itself.** Ports 80, 443 and 8883 must be free, and there must be no Docker network called `portal`. Both are fixed in the compose file ([#196](https://github.com/FreeshardBase/freeshard/issues/196)). Shard Core also removes unused Docker images on the host once a day (see `PRUNE_IMAGES` under [Configuration](#configuration)). A dedicated machine or VM is the easiest setup.
+* **A Linux machine** with Docker Engine and the Compose plugin (`docker compose`).
+* **Free ports and network name.** Ports 80, 443 and 8883 must be free, and there must be no Docker network called `portal`. Both are fixed in the compose file ([#196](https://github.com/FreeshardBase/freeshard/issues/196)). A dedicated machine or VM is recommended, see [Known gaps](#known-gaps).
 * **Root or `sudo`.** The containers write the shard's data as root.
 * **Memory and disk.** There is no tested minimum yet. For comparison, the smallest hosted shard has 1 vCPU and 2 GB of RAM. Apps are downloaded when they are first opened, and some are large: the Immich images alone are about 3.5 GB.
 * **For a local test: `*.localhost` resolution.** The shard is reached at `http://<shard id>.localhost`. systemd-resolved resolves such names; plain glibc without it and Windows do not.
@@ -30,7 +29,7 @@ curl -fsSL -o docker-compose.yml https://raw.githubusercontent.com/FreeshardBase
 curl -fsSL -o .env https://raw.githubusercontent.com/FreeshardBase/freeshard/main/.env.template
 ```
 
-The compose file pins the same versions of Shard Core, Traefik, Postgres and the two web interfaces that hosted shards run.
+The compose file pins the same versions of Shard Core, Traefik, Postgres and the Sundial web interface that hosted shards run.
 
 ## Try it locally
 
@@ -50,7 +49,10 @@ The compose file pins the same versions of Shard Core, Traefik, Postgres and the
     It shows the Freeshard logo, the shard's address `http://<shard id>.localhost` and, as long as no device is paired, a pairing link that is valid for 10 minutes.
 4. Open the pairing link in your browser. If the code is not filled in, type it into the pairing field.
 
-To pair another device later, get a fresh code from inside the shard's network:
+To pair another device, open **Devices** on a device that is already paired and choose **Pair new device**.
+It shows a code and a QR code for the new device.
+
+If no paired device is left, get a fresh code from inside the shard's network instead:
 
 ```shell
 docker run --rm --network portal curlimages/curl -s "http://shard_core/protected/terminals/pairing-code"
@@ -81,31 +83,24 @@ With any other DNS provider, Traefik falls back to its own self-signed certifica
 
 ## Configuration
 
-All settings live in `.env`. The first three are required; the rest are optional and fall back to the defaults shown.
+All settings live in `.env`, and all four are required.
 
-| Variable | Default | Meaning |
-|---|---|---|
-| `FREESHARD_DIR` | | Absolute path for all shard data |
-| `DNS_ZONE` | | Domain the shard lives under; `localhost` for a local test |
-| `EMAIL` | | Contact address for Let's Encrypt |
-| `DISABLE_SSL` | `false` | `true` only for a local test without certificates |
-| `EMAIL_ENABLED` | `false` | Keep `false`, see [The owner's email address](#the-owners-email-address) |
-| `PRUNE_IMAGES` | `true` | Once a day at 04:00, removes Docker images that no container uses and that are older than 24 hours. This applies to every image on the host, not only the shard's. Set it to `false` if the host runs other containers |
-| `SUNDIAL_ENABLED` | `false` | `true` serves Sundial, the new web interface, at the shard's root instead of the current one |
-| `OIDC_ENABLED` | `false` | `true` turns on the shard's built-in login provider for apps |
-| `PAUSE_ENABLED` | `false` | `true` pauses idle apps first and stops them only later or when memory gets tight, so they come back faster |
+| Variable | Meaning |
+|---|---|
+| `FREESHARD_DIR` | Absolute path for all shard data |
+| `DNS_ZONE` | Domain the shard lives under; `localhost` for a local test |
+| `EMAIL` | Contact address for Let's Encrypt |
+| `DISABLE_SSL` | `true` only for a local test without certificates, otherwise `false` |
 
 After changing `.env`, run `docker compose up -d` again.
 
 ### The owner's email address
 
-On a hosted shard, a new owner address only counts once its owner has opened a confirmation link mailed to it.
-A self-hosted shard cannot send mail, so with `EMAIL_ENABLED=false` the address is taken as given, without a confirmation mail.
-That is acceptable because you control the machine.
-With `true`, setting an address fails with HTTP 502 and the address stays unconfirmed.
+Leave the owner's email address under **Settings** empty.
+Nothing on a self-hosted shard uses it yet: the shard cannot send mail, no app reads the address, and the login provider that passes it to apps is not enabled for self-hosted shards.
+The hint on the Settings page that storage warnings and billing messages go to this address applies to hosted shards only.
 
-The confirmed address is what the built-in login provider passes to apps.
-Without one, apps you log into through it create fresh accounts instead of linking to an existing one by address.
+If you set one anyway, it counts as soon as you save it, because there is no confirmation mail.
 
 ## What a self-hosted shard still gets from Freeshard
 
@@ -126,7 +121,7 @@ Those requests fail for a self-hosted shard, which has no account there ([#286](
 
 * **Certificates only through Azure DNS** ([#292](https://github.com/FreeshardBase/freeshard/issues/292)), see [Certificates](#certificates).
 * **No automatic backup.** The nightly backup depends on Freeshard's management service and fails on a self-hosted shard, although the interface says a backup runs every night ([#286](https://github.com/FreeshardBase/freeshard/issues/286)). See [Backups](#backups).
-* **The shard assumes it owns the host:** fixed ports, a fixed network name, and Traefik also picks up other containers on the host ([#196](https://github.com/FreeshardBase/freeshard/issues/196)).
+* **The shard assumes it owns the host:** fixed ports, a fixed network name, and Traefik also picks up other containers on the host ([#196](https://github.com/FreeshardBase/freeshard/issues/196)). It works next to other services, but a dedicated machine or VM avoids these clashes.
 * **Isolation.** Shard Core and Traefik have access to the Docker socket, which amounts to root access on the host. Run a shard on a machine or VM that does nothing else you care about ([#198](https://github.com/FreeshardBase/freeshard/issues/198)).
 
 ## Backups
